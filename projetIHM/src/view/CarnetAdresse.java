@@ -1,10 +1,10 @@
 package view;
 
 import java.awt.*;
-import java.awt.Color;
 import javax.swing.*;
 import java.awt.event.*;
 import model.*;
+import controller.*;
 
 /**
  * @author AUGER-DUBOIS Quentin et BRIAND Kévin
@@ -77,6 +77,9 @@ public class CarnetAdresse extends JFrame {
 		buttonPane.add(showMore);
 		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
 		buttonPane.add(addSomeone);
+
+		ActionListener a1 = new AddContactController(this);
+		addSomeone.addActionListener(a1);
 
 		JPanel infos = new JPanel();
 		infos.setBorder(BorderFactory.createTitledBorder("Informations"));	

@@ -9,7 +9,7 @@ public class NewContact extends Container {
 
 	private boolean clicked;
 	private Carnet carnet;
-	private JTextField input1;
+	private JTextField enterName;
 
 	// Constructeur de notre class
 	public NewContact(Carnet carn, Dimension dim){
@@ -21,39 +21,47 @@ public class NewContact extends Container {
 	public void initPanel(){		
 	    clicked = false;
 	    
-	   JTabbedPane tabbedPane = new JTabbedPane();
-	   ImageIcon icon = createImageIcon("images/middle.gif");
+		JTabbedPane tabbedPane = new JTabbedPane();
 	   
-	   JComponent panel1 = makeTextPanel("Panel #1");
-	   tabbedPane.addTab("général", icon, panel1,
-	                  "Informations général");
-	   JComponent panel2 = makeTextPanel("Panel #2");
-	   tabbedPane.addTab("personnel", icon, panel2,
-	                  "Informations personnelles");
-	   JComponent panel3 = makeTextPanel("Panel #3");
-	   tabbedPane.addTab("professionnel", icon, panel3,
-	                  "Informations professionnelles");
+		JComponent panel1 = new JPanel();
+		tabbedPane.addTab("général", panel1);
+		panel1.setLayout(new GridLayout(4,2));		
+		JComponent panel2 = new JPanel();
+		tabbedPane.addTab("personnel", panel2);
+		panel2.setLayout(new GridLayout(1, 1));
+		JComponent panel3 = new JPanel();
+		tabbedPane.addTab("professionnel", panel3);
+		panel3.setLayout(new GridLayout(1, 1));
 
-		input1 = new JTextField();
+		Box box1 = Box.createHorizontalBox();
 		JLabel nom = new JLabel("nom: ");
-		JTextField enterName = new JTextField();
-		JLabel prenom = new JLabel("prénom:");
+		enterName = new JTextField();
+		box1.add(nom);
+		box1.add(enterName);
+
+		Box box2 = Box.createHorizontalBox();
+		JLabel prenom = new JLabel("prénom: ");
 		JTextField enterFirstName = new JTextField();
-		Jlabel civilite = new JLabel("civilité");
+		box2.add(prenom);
+		box2.add(enterFirstName);
+
+		Box box3 = Box.createHorizontalBox();
+		JLabel civilite = new JLabel("civilité: ");
 		JRadioButton men = new JRadioButton("Monsieur");
 		JRadioButton women = new JRadioButton("Madame");
 		ButtonGroup group = new ButtonGroup();
 		group.add(men);
 		group.add(women);
+		box3.add(civilite);
+		box3.add(men);
+		box3.add(women);
 		
-		panel1.add(nom);
-		panel1.add(enterName);
-		panel1.add(prenom);
-		panel1.add(enterFirstName);
-		panel1.add(civilite);
-		panel1.add(group);
+		panel1.add(box1);
+		panel1.add(box2);
+		panel1.add(box3);
 		
-		this.getPanel().add(tabbedPane);
+		this.panel.setLayout(new BorderLayout());
+		this.panel.add(tabbedPane, BorderLayout.CENTER);
 	}
 
 	class ZoneTextListener implements MouseListener {
