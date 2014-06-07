@@ -20,19 +20,51 @@ public class NewContact extends Container {
 
 	public void initPanel(){		
 	    clicked = false;
+	    
+	   JTabbedPane tabbedPane = new JTabbedPane();
+	   ImageIcon icon = createImageIcon("images/middle.gif");
+	   
+	   JComponent panel1 = makeTextPanel("Panel #1");
+	   tabbedPane.addTab("général", icon, panel1,
+	                  "Informations général");
+	   JComponent panel2 = makeTextPanel("Panel #2");
+	   tabbedPane.addTab("personnel", icon, panel2,
+	                  "Informations personnelles");
+	   JComponent panel3 = makeTextPanel("Panel #3");
+	   tabbedPane.addTab("professionnel", icon, panel3,
+	                  "Informations professionnelles");
 
-	  	input1 = new JTextField();
+		input1 = new JTextField();
+		JLabel nom = new JLabel("nom: ");
+		JTextField enterName = new JTextField();
+		JLabel prenom = new JLabel("prénom:");
+		JTextField enterFirstName = new JTextField();
+		Jlabel civilite = new JLabel("civilité");
+		JRadioButton men = new JRadioButton("Monsieur");
+		JRadioButton women = new JRadioButton("Madame");
+		ButtonGroup group = new ButtonGroup();
+		group.add(men);
+		group.add(women);
+		
+		panel1.add(nom);
+		panel1.add(enterName);
+		panel1.add(prenom);
+		panel1.add(enterFirstName);
+		panel1.add(civilite);
+		panel1.add(group);
+		
+		this.getPanel().add(tabbedPane);
 	}
 
 	class ZoneTextListener implements MouseListener {
 		public void mouseEntered(MouseEvent e) {
-	    	if (input1.getText().equals("Tapez votre nombre ici")){
-	    		input1.setText("");
+	    	if (enterName.getText().equals("Ex: name")){
+	    		enterName.setText("");
 	    	}
 		}
 		public void mouseExited(MouseEvent ev) {
-			if (input1.getText().equals("") && !clicked){
-		    	input1.setText("Tapez votre nombre ici");
+			if (enterName.getText().equals("") && !clicked){
+		    	enterName.setText("Ex: name");
 		    }
 		}
 		public void mousePressed(MouseEvent eve) {
