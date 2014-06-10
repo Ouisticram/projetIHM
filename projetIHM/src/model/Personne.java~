@@ -162,5 +162,10 @@ public class Personne implements Humain,Comparable<Personne>{
 				+ civilite + ", adresse=" + adresse + "]";
     }
     
-
+    /** redéfinition de la méthode twoString()
+     @return les caractéristiques d'une personne
+	*/
+	public String twoString() {
+		return this.nom + " " + this.prenom;
+    }
 }

@@ -67,7 +67,7 @@ public class Carnet{
 			throw new Exception();
 	}
 	
-	public List<Personne> getContacts(){return this.contacts;}
+	private List<Personne> getContacts(){return this.contacts;}
 
 	private void remplir() {
 	    Personne p1 = new Personne("Alves","Claire","Mme","Paris");
