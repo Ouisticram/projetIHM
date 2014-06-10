@@ -52,8 +52,13 @@ public class CarnetAdresse extends JFrame {
 		principal.setLayout(new GridBagLayout());
 		principal.setBackground((java.awt.Color) Color(155,225,150));
 
-		int height = (int)((dim.getHeight()-29)/3);
-		int width = (int)(dim.getWidth()-6);
+		Dimension scrnSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Rectangle winSize = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+		int taskBarHeight = scrnSize.height - winSize.height;
+		int taskBarWidth = scrnSize.width - winSize.width;
+
+		int height = (int)((dim.getHeight()-taskBarHeight)/3);
+		int width = (int)(dim.getWidth()-taskBarWidth);
 		dimPaneDown = new Dimension(width,height*2);
 
 		up = new JPanel();
@@ -159,7 +164,10 @@ public class CarnetAdresse extends JFrame {
 		this.setContentPane(principal);
 		this.setVisible(true);
 		System.out.println("La hauteur est de "+height+" et la largeur est de "+width);
-		System.out.println("La hauteur du panel principal est de "+principal.getHeight()+" et la largeur est de "+principal.getWidth());	
+		System.out.println("La hauteur du panel principal est de "+principal.getHeight()+" et la largeur est de "+principal.getWidth());
+		System.out.println("La hauteur de la fenetre est de "+this.getGlassPane().getHeight()+" et la largeur est de "+this.getGlassPane().getWidth());
+		System.out.println("La barre de menu de la fenetre a une hauteur de : "+taskBarHeight);
+		System.out.println("Les bords de la fenetre ont une largeur de : "+taskBarWidth);
 	}
 
 	private Object Color(int i, int j, int k) {
