@@ -22,33 +22,8 @@ public class Personne implements Humain,Comparable<Personne>{
 		this.adresse = adresse;
 	}
 
-	/** méthode qui permet d'obtenir le nom d'une personne
-	 @return le nom de la personne
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+	/** méthode qui permet de comparer 2 personnes par ordre alphabétique de nom, puis prénom
+	 @return un nombre négatif, postif ou nul
 	*/
 	public int compareTo(Personne p){
         
@@ -115,7 +90,7 @@ public class Personne implements Humain,Comparable<Personne>{
 	
 	
 	/** méthode qui permet de définir le prénom d'une personne
-     @param prénom - String qui définit le nouveau prenom de la personne
+     @param prenom - String qui définit le nouveau prenom de la personne
 	*/
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;

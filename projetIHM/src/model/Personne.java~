@@ -22,33 +22,8 @@ public class Personne implements Humain,Comparable<Personne>{
 		this.adresse = adresse;
 	}
 
-	/** méthode qui permet d'obtenir le nom d'une personne
-	 @return le nom de la personne
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+	/** méthode qui permet de comparer 2 personnes par ordre alphabétique de nom, puis prénom
+	 @return un nombre négatif, postif ou nul
 	*/
 	public int compareTo(Personne p){
         
@@ -162,10 +137,5 @@ public class Personne implements Humain,Comparable<Personne>{
 				+ civilite + ", adresse=" + adresse + "]";
     }
     
-    /** redéfinition de la méthode twoString()
-     @return les caractéristiques d'une personne
-	*/
-	public String twoString() {
-		return this.nom + " " + this.prenom;
-    }
+
 }
