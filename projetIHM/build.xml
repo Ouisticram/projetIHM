@@ -10,6 +10,7 @@
     <target name="compile" depends="clean">
         <mkdir dir="${bin.dir}"/>
         <javac srcdir="${src.dir}" encoding="UTF-8" destdir="${bin.dir}" includeantruntime="false"/>
+        <echo message="compilation terminee"/>
     </target>
 
     <target name="jar">
@@ -23,6 +24,7 @@
             </manifest>
         </jar>
         <chmod file="${jar.dir}/${ant.project.name}.jar" perm="ugo+x"/>
+        <echo message="Creation du fichier Jar terminee"/>
     </target>
 
     <target name="javadoc">
@@ -35,7 +37,9 @@
     </target>
 
     <target name="clean">
-        <delete dir="${classes.dir}"/>
+        <delete dir="${bin.dir}"/>
+        <delete dir="${jar.dir}"/>
+        <echo message="nettoyage termine"/>
     </target>
     
     <target name="main" depends="compile, jar, javadoc, run"/>
