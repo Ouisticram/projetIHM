@@ -8,6 +8,6 @@ public class Application{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new CarnetAdresse("Carnet D'adresse",new Dimension(646, 509));
+		new CarnetAdresse("Carnet D'adresse",new Dimension(640, 480));
 	}
 }

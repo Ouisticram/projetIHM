@@ -2,6 +2,7 @@ package view;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.JComponent.*;
 import java.awt.event.*;
 import model.*;
 import controller.*;
@@ -24,8 +25,8 @@ public class CarnetAdresse extends JFrame {
 	private JLabel prenom;
 	private JLabel civilite;
 
-	String[] tab_string = {"Jean Paul", "Dupont Pierre", "Troll tueur", "Robert Triman", "Steve Jobs", "Martin Luter", "Mirco soft", "Star Wars", "Node Wars", "Star Craft"};
-	JButton[] tab_button = new JButton[tab_string.length];
+	String[] tab_string;
+	JList<String> liste;
 
 	private JLabel informations;
 
@@ -39,6 +40,7 @@ public class CarnetAdresse extends JFrame {
 
 		// création d'un nouveau carnet d'adresse
 		carnet = new Carnet();
+		this.majListe();
 
 		/*************** FOR TEST ****************/
 
@@ -48,17 +50,18 @@ public class CarnetAdresse extends JFrame {
 
 		/*****************************************/
 
+		this.setPreferredSize(dim);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setResizable(false);
+		this.pack();
+
 		principal = new JPanel();		
 		principal.setLayout(new GridBagLayout());
 		principal.setBackground((java.awt.Color) Color(155,225,150));
+		this.setContentPane(principal);
 
-		Dimension scrnSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Rectangle winSize = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
-		int taskBarHeight = scrnSize.height - winSize.height;
-		int taskBarWidth = scrnSize.width - winSize.width;
-
-		int height = (int)((dim.getHeight()-taskBarHeight)/3);
-		int width = (int)(dim.getWidth()-taskBarWidth);
+		int height = (int)(this.getGlassPane().getHeight()/3);
+		int width = (int)(this.getGlassPane().getWidth());
 		dimPaneDown = new Dimension(width,height*2);
 
 		up = new JPanel();
@@ -102,24 +105,22 @@ public class CarnetAdresse extends JFrame {
 
 		gauche.add(infos, BorderLayout.CENTER);
 		gauche.add(buttonPane, BorderLayout.SOUTH);
-		gauche.setSize(new Dimension(280,50));
 
 	// Panel en haut à droite
 		JPanel droite = new JPanel();
 		droite.setLayout(new BorderLayout());
 
-		JPanel liste = new JPanel();
-		liste.setLayout(new BoxLayout(liste, BoxLayout.Y_AXIS));
-		liste.setBackground((java.awt.Color) Color(234,150,191));
+		JPanel panListe = new JPanel();
+		panListe.setLayout(new BoxLayout(panListe, BoxLayout.Y_AXIS));
+		panListe.setBackground((java.awt.Color) Color(234,150,191));
 
-		for(int i=0; i<tab_string.length; i++){
-			tab_button[i] = new JButton(tab_string[i]);
-			tab_button[i].setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
-			tab_button[i].setAlignmentX(Component.CENTER_ALIGNMENT);
-			liste.add(tab_button[i]);			
-		}
+		liste = new JList<String>(tab_string);
+		if(tab_string.length > 0) liste.setSelectedIndex(0);
+		liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
+		liste.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panListe.add(liste);
 
-		JScrollPane scrollArea = new JScrollPane(liste,
+		JScrollPane scrollArea = new JScrollPane(panListe,
                     JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                     JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -157,22 +158,21 @@ public class CarnetAdresse extends JFrame {
 		gbc.gridwidth = 1;
 		principal.add(down, gbc);
 
-		this.setPreferredSize(dim);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setResizable(false);
-		this.pack();
-		this.setContentPane(principal);
 		this.setVisible(true);
-		System.out.println("La hauteur est de "+height+" et la largeur est de "+width);
-		System.out.println("La hauteur du panel principal est de "+principal.getHeight()+" et la largeur est de "+principal.getWidth());
-		System.out.println("La hauteur de la fenetre est de "+this.getGlassPane().getHeight()+" et la largeur est de "+this.getGlassPane().getWidth());
-		System.out.println("La barre de menu de la fenetre a une hauteur de : "+taskBarHeight);
-		System.out.println("Les bords de la fenetre ont une largeur de : "+taskBarWidth);
 	}
 
 	private Object Color(int i, int j, int k) {
 		Color couleur = new Color(i,j,k);
 		return couleur;
+	}
+
+	private void majListe(){
+		int i = 0;
+		this.tab_string = new String[this.carnet.getContacts().size()];
+		for(Personne p : this.carnet.getContacts()){
+			this.tab_string[i] = p.getNom() + " " + p.getPrenom(); 
+			i++;
+		}
 	}
 
 	public void moreDetails(Personne pers){
