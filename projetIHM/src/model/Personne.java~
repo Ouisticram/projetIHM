@@ -7,7 +7,7 @@ import java.lang.*;
  * @version 1
  **/
 
-public class Personne implements Humain,Comparable<Personne>{
+public abstract class Personne implements Humain,Comparable<Personne>{
 
     private String nom;
     private String prenom;
@@ -90,7 +90,7 @@ public class Personne implements Humain,Comparable<Personne>{
 	
 	
 	/** méthode qui permet de définir le prénom d'une personne
-     @param prénom - String qui définit le nouveau prenom de la personne
+     @param prenom - String qui définit le nouveau prenom de la personne
 	*/
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
