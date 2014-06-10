@@ -1,11 +1,13 @@
 package model;
 
+import java.lang.*;
+
 /**
  * @author Auger-Dubois Quentin et Briand Kévin
  * @version 1
  **/
 
-public class Personne implements Humain{
+public class Personne implements Humain,Comparable<Personne>{
 
     private String nom;
     private String prenom;
@@ -20,6 +22,47 @@ public class Personne implements Humain{
 		this.adresse = adresse;
 	}
 
+	
+	public int compareTo(Personne p){
+        
+        int ret = 0;
+        boolean fini = false;
+        int taille = 0;
+        int i = 0;
+        String p1 = "";
+        String p2 = "";
+        
+        if (this.getNom() != p.getNom())
+        {
+            p1 = this.getNom();
+            p2 = p.getNom();  
+        }
+        else 
+        {
+            if (this.getPrenom() != p.getPrenom())
+            {
+                p1 = this.getPrenom();
+                p2 = p.getPrenom();
+            }
+            else 
+            {
+                fini = true;
+            }
+        }
+       
+        if (p1.length() > p2.length()) {taille = p1.length();}
+        else {taille = p2.length();};
+
+	    while (!fini && i<taille)
+	    {
+	        ret = ((Character)p1.charAt(i)).compareTo((Character)p2.charAt(i));
+	        if (ret ==0) {i++;}
+	        else{fini = true;} 
+	    }
+	    return ret;
+	}
+	
+	
 	/** méthode qui permet d'obtenir le nom d'une personne
 	 @return le nom de la personne
 	*/
@@ -45,7 +88,7 @@ public class Personne implements Humain{
 	
 	
 	/** méthode qui permet de définir le prénom d'une personne
-     @param prenom - String qui définit le nouveau prenom de la personne
+     @param prénom - String qui définit le nouveau prenom de la personne
 	*/
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;

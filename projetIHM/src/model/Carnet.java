@@ -4,7 +4,7 @@ import java.util.*;
 
 // - liste : LinkedList<Personne>
 
-public class Carnet {
+public class Carnet{
     
     private List<Personne> contacts;
     private int courant;
@@ -22,7 +22,8 @@ public class Carnet {
 	 */
 	public void ajout(Personne pers) {
 		
-        contacts.add(pers);
+        this.contacts.add(pers);
+        Collections.sort(this.contacts);
 	}
 
 	/**
@@ -65,12 +66,20 @@ public class Carnet {
 		else
 			throw new Exception();
 	}
+	
+	private List<Personne> getContacts(){return this.contacts;}
 
 	private void remplir() {
-		ajout(new Personne("De La Fontaine","Jean","M.","Paris"));
-		ajout(new Personne("De La Fontaine","Marc","M.","Paris"));
-		ajout(new Personne("De La Fontaine","Paul","M.","Paris"));
-		ajout(new Personne("De La Fontaine","Zyra","M.","Paris"));
+	    Personne p1 = new Personne("Alves","Claire","M.","Paris");
+	    Personne p2 = new Personne("Besson","Marc","M.","Paris");
+	    Personne p3 = new Personne("Crusson","Carmen","M.","Paris");
+		ajout(p3);
+		ajout(p2);
+		ajout(p1);
+		for (int i=0; i<this.contacts.size();i++)
+		{
+		    System.out.println(i+" "+contacts.get(i).toString());
+		}
 		
 	}
 
