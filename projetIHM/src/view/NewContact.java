@@ -5,6 +5,11 @@ import java.awt.*;
 import java.awt.event.*;
 import model.*;
 
+/**
+ * @author AUGER-DUBOIS Quentin et BRIAND Kévin
+ * @version 1
+ **/
+
 public class NewContact extends Container {
 
 	private boolean clicked;

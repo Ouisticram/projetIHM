@@ -3,6 +3,11 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author AUGER-DUBOIS Quentin et BRIAND Kévin
+ * @version 1
+ **/
+
 public abstract class Container{
 
 	protected JPanel panel;
