@@ -4,6 +4,11 @@ import java.util.*;
 
 // - liste : LinkedList<Personne>
 
+
+/*
+Attention, je dois vous dire quelque chose sur les listes chaînées : vu que tous les éléments contiennent une référence à l'élément suivant, de telles listes risquent de devenir particulièrement lourdes en grandissant ! Cependant, elles sont adaptées lorsqu'il faut beaucoup manipuler une collection en supprimant ou en ajoutant des objets en milieu de liste. Elles sont donc à utiliser avec précaution.
+*/
+
 public class Carnet{
     
     private List<Personne> contacts;
@@ -20,12 +25,47 @@ public class Carnet{
 	/** ajoute la personne au carnet de contacts
 	 * @param pers : personne à ajouter au carnet
 	 */
-	public void ajout(Personne pers) {
-		
+	public void ajout(Personne pers) {	
         this.contacts.add(pers);
         Collections.sort(this.contacts);
 	}
 
+    /** supprime la personne du carnet de contacts
+	 * @param pers : personne à ajouter au carnet
+	 */
+    public void supprimer(int index){
+        this.contacts.remove(index); 
+    }
+    
+    
+    
+    
+    /** supprime la personne du carnet de contacts
+	 * @param pers : personne à ajouter au carnet
+	 */
+    public Personne rechercher(String nom,String prénom){
+        
+        Personne pers;
+        for (int i=0;i<contacts.size();i++)
+        {
+            if ((contacts.get(i).getNom() == nom) && (contacts.get(i).getPrenom())
+            {
+                
+            }
+        }
+        
+    
+    
+    
+    
+    
+    
+    
+        return pers;
+    }
+    
+    
+    
 	/**
 	 * @return la personne actuellement consultée
 	 */
@@ -67,8 +107,17 @@ public class Carnet{
 			throw new Exception();
 	}
 	
+	
+	/** Donne la liste acuelle des personnes du carnet
+	 * @return : une linkedlist de personnes
+	 */
 	public List<Personne> getContacts(){return this.contacts;}
-
+	
+	
+	
+	/** Remplit le carnet avec des personnes (sert aux tests de controleurs)
+	 *
+	 */
 	private void remplir() {
 	    Personne p1 = new Personne("Alves","Claire","Mme","Paris");
 	    Personne p2 = new Personne("Besson","Marc","M.","Marseille");
@@ -84,6 +133,7 @@ public class Carnet{
 		ajout(p5);
 		ajout(p6);
 		
+		// affiche les contacts de base dans le terminal
 		for (int i=0; i<this.contacts.size();i++)
 		{
 		    System.out.println(i+" "+contacts.get(i).toString());

@@ -15,7 +15,6 @@ public class Personne implements Humain,Comparable<Personne>{
     private String adresse;
     
 	public Personne(String nom, String prenom, String civilite, String adresse) {
-		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.civilite = civilite;
