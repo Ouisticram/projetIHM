@@ -132,8 +132,7 @@ public class Personne implements Humain,Comparable<Personne>{
      @return les caractéristiques d'une personne
 	*/
 	public String toString() {
-		return "Personne [nom=" + nom + ", prenom=" + prenom + ", civilite="
-				+ civilite + ", adresse=" + adresse + "]";
+		return this.nom + " " + this.prenom;
     }
     
 

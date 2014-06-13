@@ -25,8 +25,8 @@ public class CarnetAdresse extends JFrame {
 	private JLabel prenom;
 	private JLabel civilite;
 
-	String[] tab_string;
-	JList<String> liste;
+	Personne[] tab_pers;
+	JList<Personne> liste;
 
 	private JLabel informations;
 
@@ -114,8 +114,8 @@ public class CarnetAdresse extends JFrame {
 		panListe.setLayout(new BoxLayout(panListe, BoxLayout.Y_AXIS));
 		panListe.setBackground((java.awt.Color) Color(234,150,191));
 
-		liste = new JList<String>(tab_string);
-		if(tab_string.length > 0) liste.setSelectedIndex(0);
+		liste = new JList<Personne>(tab_pers);
+		if(tab_pers.length > 0) liste.setSelectedIndex(0);
 		liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
 		liste.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panListe.add(liste);
@@ -168,9 +168,9 @@ public class CarnetAdresse extends JFrame {
 
 	private void majListe(){
 		int i = 0;
-		this.tab_string = new String[this.carnet.getContacts().size()];
+		this.tab_pers = new Personne[this.carnet.getContacts().size()];
 		for(Personne p : this.carnet.getContacts()){
-			this.tab_string[i] = p.getNom() + " " + p.getPrenom(); 
+			this.tab_pers[i] = p;
 			i++;
 		}
 	}
@@ -183,7 +183,7 @@ public class CarnetAdresse extends JFrame {
 		down.removeAll();
 		NewContact newContact = new NewContact(carnet, dimPaneDown);
 		down.add(newContact.getPanel());
-		down.revalidate();	
+		down.revalidate();
 	}
 
 	public void modifContact(Personne pers){
