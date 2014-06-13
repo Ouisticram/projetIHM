@@ -12,13 +12,11 @@ public class Personne implements Humain,Comparable<Personne>{
     private String nom;
     private String prenom;
     private String civilite;
-    private String adresse;
     
-	public Personne(String nom, String prenom, String civilite, String adresse) {
+	public Personne(String nom, String prenom, String civilite) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.civilite = civilite;
-		this.adresse = adresse;
 	}
 
 	/** méthode qui permet de comparer 2 personnes par ordre alphabétique de nom, puis prénom
@@ -110,22 +108,6 @@ public class Personne implements Humain,Comparable<Personne>{
 	public void setCivilite(String civilite) {
 		this.civilite = civilite;
 	}
-
-
-	/** méthode qui permet d'obtenir l'adresse d'une personne
-     @return adresse - l'adresse de la personne
-	*/
-	public String getAdresse() {
-		return adresse;
-	}
-
-
-    /** méthode qui permet de définir l'adresse d'une personne
-     @param adresse - String qui définit la nouvelle adresse de la personne
-	*/
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}   
 	
 	
 	/** redéfinition de la méthode toString()

@@ -39,6 +39,11 @@ public class Carnet{
     
     
 
+
+     /** recherche une personne dans le carnet à partir de son nom et son prénom
+	 * @param s - String entrée par l'utilisateur
+	 * @return - return une linkedList qui contient les personnes correspondant à la recherche
+	 */
     public List<Personne> recherche(String s){
 
     	List<Personne> finden = new LinkedList<Personne>();
@@ -49,10 +54,6 @@ public class Carnet{
     	if (s.indexOf(" ") != -1 && s.charAt(1) != ' ')
     	{
     		index = s.indexOf(" ");
-
-
-
-
     		mots[0] = s.substring(0,index-1);
     		mots[1] = s.substring(index);
     	}
@@ -61,8 +62,6 @@ public class Carnet{
     		mots[0] = s;
     	}
 
-
-    	
     	for (int i=0;i<contacts.size();i++)
     	{
     		ajoute = false;
@@ -73,17 +72,12 @@ public class Carnet{
 	    			finden.add(contacts.get(i));
 	    			ajoute = true;
 	    		}
-    		}
-    		
-    		
+    		}	
     	}
     	return finden;
     }
 
 
-
-
-    
     
 	/**
 	 * @return la personne actuellement consultée
@@ -138,12 +132,15 @@ public class Carnet{
 	 *
 	 */
 	private void remplir() {
-	    Personne p1 = new Personne("Alves","Claire","Mme","Paris");
-	    Personne p2 = new Personne("Besson","Marc","M.","Marseille");
-	    Personne p3 = new Personne("Crusson","Carmen","Mme","Lyon");
-	    Personne p4 = new Personne("AD","Quentin","M.","Nantes");
-	    Personne p5 = new Personne("Briand","Kévin","M.","Remouille RPZ");
-	    Personne p6 = new Personne("Someone","Else","M.","Somewhere");
+
+
+		Particulier p1 = new Particulier("Alves","Claire","Mme","Paris","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Particulier p2 = new Particulier("Besson","Marc","M.","Marseille","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Particulier p3 = new Particulier("Crusson","Carmen","Mme","Lyon","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+
+	    Professionnel p4 = new Professionnel("AD","Quentin","M.","Nantes","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Facebook");
+	    Professionnel p5 = new Professionnel("Briand","Kévin","M.","Remouille RPZ","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Google");
+	    Professionnel p6 = new Professionnel("Someone","Else","M.","Somewhere","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","SNCf");
 	    
 		ajout(p1);
 		ajout(p2);

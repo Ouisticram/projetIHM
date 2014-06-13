@@ -7,17 +7,36 @@ package model;
 
 public class Particulier extends Personne {
 
+    private String adresse;
     private String telD;
     private String telP;
     private String email;
     
     public Particulier (String nom, String prenom, String civilite, String adresse, String telD, String telP, String email) {
-		super(nom,prenom,civilite,adresse);
+		super(nom,prenom,civilite);
+		this.adresse = adresse;
 		this.telD = telD;
 		this.telP = telP;
 		this.email = email;
 	}
     
+
+	/** méthode qui permet d'obtenir l'adresse d'un particulier
+     @return adresse - l'adresse du particulier
+	*/
+	public String getAdresse() {
+		return adresse;
+	}
+
+
+    /** méthode qui permet de définir l'adresse d'un particulier
+     @param adresse - String qui définit la nouvelle adresse du particulier
+	*/
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}   
+
+
     /** méthode qui donne le téléphone (domicile)
 	 @return une string correspondant au numéro
 	*/
@@ -70,7 +89,6 @@ public class Particulier extends Personne {
      @return les caractéristiques d'une personne + celle d'un particulier
 	*/
 	public String toString() {
-		return super.toString() + "Particulier [telD=" + telD + ", telP=" + telP + ", email="
-				+ email + "]";
+		return super.toString();
 	}    
 }

@@ -7,17 +7,38 @@ package model;
 
 public class Professionnel extends Personne {
 
+    private String adresse; 	// adresse de l'entreprise
     private String telB;    // téléphone  bureau
     private String telP;    // téléphone portable travail   
     private String email;   // email professionnel
+    private String entreprise; // entreprise
     
-    public Professionnel (String nom, String prenom, String civilite, String adresse, String telB, String telP, String email) {
-		super(nom,prenom,civilite,adresse);
+    public Professionnel (String nom, String prenom, String civilite, String adresse, String telB, String telP, String email, String entreprise) {
+		super(nom,prenom,civilite);
+		this.adresse = adresse;
 		this.telB = telB;
 		this.telP = telP;
 		this.email = email;
+		this.entreprise = entreprise;
 	}
     
+
+	/** méthode qui donne l'adresse de l'entreprise
+     @return adresse - l'adresse de l'entreprise
+	*/
+	public String getAdresse() {
+		return adresse;
+	}
+
+
+    /** méthode qui permet de définir l'adresse de l'entreprise
+     @param adresse - String qui définit la nouvelle adresse de l'entreprise
+	*/
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}   
+
+
     /** méthode qui donne le téléphone (bureau)
 	 @return une string correspondant au numéro
 	*/
@@ -64,13 +85,28 @@ public class Professionnel extends Personne {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
+	/** méthode qui donne l'entreprise
+	 @return une string correspondant à l'entreprise
+	*/
+	public String getEntreprise() {
+		return entreprise;
+	}
+
+
+    /** méthode qui définit l'entreprise
+	 @param entreprise - une string correspondant à l'entreprise
+	*/
+	public void setEntreprise(String entreprise) {
+		this.entreprise = entreprise;
+	}
 	
 	
 	/** redéfinition de la méthode toString()
      @return les caractéristiques d'une personne + celle d'un particulier
 	*/
 	public String toString() {
-		return super.toString() + "Particulier [telB=" + telB + ", telP=" + telP + ", email="
-				+ email + "]";
+		return super.toString();
 	}    
 }
