@@ -124,27 +124,37 @@ public class CarnetAdresse extends JFrame {
                     JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		droite.add(scrollArea, BorderLayout.CENTER);
-		droite.setPreferredSize(new Dimension(280,50));	
+		droite.setPreferredSize(new Dimension(280,50));
 
 	// Panel en haut au milieu
 		JPanel mid = new JPanel();
-		mid.setLayout(new BoxLayout(mid, BoxLayout.Y_AXIS));
+		mid.setLayout(new BoxLayout(mid, BoxLayout.PAGE_AXIS));
 
-		mid.setAlignmentX(Component.CENTER_ALIGNMENT);
+		JPanel centerMid = new JPanel();
+		centerMid.setAlignmentY(Component.CENTER_ALIGNMENT);
+		centerMid.setLayout(new BoxLayout(centerMid, BoxLayout.Y_AXIS));
+
 		JButton addSomeone = new JButton(new ImageIcon("src/16x16_add.png"));
-		//addSomeone.setPreferredSize(new Dimension(50,50));
 		addSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
+		updateSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
+		deleteSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		ActionListener a1 = new AddContactController(this);
 		addSomeone.addActionListener(a1);
 
-		mid.add(addSomeone);
-		mid.add(updateSomeone);
-		mid.add(deleteSomeone);
+		centerMid.add(addSomeone);
+		centerMid.add(updateSomeone);
+		centerMid.add(deleteSomeone);
+		centerMid.setBackground(Color.GREEN);
+
+		mid.add(centerMid);
+		/*mid.setAlignmentY(Component.CENTER_ALIGNMENT);
+		mid.setAlignmentX(Component.CENTER_ALIGNMENT);*/
+		mid.setBackground(Color.GREEN);
 
 	//Ajout au panel du haut
 		up.add(gauche, BorderLayout.WEST);
