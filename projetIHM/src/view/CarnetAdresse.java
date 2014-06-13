@@ -2,6 +2,7 @@ package view;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.event.*;
 import javax.swing.JComponent.*;
 import java.awt.event.*;
 import model.*;
@@ -117,6 +118,10 @@ public class CarnetAdresse extends JFrame {
 		if(tab_pers.length > 0) liste.setSelectedIndex(0);
 		liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
 		liste.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		ListSelectionListener l1 = new SelectedContactController(this, liste);
+		liste.addListSelectionListener(l1);
+
 		panListe.add(liste);
 
 		JScrollPane scrollArea = new JScrollPane(panListe,
@@ -207,6 +212,12 @@ public class CarnetAdresse extends JFrame {
 		}
 	}
 
+	public void details(Personne pers){
+		nom.setText(pers.getNom());
+		prenom.setText(pers.getPrenom());
+		civilite.setText(pers.getCivilite());
+	}
+
 	public void moreDetails(Personne pers){
 		down.removeAll();
 	}
@@ -222,6 +233,6 @@ public class CarnetAdresse extends JFrame {
 		down.removeAll();
 		UpdateContact updateContact = new UpdateContact(carnet, pers, dimPaneDown);
 		down.add(updateContact.getPanel());
-		down.revalidate();	
+		down.revalidate();
 	}
 }
