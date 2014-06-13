@@ -43,12 +43,12 @@ public class Carnet{
     /** supprime la personne du carnet de contacts
 	 * @param pers : personne à ajouter au carnet
 	 */
-    public Personne rechercher(String nom,String prénom){
+    public Personne rechercher(String nom,String prenom){
         
-        Personne pers;
+        Personne pers = null;
         for (int i=0;i<contacts.size();i++)
         {
-            if ((contacts.get(i).getNom() == nom) && (contacts.get(i).getPrenom())
+            if ((contacts.get(i).getNom() == nom) && (contacts.get(i).getPrenom() == prenom))
             {
                 
             }
