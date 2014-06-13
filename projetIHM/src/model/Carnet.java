@@ -33,8 +33,8 @@ public class Carnet{
     /** supprime la personne du carnet de contacts
 	 * @param index - index de la personne à supprimer du carnet
 	 */
-    public void supprimer(int index){
-        this.contacts.remove(index); 
+    public void supprimer(Personne pers){
+        this.contacts.remove(pers); 
     }
     
     
@@ -57,6 +57,51 @@ public class Carnet{
         return index;
     }*/
     
+
+    public List<Personne> recherche(String s){
+
+    	List<Personne> finden = new LinkedList<Personne>();
+    	int index = 0;
+    	boolean ajoute = false;
+    	String[] mots = new String[2];
+
+    	if (s.indexOf(" ") != -1 && s.charAt(1) != ' ')
+    	{
+    		index = s.indexOf(" ");
+
+
+
+
+    		mots[0] = s.substring(0,index-1);
+    		mots[1] = s.substring(index);
+    	}
+    	else 
+    	{
+    		mots[0] = s;
+    	}
+
+
+    	
+    	for (int i=0;i<contacts.size();i++)
+    	{
+    		ajoute = false;
+    		for (int j=0;j<mots.length;j++)
+    		{
+    			if ((contacts.get(i).getNom().contains(mots[j]) || (contacts.get(i).getPrenom().contains(mots[j]))) && !ajoute && mots[j] != null)
+	    		{
+	    			finden.add(contacts.get(i));
+	    			ajoute = true;
+	    		}
+    		}
+    		
+    		
+    	}
+    	return finden;
+    }
+
+
+
+
     
     
 	/**
