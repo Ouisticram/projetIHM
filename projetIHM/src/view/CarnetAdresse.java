@@ -17,7 +17,11 @@ public class CarnetAdresse extends JFrame {
 
 	private Dimension dimPaneDown;
 	private Dimension dim1 = new Dimension(100, 100);
+	private Font bigBoldFont = new Font("Arial", Font.BOLD, 30);
+	private Font smallBoldFont = new Font("Arial", Font.BOLD, 14);
+	private Font smallPlainFont = new Font("Arial", Font.PLAIN, 14);
 	private Carnet carnet;
+
 	private JPanel principal;
 	private JPanel up;
 	private JPanel down;
@@ -26,10 +30,8 @@ public class CarnetAdresse extends JFrame {
 	private JLabel prenom;
 	private JLabel civilite;
 
-	Personne[] tab_pers;
-	JList<Personne> liste;
-
-	private JLabel informations;
+	private Personne[] tab_pers;
+	private JList<Personne> liste;
 
 	/**
 	 * construit une nouvelle fenêtre
@@ -38,48 +40,37 @@ public class CarnetAdresse extends JFrame {
 	 **/
 	public CarnetAdresse(String titre, Dimension dim){
 		super(titre);
-
-		// création d'un nouveau carnet d'adresse
-		carnet = new Carnet();
-
-		this.majListe();
-
-		/*************** FOR TEST ****************/
-
-		nom = new JLabel("Jean");
-		prenom = new JLabel("Paul");
-		civilite = new JLabel("Monsieur");
-
-		/*****************************************/
-
 		this.setPreferredSize(dim);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setResizable(false);
 		this.pack();
 
-		principal = new JPanel();		
-		principal.setLayout(new GridBagLayout());
-		principal.setBackground((java.awt.Color) Color(155,225,150));
-		this.setContentPane(principal);
+		this.carnet = new Carnet(); // création d'un nouveau carnet d'adresse
+
+		this.majListe(); // initialisation de la liste de personne
+
+		this.principal = new JPanel();		
+		this.principal.setLayout(new GridBagLayout());
+		this.setContentPane(this.principal);
 
 		int height = (int)(this.getGlassPane().getHeight()/3);
+		int heightBas = (int)(this.getGlassPane().getHeight()-height);
 		int width = (int)(this.getGlassPane().getWidth());
-		dimPaneDown = new Dimension(width,height*2);
+		this.dimPaneDown = new Dimension(width,heightBas);
 
 	// Panel du haut
-		up = new JPanel();
-		up.setLayout(new BorderLayout());
-		up.setPreferredSize(new Dimension(width,height));		
-		up.setBackground((java.awt.Color) Color(234,250,191));
+		this.up = new JPanel();
+		this.up.setLayout(new BorderLayout());
+		this.up.setPreferredSize(new Dimension(width,height));
 
 	// Panel en haut à gauche
 		JPanel gauche = new JPanel();
 		gauche.setLayout(new BorderLayout());
-		gauche.setBackground((java.awt.Color) Color(150,150,191));
 
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
 		buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+		buttonPane.setBackground(new Color(96,185,206));
 
 		JButton showMore = new JButton("Voir plus...");
 		JButton search = new JButton("Rechercher");
@@ -90,18 +81,28 @@ public class CarnetAdresse extends JFrame {
 		buttonPane.add(search);
 
 		JPanel infos = new JPanel();
-		infos.setBorder(BorderFactory.createTitledBorder("Informations"));	
+		infos.setBackground(new Color(96,185,206));
+		infos.setBorder(BorderFactory.createTitledBorder("Informations"));
 		infos.setLayout(new GridLayout(3,2));
 		JLabel name = new JLabel("nom: ");
+		name.setFont(smallBoldFont);
 		JLabel firstname = new JLabel("prenom: ");
+		firstname.setFont(smallBoldFont);
 		JLabel civility = new JLabel("civilité: ");
+		civility.setFont(smallBoldFont);
+		this.nom = new JLabel();
+		this.nom.setFont(smallPlainFont);
+		this.prenom = new JLabel();
+		this.prenom.setFont(smallPlainFont);
+		this.civilite = new JLabel();
+		this.civilite.setFont(smallPlainFont);
 
 		infos.add(name);
-		infos.add(nom);
+		infos.add(this.nom);
 		infos.add(firstname);
-		infos.add(prenom);
+		infos.add(this.prenom);
 		infos.add(civility);
-		infos.add(civilite);
+		infos.add(this.civilite);
 
 		gauche.add(infos, BorderLayout.CENTER);
 		gauche.add(buttonPane, BorderLayout.SOUTH);
@@ -112,17 +113,19 @@ public class CarnetAdresse extends JFrame {
 
 		JPanel panListe = new JPanel();
 		panListe.setLayout(new BoxLayout(panListe, BoxLayout.Y_AXIS));
-		panListe.setBackground((java.awt.Color) Color(234,150,191));
 
-		liste = new JList<Personne>(tab_pers);
-		if(tab_pers.length > 0) liste.setSelectedIndex(0);
-		liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
-		liste.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.liste = new JList<Personne>(this.tab_pers);
+		this.liste.setFont(smallPlainFont);
+		this.liste.setBackground(new Color(96,185,206));
+		if(this.tab_pers.length > 0) this.liste.setSelectedIndex(0);
+		this.liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
+		this.liste.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.details((Personne)this.liste.getSelectedValue());
 
-		ListSelectionListener l1 = new SelectedContactController(this, liste);
-		liste.addListSelectionListener(l1);
+		ListSelectionListener l1 = new SelectedContactController(this, this.liste);
+		this.liste.addListSelectionListener(l1);
 
-		panListe.add(liste);
+		panListe.add(this.liste);
 
 		JScrollPane scrollArea = new JScrollPane(panListe,
                     JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -141,12 +144,18 @@ public class CarnetAdresse extends JFrame {
 
 		JButton addSomeone = new JButton(new ImageIcon("src/16x16_add.png"));
 		addSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
+		addSomeone.setBackground(new Color(96,185,206));
+		addSomeone.setBorderPainted(false);
 
 		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
 		updateSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
+		updateSomeone.setBackground(new Color(96,185,206));
+		updateSomeone.setBorderPainted(false);
 
 		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
 		deleteSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
+		deleteSomeone.setBackground(new Color(96,185,206));
+		deleteSomeone.setBorderPainted(false);
 
 		ActionListener a1 = new AddContactController(this);
 		addSomeone.addActionListener(a1);
@@ -154,28 +163,25 @@ public class CarnetAdresse extends JFrame {
 		centerMid.add(addSomeone);
 		centerMid.add(updateSomeone);
 		centerMid.add(deleteSomeone);
-		centerMid.setBackground(Color.GREEN);
 
 		mid.add(centerMid);
-		/*mid.setAlignmentY(Component.CENTER_ALIGNMENT);
-		mid.setAlignmentX(Component.CENTER_ALIGNMENT);*/
-		mid.setBackground(Color.GREEN);
+		mid.setBackground(new Color(96,185,206));
 
 	//Ajout au panel du haut
-		up.add(gauche, BorderLayout.WEST);
-		up.add(mid, BorderLayout.CENTER);
-		up.add(droite, BorderLayout.EAST);
+		this.up.add(gauche, BorderLayout.WEST);
+		this.up.add(mid, BorderLayout.CENTER);
+		this.up.add(droite, BorderLayout.EAST);
 
 	// Panel du bas
-		down = new JPanel();
-		down.setPreferredSize(dimPaneDown);
-		down.setBackground(Color.WHITE);
+		this.down = new JPanel();
+		this.down.setPreferredSize(this.dimPaneDown);
+		this.down.setLayout(new BorderLayout());
+		this.down.setBackground(new Color(4,129,158));
 
-		JLabel img = new JLabel();
-		ClassLoader cl2 = this.getClass().getClassLoader();
-		img.setIcon(new ImageIcon(cl2.getResource("contact.jpg")));
+		JLabel msg = new JLabel("Bienvenue dans votre carnet d'adresse");
+		msg.setFont(bigBoldFont);
 
-		down.add(img);
+		this.down.add(msg, BorderLayout.CENTER);
 
 	//Positionnement du Panel principal
 		GridBagConstraints gbc = new GridBagConstraints();		
@@ -186,19 +192,19 @@ public class CarnetAdresse extends JFrame {
 
 		gbc.gridheight = 1;
 		gbc.gridwidth = 1;
-		principal.add(up, gbc);
+		this.principal.add(this.up, gbc);
 
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 
 		gbc.gridheight = 2;
 		gbc.gridwidth = 1;
-		principal.add(down, gbc);
+		this.principal.add(this.down, gbc);
 
 		this.setVisible(true);
 	}
 
-	private Object Color(int i, int j, int k) {
+	private Color Color(int i, int j, int k) {
 		Color couleur = new Color(i,j,k);
 		return couleur;
 	}
@@ -213,26 +219,26 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	public void details(Personne pers){
-		nom.setText(pers.getNom());
-		prenom.setText(pers.getPrenom());
-		civilite.setText(pers.getCivilite());
+		this.nom.setText(pers.getNom());
+		this.prenom.setText(pers.getPrenom());
+		this.civilite.setText(pers.getCivilite());
 	}
 
 	public void moreDetails(Personne pers){
-		down.removeAll();
+		this.down.removeAll();
 	}
 
 	public void addContact(){
-		down.removeAll();
-		NewContact newContact = new NewContact(carnet, dimPaneDown);
-		down.add(newContact.getPanel());
-		down.revalidate();
+		this.down.removeAll();
+		NewContact newContact = new NewContact(this.carnet, this.dimPaneDown);
+		this.down.add(newContact.getPanel());
+		this.down.revalidate();
 	}
 
 	public void modifContact(Personne pers){
-		down.removeAll();
-		UpdateContact updateContact = new UpdateContact(carnet, pers, dimPaneDown);
-		down.add(updateContact.getPanel());
-		down.revalidate();
+		this.down.removeAll();
+		UpdateContact updateContact = new UpdateContact(this.carnet, pers, this.dimPaneDown);
+		this.down.add(updateContact.getPanel());
+		this.down.revalidate();
 	}
 }

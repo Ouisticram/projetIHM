@@ -18,6 +18,6 @@ public class AddContactController implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 	  	this.vue.addContact();
-	}	
+	}
 
 }
