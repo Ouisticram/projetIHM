@@ -123,56 +123,56 @@ public class NewContact extends Container {
 
 		// *******************[ONGLET PROFESSIONNEL]********************
 
-		/*Box pro1 = Box.createHorizontalBox();
+		Box pro1 = Box.createHorizontalBox();
 		JLabel adressePro = new JLabel("Adresse de l'entreprise : ");
 		JTextField enterAdressePro = new JTextField(30);
-		enterAdressePro.setMaximumSize(enterAdresse.getPreferredSize());
+		enterAdressePro.setMaximumSize(enterAdressePro.getPreferredSize());
 		pro1.add(Box.createHorizontalStrut(10));
 		pro1.add(adressePro);
-		pro1.add(Box.createHorizontalStrut(75));
+		pro1.add(Box.createHorizontalStrut(10));
 		pro1.add(enterAdressePro);
 
 		Box pro2 = Box.createHorizontalBox();
-		JLabel telD = new JLabel("Téléphone Domicile : ");
-		JTextField enterTelD= new JTextField(10);
-		enterTelD.setMaximumSize(enterTelD.getPreferredSize());
+		JLabel telB = new JLabel("Téléphone Bureau : ");
+		JTextField enterTelB= new JTextField(10);
+		enterTelB.setMaximumSize(enterTelB.getPreferredSize());
 		pro2.add(Box.createHorizontalStrut(10));
-		pro2.add(telD);
-		pro2.add(Box.createHorizontalStrut(10));
-		pro2.add(enterTelD);
+		pro2.add(telB);
+		pro2.add(Box.createHorizontalStrut(39));
+		pro2.add(enterTelB);
 
 		Box pro3 = Box.createHorizontalBox();
-		JLabel telP = new JLabel("Téléphone Portable : ");
-		JTextField enterTelP= new JTextField(10);
-		enterTelP.setMaximumSize(enterTelP.getPreferredSize());
+		JLabel telPPro = new JLabel("Téléphone Portable : ");
+		JTextField enterTelPPro= new JTextField(10);
+		enterTelPPro.setMaximumSize(enterTelPPro.getPreferredSize());
 		pro3.add(Box.createHorizontalStrut(10));
-		pro3.add(telP);
-		pro3.add(Box.createHorizontalStrut(11));
-		pro3.add(enterTelP);
+		pro3.add(telPPro);
+		pro3.add(Box.createHorizontalStrut(34));
+		pro3.add(enterTelPPro);
 
 		Box pro4 = Box.createHorizontalBox();
-		JLabel email = new JLabel("Email : ");
-		JTextField enterEmail = new JTextField(15);
-		enterEmail.setMaximumSize(enterEmail.getPreferredSize());
+		JLabel emailPro = new JLabel("Email : ");
+		JTextField enterEmailPro = new JTextField(15);
+		enterEmailPro.setMaximumSize(enterEmailPro.getPreferredSize());
 		pro4.add(Box.createHorizontalStrut(10));
-		pro4.add(email);
-		pro4.add(Box.createHorizontalStrut(90));
-		pro4.add(enterEmail);
+		pro4.add(emailPro);
+		pro4.add(Box.createHorizontalStrut(112));
+		pro4.add(enterEmailPro);
 
 		Box pro5 = Box.createHorizontalBox();
-		JLabel email = new JLabel("Email : ");
-		JTextField enterEmail = new JTextField(15);
-		enterEmail.setMaximumSize(enterEmail.getPreferredSize());
+		JLabel entreprise = new JLabel("Entreprise : ");
+		JTextField enterEntreprise = new JTextField(15);
+		enterEntreprise.setMaximumSize(enterEntreprise.getPreferredSize());
 		pro5.add(Box.createHorizontalStrut(10));
-		pro5.add(email);
-		pro5.add(Box.createHorizontalStrut(90));
-		pro5.add(enterEmail);
+		pro5.add(entreprise);
+		pro5.add(Box.createHorizontalStrut(84));
+		pro5.add(enterEntreprise);
 
-		panel3.add(pro1);
 		panel3.add(pro2);
 		panel3.add(pro3);
 		panel3.add(pro4);
-		panel3.add(pro5);*/
+		panel3.add(pro5);
+		panel3.add(pro1);
 
 		// *************************************************************
 
