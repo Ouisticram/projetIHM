@@ -31,31 +31,12 @@ public class Carnet{
 	}
 
     /** supprime la personne du carnet de contacts
-	 * @param index - index de la personne à supprimer du carnet
+	 * @param pers - personne à supprimer du carnet
 	 */
     public void supprimer(Personne pers){
         this.contacts.remove(pers); 
     }
     
-    
-    
-    /** recherche un contact dans le carnet
-	 * @param pers : Objet à chercher
-	 * @return - retourne l'index de la personne dans le carnet
-	 */
-   
-    /*
-    public Personne rechercher(Personne pers){
-        
-        for (int i=0;i<contacts.size();i++)
-        {
-            if ((contacts.get(i).getNom() == pers.getNom()) && (contacts.get(i).getPrenom() == pers.getPrenom()) && (contacts.get(i).getPrenom() == pers.getPrenom())&& (contacts.get(i).getPrenom() == pers.getPrenom())&& (contacts.get(i).getPrenom() == pers.getPrenom()))
-            {
-                
-            }
-        }
-        return index;
-    }*/
     
 
     public List<Personne> recherche(String s){

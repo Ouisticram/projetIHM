@@ -40,6 +40,7 @@ public class CarnetAdresse extends JFrame {
 
 		// création d'un nouveau carnet d'adresse
 		carnet = new Carnet();
+
 		this.majListe();
 
 		/*************** FOR TEST ****************/
@@ -64,6 +65,7 @@ public class CarnetAdresse extends JFrame {
 		int width = (int)(this.getGlassPane().getWidth());
 		dimPaneDown = new Dimension(width,height*2);
 
+	// Panel du haut
 		up = new JPanel();
 		up.setLayout(new BorderLayout());
 		up.setPreferredSize(new Dimension(width,height));		
@@ -79,15 +81,12 @@ public class CarnetAdresse extends JFrame {
 		buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 
 		JButton showMore = new JButton("Voir plus...");
-		JButton addSomeone = new JButton("Ajouter un contact");
+		JButton search = new JButton("Rechercher");
 
 		buttonPane.add(Box.createHorizontalGlue());
 		buttonPane.add(showMore);
 		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-		buttonPane.add(addSomeone);
-
-		ActionListener a1 = new AddContactController(this);
-		addSomeone.addActionListener(a1);
+		buttonPane.add(search);
 
 		JPanel infos = new JPanel();
 		infos.setBorder(BorderFactory.createTitledBorder("Informations"));	
@@ -125,18 +124,41 @@ public class CarnetAdresse extends JFrame {
                     JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		droite.add(scrollArea, BorderLayout.CENTER);
-		droite.setPreferredSize(new Dimension(280,50));		
+		droite.setPreferredSize(new Dimension(280,50));	
 
+	// Panel en haut au milieu
+		JPanel mid = new JPanel();
+		mid.setLayout(new BoxLayout(mid, BoxLayout.Y_AXIS));
+
+		mid.setAlignmentX(Component.CENTER_ALIGNMENT);
+		JButton addSomeone = new JButton(new ImageIcon("src/16x16_add.png"));
+		//addSomeone.setPreferredSize(new Dimension(50,50));
+		addSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
+
+		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
+
+		ActionListener a1 = new AddContactController(this);
+		addSomeone.addActionListener(a1);
+
+		mid.add(addSomeone);
+		mid.add(updateSomeone);
+		mid.add(deleteSomeone);
+
+	//Ajout au panel du haut
 		up.add(gauche, BorderLayout.WEST);
+		up.add(mid, BorderLayout.CENTER);
 		up.add(droite, BorderLayout.EAST);
 
+	// Panel du bas
 		down = new JPanel();
 		down.setPreferredSize(dimPaneDown);
 		down.setBackground(Color.WHITE);
 
 		JLabel img = new JLabel();
-		ClassLoader cl = this.getClass().getClassLoader();
-		img.setIcon(new ImageIcon(cl.getResource("contact.jpg")));
+		ClassLoader cl2 = this.getClass().getClassLoader();
+		img.setIcon(new ImageIcon(cl2.getResource("contact.jpg")));
 
 		down.add(img);
 
