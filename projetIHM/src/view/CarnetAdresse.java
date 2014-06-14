@@ -137,10 +137,10 @@ public class CarnetAdresse extends JFrame {
 
 	// Panel en haut au milieu
 
-
 		JPanel mid = new JPanel();
 		mid.setBackground(new Color(96,185,206));
 		mid.setLayout(new BorderLayout());
+<<<<<<< HEAD
 
 		JPanel midCenter = new JPanel(new GridLayout(3,1,0,8));
 		midCenter.setBackground(new Color(96,185,206));
@@ -165,6 +165,27 @@ public class CarnetAdresse extends JFrame {
 		midCenter.add(deleteSomeone);
 
 		mid.add(midCenter);
+=======
+		JPanel midCenter = new JPanel(new GridLayout(3,1,0,8));
+		JButton addSomeone = new JButton(new ImageIcon("src/16x16_add.png"));
+		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
+		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
+		midCenter.add(addSomeone);
+		midCenter.add(updateSomeone);
+		midCenter.add(deleteSomeone);
+		mid.add("North", new JLabel(" "));
+		mid.add("South", new JLabel(" "));
+		mid.add("East", new JLabel("   "));
+		mid.add("West", new JLabel("   "));
+
+		midCenter.setBackground(new Color(96,185,206));
+		mid.add("Center",midCenter);
+		
+		ActionListener a1 = new AddContactController(this);
+		addSomeone.addActionListener(a1);
+
+		mid.setBackground(new Color(96,185,206));
+>>>>>>> origin/master
 
 	//Ajout au panel du haut
 		this.up.add(gauche, BorderLayout.WEST);
