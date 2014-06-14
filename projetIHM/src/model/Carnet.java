@@ -25,9 +25,21 @@ public class Carnet{
 	/** ajoute la personne au carnet de contacts
 	 * @param pers : personne à ajouter au carnet
 	 */
-	public void ajout(Personne pers) {	
-        this.contacts.add(pers);
-        Collections.sort(this.contacts);
+	public void ajout(Personne pers) {
+		boolean exists = false;
+		for (int i=0; i<contacts.size();i++) 
+		{
+			if (contacts.get(i).equals(pers))
+			{
+				exists = true;
+			}
+		}	
+        
+        if (!exists)
+        {
+        	this.contacts.add(pers);
+        	Collections.sort(this.contacts);
+        }        
 	}
 
     /** supprime la personne du carnet de contacts
@@ -36,8 +48,6 @@ public class Carnet{
     public void supprimer(Personne pers){
         this.contacts.remove(pers); 
     }
-    
-    
 
 
      /** recherche une personne dans le carnet à partir de son nom et son prénom
@@ -137,6 +147,12 @@ public class Carnet{
 		Particulier p1 = new Particulier("Alves","Claire","Mme","Paris","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
 		Particulier p2 = new Particulier("Besson","Marc","M.","Marseille","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
 		Particulier p3 = new Particulier("Crusson","Carmen","Mme","Lyon","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Particulier p7 = new Particulier("Alves","Claire","Mme","Paris","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Particulier p8 = new Particulier("Besson","Marc","M.","Marseille","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Particulier p9 = new Particulier("Crusson","Carmen","Mme","Lyon","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Particulier p10 = new Particulier("Alves","Claire","Mme","Paris","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Particulier p11 = new Particulier("Besson","Marc","M.","Marseille","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Particulier p12 = new Particulier("Crusson","Carmen","Mme","Lyon","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
 
 	    Professionnel p4 = new Professionnel("AD","Quentin","M.","Nantes","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Facebook");
 	    Professionnel p5 = new Professionnel("Briand","Kévin","M.","Remouille RPZ","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Google");
@@ -148,6 +164,15 @@ public class Carnet{
 		ajout(p4);
 		ajout(p5);
 		ajout(p6);
+		ajout(p7);
+		ajout(p8);
+		ajout(p9);
+		ajout(p10);
+		ajout(p11);
+		ajout(p12);
+
+
+
 		
 		// affiche les contacts de base dans le terminal
 		for (int i=0; i<this.contacts.size();i++)
