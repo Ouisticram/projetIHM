@@ -66,7 +66,7 @@ public class CarnetAdresse extends JFrame {
 	// Panel en haut à gauche
 		JPanel gauche = new JPanel();
 		gauche.setLayout(new BorderLayout());
-		gauche.setPreferredSize (new Dimension(250,150));
+		gauche.setPreferredSize (new Dimension(275,150));
 
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
@@ -140,14 +140,20 @@ public class CarnetAdresse extends JFrame {
 
 		JPanel mid = new JPanel();
 		mid.setLayout(new BorderLayout());
-		JPanel midCenter = new JPanel(new GridLayout(3,1));
+		JPanel midCenter = new JPanel(new GridLayout(3,1,0,8));
 		JButton addSomeone = new JButton(new ImageIcon("src/16x16_add.png"));
-		addSomeone.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		//addSomeone.setBorder(BorderFactory.createEmptyBorder(40, 30, 20, 30));
 		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
+		//updateSomeone.setBorder(BorderFactory.createEmptyBorder(40, 30, 20, 30));
 		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
+		//deleteSomeone.setBorder(BorderFactory.createEmptyBorder(40, 30, 20, 30));
 		midCenter.add(addSomeone);
 		midCenter.add(updateSomeone);
 		midCenter.add(deleteSomeone);
+		mid.add("North", new JLabel(" "));
+		mid.add("South", new JLabel(" "));
+		mid.add("East", new JLabel("   "));
+		mid.add("West", new JLabel("   "));
 		mid.add("Center",midCenter);
 		/*mid.setLayout(new BoxLayout(mid, BoxLayout.PAGE_AXIS));
 
