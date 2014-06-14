@@ -123,9 +123,6 @@ public class CarnetAdresse extends JFrame {
 		this.liste.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.details((Personne)this.liste.getSelectedValue());
 
-		ListSelectionListener l1 = new SelectedContactController(this, this.liste);
-		this.liste.addListSelectionListener(l1);
-
 		panListe.add(this.liste);
 
 		JScrollPane scrollArea = new JScrollPane(panListe,
@@ -154,6 +151,12 @@ public class CarnetAdresse extends JFrame {
 		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
 		updateSomeone.setBackground(new Color(96,185,206));
 		updateSomeone.setBorderPainted(false);
+
+		ActionListener a2 = new UpdateContactController(this, this.liste);
+		updateSomeone.addActionListener(a2);
+
+		ListSelectionListener l1 = new SelectedContactController(this, this.liste, a2);
+		this.liste.addListSelectionListener(l1);
 		
 		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
 		deleteSomeone.setBackground(new Color(96,185,206));
