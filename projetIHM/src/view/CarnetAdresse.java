@@ -66,7 +66,7 @@ public class CarnetAdresse extends JFrame {
 	// Panel en haut à gauche
 		JPanel gauche = new JPanel();
 		gauche.setLayout(new BorderLayout());
-		gauche.setPreferredSize (new Dimension(275,150));
+		//gauche.setPreferredSize (new Dimension(275,150));
 
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
@@ -133,87 +133,38 @@ public class CarnetAdresse extends JFrame {
                     JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		droite.add(scrollArea, BorderLayout.CENTER);
-		droite.setPreferredSize(new Dimension(280,50));
+		droite.setPreferredSize(new Dimension(200,0));
 
 	// Panel en haut au milieu
 
 
 		JPanel mid = new JPanel();
+		mid.setBackground(new Color(96,185,206));
 		mid.setLayout(new BorderLayout());
+
 		JPanel midCenter = new JPanel(new GridLayout(3,1,0,8));
-		JButton addSomeone = new JButton(new ImageIcon("src/16x16_add.png"));
-		//addSomeone.setBorder(BorderFactory.createEmptyBorder(40, 30, 20, 30));
-		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
-		//updateSomeone.setBorder(BorderFactory.createEmptyBorder(40, 30, 20, 30));
-		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
-		//deleteSomeone.setBorder(BorderFactory.createEmptyBorder(40, 30, 20, 30));
-		midCenter.add(addSomeone);
-		midCenter.add(updateSomeone);
-		midCenter.add(deleteSomeone);
-		mid.add("North", new JLabel(" "));
-		mid.add("South", new JLabel(" "));
-		mid.add("East", new JLabel("   "));
-		mid.add("West", new JLabel("   "));
-		mid.add("Center",midCenter);
-		/*mid.setLayout(new BoxLayout(mid, BoxLayout.PAGE_AXIS));
-
-		JPanel centerMid = new JPanel();
-		centerMid.setAlignmentY(Component.CENTER_ALIGNMENT);
-		centerMid.setLayout(new BoxLayout(centerMid, BoxLayout.Y_AXIS));
+		midCenter.setBackground(new Color(96,185,206));
 
 		JButton addSomeone = new JButton(new ImageIcon("src/16x16_add.png"));
-		addSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
-		updateSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
-		deleteSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);*/
-
-		ActionListener a1 = new AddContactController(this);
-		addSomeone.addActionListener(a1);
-
-		/*centerMid.add(addSomeone);
-		centerMid.add(updateSomeone);
-		centerMid.add(deleteSomeone);
-		centerMid.setBackground(Color.GREEN);
-
-		mid.add(centerMid);*/
-
-
-
-		/*mid.setAlignmentY(Component.CENTER_ALIGNMENT);
-		mid.setAlignmentX(Component.CENTER_ALIGNMENT);*/
-		/*mid.setLayout(new BoxLayout(mid, BoxLayout.PAGE_AXIS));
-
-		JPanel centerMid = new JPanel();
-		centerMid.setAlignmentY(Component.CENTER_ALIGNMENT);
-		centerMid.setLayout(new BoxLayout(centerMid, BoxLayout.Y_AXIS));
-
-		JButton addSomeone = new JButton(new ImageIcon("src/16x16_add.png"));
-		addSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
 		addSomeone.setBackground(new Color(96,185,206));
 		addSomeone.setBorderPainted(false);
 
-		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
-		updateSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
-		updateSomeone.setBackground(new Color(96,185,206));
-		updateSomeone.setBorderPainted(false);
-
-		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
-		deleteSomeone.setAlignmentX(Component.CENTER_ALIGNMENT);
-		deleteSomeone.setBackground(new Color(96,185,206));
-		deleteSomeone.setBorderPainted(false);
-
 		ActionListener a1 = new AddContactController(this);
 		addSomeone.addActionListener(a1);
 
-		centerMid.add(addSomeone);
-		centerMid.add(updateSomeone);
-		centerMid.add(deleteSomeone);
+		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
+		updateSomeone.setBackground(new Color(96,185,206));
+		updateSomeone.setBorderPainted(false);
+		
+		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
+		deleteSomeone.setBackground(new Color(96,185,206));
+		deleteSomeone.setBorderPainted(false);
 
-		mid.add(centerMid);*/
-		mid.setBackground(new Color(96,185,206));
+		midCenter.add(addSomeone);
+		midCenter.add(updateSomeone);
+		midCenter.add(deleteSomeone);
+
+		mid.add(midCenter);
 
 	//Ajout au panel du haut
 		this.up.add(gauche, BorderLayout.WEST);
