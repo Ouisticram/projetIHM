@@ -33,6 +33,8 @@ public class CarnetAdresse extends JFrame {
 	private Personne[] tab_pers;
 	private JList<Personne> liste;
 
+	private ClassLoader cl;
+
 	/**
 	 * construit une nouvelle fenêtre
 	 * @param titre Le titre de la fenêtre
@@ -44,6 +46,7 @@ public class CarnetAdresse extends JFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setResizable(false);
 		this.pack();
+		cl = this.getClass().getClassLoader();
 
 		this.carnet = new Carnet(); // création d'un nouveau carnet d'adresse
 
@@ -141,14 +144,14 @@ public class CarnetAdresse extends JFrame {
 		JPanel midCenter = new JPanel(new GridLayout(3,1,0,8));
 		midCenter.setBackground(new Color(96,185,206));
 
-		JButton addSomeone = new JButton(new ImageIcon("src/16x16_add.png"));
+		JButton addSomeone = new JButton(new ImageIcon(cl.getResource("16x16_add.png")));
 		addSomeone.setBackground(new Color(96,185,206));
 		addSomeone.setBorderPainted(false);
 
 		ActionListener a1 = new AddContactController(this);
 		addSomeone.addActionListener(a1);
 
-		JButton updateSomeone = new JButton(new ImageIcon("src/16x16_settings.png"));
+		JButton updateSomeone = new JButton(new ImageIcon(cl.getResource("16x16_settings.png")));
 		updateSomeone.setBackground(new Color(96,185,206));
 		updateSomeone.setBorderPainted(false);
 
@@ -158,7 +161,7 @@ public class CarnetAdresse extends JFrame {
 		ListSelectionListener l1 = new SelectedContactController(this, this.liste, a2);
 		this.liste.addListSelectionListener(l1);
 		
-		JButton deleteSomeone = new JButton(new ImageIcon("src/16x16_delete.png"));
+		JButton deleteSomeone = new JButton(new ImageIcon(cl.getResource("16x16_delete.png")));
 		deleteSomeone.setBackground(new Color(96,185,206));
 		deleteSomeone.setBorderPainted(false);
 

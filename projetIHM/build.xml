@@ -9,6 +9,12 @@
 
     <target name="compile" depends="clean">
         <mkdir dir="${bin.dir}"/>
+        <copy todir="${bin.dir}" >
+            <fileset dir="${src.dir}" >
+                <include name="**/*.jpg" />
+                <include name="**/*.png" />
+            </fileset>
+        </copy>
         <javac srcdir="${src.dir}" encoding="UTF-8" destdir="${bin.dir}" includeantruntime="false"/>
         <echo message="compilation terminee"/>
     </target>
@@ -16,9 +22,6 @@
     <target name="jar">
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${bin.dir}">
-            <fileset dir="${src.dir}">
-                <include name="**/*.jpg" />
-            </fileset>
             <manifest>
                 <attribute name="Main-Class" value="${main-class}"/>
             </manifest>
