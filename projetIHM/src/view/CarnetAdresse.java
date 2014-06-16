@@ -144,14 +144,14 @@ public class CarnetAdresse extends JFrame {
 		JPanel midCenter = new JPanel(new GridLayout(3,1,0,8));
 		midCenter.setBackground(new Color(96,185,206));
 
-		JButton addSomeone = new JButton(new ImageIcon(cl.getResource("16x16_add.png")));
+		JButton addSomeone = new JButton(new ImageIcon(cl.getResource("add_32x32.png")));
 		addSomeone.setBackground(new Color(96,185,206));
 		addSomeone.setBorderPainted(false);
 
 		ActionListener a1 = new AddContactController(this);
 		addSomeone.addActionListener(a1);
 
-		JButton updateSomeone = new JButton(new ImageIcon(cl.getResource("16x16_settings.png")));
+		JButton updateSomeone = new JButton(new ImageIcon(cl.getResource("tools_32x32.png")));
 		updateSomeone.setBackground(new Color(96,185,206));
 		updateSomeone.setBorderPainted(false);
 
@@ -161,7 +161,7 @@ public class CarnetAdresse extends JFrame {
 		ListSelectionListener l1 = new SelectedContactController(this, this.liste, a2);
 		this.liste.addListSelectionListener(l1);
 		
-		JButton deleteSomeone = new JButton(new ImageIcon(cl.getResource("16x16_delete.png")));
+		JButton deleteSomeone = new JButton(new ImageIcon(cl.getResource("delete_32x32.png")));
 		deleteSomeone.setBackground(new Color(96,185,206));
 		deleteSomeone.setBorderPainted(false);
 
