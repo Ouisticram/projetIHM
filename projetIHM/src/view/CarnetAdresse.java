@@ -76,10 +76,14 @@ public class CarnetAdresse extends JFrame {
 
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-		buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+		buttonPane.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 35));
 		buttonPane.setBackground(new Color(96,185,206));
 
 		JButton showMore = new JButton("Voir plus...");
+
+		ActionListener a3 = new SeeMoreController(this, this.carnet);
+		showMore.addActionListener(a3);
+
 		JButton search = new JButton("Rechercher");
 
 		buttonPane.add(Box.createHorizontalGlue());
@@ -133,10 +137,14 @@ public class CarnetAdresse extends JFrame {
 		this.liste = new JList<Personne>(this.tab_pers);
 		this.liste.setFont(smallPlainFont);
 		this.liste.setBackground(new Color(96,185,206));
-		if(this.tab_pers.length > 0) this.liste.setSelectedIndex(0);
+		if(this.tab_pers.length > 0) this.selectedIndex(0);
+		this.liste.setCellRenderer(new ProPersoCellRenderer()); 
 		this.liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
 		this.liste.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.details();
+
+		ListSelectionListener l1 = new SelectedContactController(this, this.carnet);
+		this.liste.addListSelectionListener(l1);
 
 		panListe.add(this.liste);
 
@@ -169,9 +177,6 @@ public class CarnetAdresse extends JFrame {
 
 		ActionListener a2 = new UpdateContactController(this, this.carnet);
 		updateSomeone.addActionListener(a2);
-
-		ListSelectionListener l1 = new SelectedContactController(this, this.liste);
-		this.liste.addListSelectionListener(l1);
 		
 		JButton deleteSomeone = new JButton(new ImageIcon(cl.getResource("delete_32x32.png")));
 		deleteSomeone.setBackground(new Color(96,185,206));
@@ -233,11 +238,35 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	/**
+	* Change la personne sélectionné dans la JList
+	* @param index l'index de la personne à sélectionner
+	*/
+	public void selectedIndex(int index){
+		this.liste.setSelectedIndex(index);
+	}
+
+	/**
+	* Retourne la personne selectionné
+	* @return La personne qui eest sélectionné
+	*/
+	public Personne selectedValue(){
+		return (Personne)this.liste.getSelectedValue();
+	}
+
+	/**
 	 * active / désactive le Bouton permettant de passer au contact suivant
 	 * @param state vrai si le bouton doit être activé
 	 */
 	public void activateNextButton(boolean state) {
 		nextPeople.setEnabled(state);
+	}
+
+	/**
+	 * Change la couleur du fond de l'objet, de la liste, sélectionné
+	 * @param couleur La couleur dont on veut mettre le fond de l'objet, de la liste, sélectionné
+	 */
+	public void changeListColor(Color couleur) {
+		this.liste.setSelectionBackground(couleur);
 	}
 
 	/**
@@ -260,14 +289,30 @@ public class CarnetAdresse extends JFrame {
 		}
 	}
 
+	private static class ProPersoCellRenderer extends DefaultListCellRenderer {
+        public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
+            Component c = super.getListCellRendererComponent( list, value, index, isSelected, cellHasFocus );
+            if (value instanceof Particulier ) {
+                c.setBackground(new Color(250,185,56));
+            }
+            else if (value instanceof Professionnel) {
+                c.setBackground(new Color(250,68,156));
+            }
+            return c;
+        }  
+    } 
+
 	public void details(){
 		this.nom.setText(this.carnet.getPersonne().getNom());
 		this.prenom.setText(this.carnet.getPersonne().getPrenom());
 		this.civilite.setText(this.carnet.getPersonne().getCivilite());
 	}
 
-	public void moreDetails(Personne pers){
+	public void moreDetails(){
 		this.down.removeAll();
+		SeeMore seeMore = new SeeMore(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
+		this.down.add(seeMore.getPanel());
+		this.down.revalidate();
 	}
 
 	public void addContact(){
@@ -277,9 +322,9 @@ public class CarnetAdresse extends JFrame {
 		this.down.revalidate();
 	}
 
-	public void modifContact(Personne pers){
+	public void modifContact(){
 		this.down.removeAll();
-		UpdateContact updateContact = new UpdateContact(this.carnet, pers, this.dimPaneDown);
+		UpdateContact updateContact = new UpdateContact(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
 		this.down.add(updateContact.getPanel());
 		this.down.revalidate();
 	}

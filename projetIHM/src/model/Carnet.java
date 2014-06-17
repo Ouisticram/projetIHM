@@ -79,6 +79,16 @@ public class Carnet{
         }        
 	}
 
+	public void setCourant(Personne pers){
+		int index = this.contacts.indexOf(pers);
+		if (index != -1)
+			this.courant = index;
+	}
+
+	public int getCourant(){
+		return this.courant;
+	}
+
 
 
     /** supprime la personne du carnet de contacts

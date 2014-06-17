@@ -10,13 +10,13 @@ import model.*;
  * @version 1
  **/
 
-public class UpdateContact extends Container {
+public class SeeMore extends Container {
 	
 	private Personne personne;
 	private Carnet carnet;
 
 	// Constructeur de notre class
-	public UpdateContact(Carnet carn, Personne pers, Dimension dim){
+	public SeeMore(Carnet carn, Personne pers, Dimension dim){
 		super(dim);
 		this.personne = pers;
 		this.carnet = carn;
@@ -30,8 +30,6 @@ public class UpdateContact extends Container {
 	    JPanel general = new JPanel();
 	    general.setLayout(new GridLayout(4,2));
 	    general.setBackground(new Color(4,129,158));
-	    JPanel commit = new JPanel();
-	    commit.setBackground(new Color(4,129,158));
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.setBackground(new Color(4,129,158));
 
@@ -48,8 +46,7 @@ public class UpdateContact extends Container {
 			Box pers1 = Box.createHorizontalBox();
 			JLabel adresse = new JLabel("Adresse: ");
 			adresse.setFont(smallBoldFont);
-			JTextField enterAdresse = new JTextField(30);
-			enterAdresse.setMaximumSize(enterAdresse.getPreferredSize());
+			JLabel enterAdresse = new JLabel();
 			enterAdresse.setText(part.getAdresse());
 			pers1.add(Box.createHorizontalStrut(10));
 			pers1.add(adresse);
@@ -59,8 +56,7 @@ public class UpdateContact extends Container {
 			Box pers2 = Box.createHorizontalBox();
 			JLabel telD = new JLabel("Téléphone Domicile : ");
 			telD.setFont(smallBoldFont);
-			JTextField enterTelD= new JTextField(10);
-			enterTelD.setMaximumSize(enterTelD.getPreferredSize());
+			JLabel enterTelD= new JLabel();
 			enterTelD.setText(part.getTelD());
 			pers2.add(Box.createHorizontalStrut(10));
 			pers2.add(telD);
@@ -70,8 +66,7 @@ public class UpdateContact extends Container {
 			Box pers3 = Box.createHorizontalBox();
 			JLabel telP = new JLabel("Téléphone Portable : ");
 			telP.setFont(smallBoldFont);
-			JTextField enterTelP= new JTextField(10);
-			enterTelP.setMaximumSize(enterTelP.getPreferredSize());
+			JLabel enterTelP= new JLabel();
 			enterTelP.setText(part.getTelP());
 			pers3.add(Box.createHorizontalStrut(10));
 			pers3.add(telP);
@@ -81,8 +76,7 @@ public class UpdateContact extends Container {
 			Box pers4 = Box.createHorizontalBox();
 			JLabel email = new JLabel("Email : ");
 			email.setFont(smallBoldFont);
-			JTextField enterEmail = new JTextField(15);
-			enterEmail.setMaximumSize(enterEmail.getPreferredSize());
+			JLabel enterEmail = new JLabel();
 			enterEmail.setText(part.getEmail());
 			pers4.add(Box.createHorizontalStrut(10));
 			pers4.add(email);
@@ -106,8 +100,7 @@ public class UpdateContact extends Container {
 			Box pro1 = Box.createHorizontalBox();
 			JLabel adressePro = new JLabel("Adresse de l'entreprise : ");
 			adressePro.setFont(smallBoldFont);
-			JTextField enterAdressePro = new JTextField(30);
-			enterAdressePro.setMaximumSize(enterAdressePro.getPreferredSize());
+			JLabel enterAdressePro = new JLabel();
 			enterAdressePro.setText(prof.getAdresse());
 			pro1.add(Box.createHorizontalStrut(10));
 			pro1.add(adressePro);
@@ -117,8 +110,7 @@ public class UpdateContact extends Container {
 			Box pro2 = Box.createHorizontalBox();
 			JLabel telB = new JLabel("Téléphone Bureau : ");
 			telB.setFont(smallBoldFont);
-			JTextField enterTelB= new JTextField(10);
-			enterTelB.setMaximumSize(enterTelB.getPreferredSize());
+			JLabel enterTelB= new JLabel();
 			enterTelB.setText(prof.getTelB());
 			pro2.add(Box.createHorizontalStrut(10));
 			pro2.add(telB);
@@ -128,8 +120,7 @@ public class UpdateContact extends Container {
 			Box pro3 = Box.createHorizontalBox();
 			JLabel telPPro = new JLabel("Téléphone Portable : ");
 			telPPro.setFont(smallBoldFont);
-			JTextField enterTelPPro= new JTextField(10);
-			enterTelPPro.setMaximumSize(enterTelPPro.getPreferredSize());
+			JLabel enterTelPPro= new JLabel();
 			enterTelPPro.setText(prof.getTelP());
 			pro3.add(Box.createHorizontalStrut(10));
 			pro3.add(telPPro);
@@ -139,8 +130,7 @@ public class UpdateContact extends Container {
 			Box pro4 = Box.createHorizontalBox();
 			JLabel emailPro = new JLabel("Email : ");
 			emailPro.setFont(smallBoldFont);
-			JTextField enterEmailPro = new JTextField(15);
-			enterEmailPro.setMaximumSize(enterEmailPro.getPreferredSize());
+			JLabel enterEmailPro = new JLabel();
 			enterEmailPro.setText(prof.getEmail());
 			pro4.add(Box.createHorizontalStrut(10));
 			pro4.add(emailPro);
@@ -150,8 +140,7 @@ public class UpdateContact extends Container {
 			Box pro5 = Box.createHorizontalBox();
 			JLabel entreprise = new JLabel("Entreprise : ");
 			entreprise.setFont(smallBoldFont);
-			JTextField enterEntreprise = new JTextField(15);
-			enterEntreprise.setMaximumSize(enterEntreprise.getPreferredSize());
+			JLabel enterEntreprise = new JLabel();
 			enterEntreprise.setText(prof.getEntreprise());
 			pro5.add(Box.createHorizontalStrut(10));
 			pro5.add(entreprise);
@@ -178,8 +167,7 @@ public class UpdateContact extends Container {
 			Box pers1 = Box.createHorizontalBox();
 			JLabel adresse = new JLabel("Adresse: ");
 			adresse.setFont(smallBoldFont);
-			JTextField enterAdresse = new JTextField(30);
-			enterAdresse.setMaximumSize(enterAdresse.getPreferredSize());
+			JLabel enterAdresse = new JLabel();
 			pers1.add(Box.createHorizontalStrut(10));
 			pers1.add(adresse);
 			pers1.add(Box.createHorizontalStrut(75));
@@ -188,8 +176,7 @@ public class UpdateContact extends Container {
 			Box pers2 = Box.createHorizontalBox();
 			JLabel telD = new JLabel("Téléphone Domicile : ");
 			telD.setFont(smallBoldFont);
-			JTextField enterTelD= new JTextField(10);
-			enterTelD.setMaximumSize(enterTelD.getPreferredSize());
+			JLabel enterTelD= new JLabel();
 			pers2.add(Box.createHorizontalStrut(10));
 			pers2.add(telD);
 			pers2.add(Box.createHorizontalStrut(10));
@@ -198,8 +185,7 @@ public class UpdateContact extends Container {
 			Box pers3 = Box.createHorizontalBox();
 			JLabel telP = new JLabel("Téléphone Portable : ");
 			telP.setFont(smallBoldFont);
-			JTextField enterTelP= new JTextField(10);
-			enterTelP.setMaximumSize(enterTelP.getPreferredSize());
+			JLabel enterTelP= new JLabel();
 			pers3.add(Box.createHorizontalStrut(10));
 			pers3.add(telP);
 			pers3.add(Box.createHorizontalStrut(11));
@@ -208,8 +194,7 @@ public class UpdateContact extends Container {
 			Box pers4 = Box.createHorizontalBox();
 			JLabel email = new JLabel("Email : ");
 			email.setFont(smallBoldFont);
-			JTextField enterEmail = new JTextField(15);
-			enterEmail.setMaximumSize(enterEmail.getPreferredSize());
+			JLabel enterEmail = new JLabel();
 			pers4.add(Box.createHorizontalStrut(10));
 			pers4.add(email);
 			pers4.add(Box.createHorizontalStrut(90));
@@ -223,8 +208,7 @@ public class UpdateContact extends Container {
 			Box pro1 = Box.createHorizontalBox();
 			JLabel adressePro = new JLabel("Adresse de l'entreprise : ");
 			adressePro.setFont(smallBoldFont);
-			JTextField enterAdressePro = new JTextField(30);
-			enterAdressePro.setMaximumSize(enterAdressePro.getPreferredSize());
+			JLabel enterAdressePro = new JLabel();
 			pro1.add(Box.createHorizontalStrut(10));
 			pro1.add(adressePro);
 			pro1.add(Box.createHorizontalStrut(10));
@@ -233,8 +217,7 @@ public class UpdateContact extends Container {
 			Box pro2 = Box.createHorizontalBox();
 			JLabel telB = new JLabel("Téléphone Bureau : ");
 			telB.setFont(smallBoldFont);
-			JTextField enterTelB= new JTextField(10);
-			enterTelB.setMaximumSize(enterTelB.getPreferredSize());
+			JLabel enterTelB= new JLabel();
 			pro2.add(Box.createHorizontalStrut(10));
 			pro2.add(telB);
 			pro2.add(Box.createHorizontalStrut(39));
@@ -243,8 +226,7 @@ public class UpdateContact extends Container {
 			Box pro3 = Box.createHorizontalBox();
 			JLabel telPPro = new JLabel("Téléphone Portable : ");
 			telPPro.setFont(smallBoldFont);
-			JTextField enterTelPPro= new JTextField(10);
-			enterTelPPro.setMaximumSize(enterTelPPro.getPreferredSize());
+			JLabel enterTelPPro= new JLabel();
 			pro3.add(Box.createHorizontalStrut(10));
 			pro3.add(telPPro);
 			pro3.add(Box.createHorizontalStrut(34));
@@ -253,8 +235,7 @@ public class UpdateContact extends Container {
 			Box pro4 = Box.createHorizontalBox();
 			JLabel emailPro = new JLabel("Email : ");
 			emailPro.setFont(smallBoldFont);
-			JTextField enterEmailPro = new JTextField(15);
-			enterEmailPro.setMaximumSize(enterEmailPro.getPreferredSize());
+			JLabel enterEmailPro = new JLabel();
 			pro4.add(Box.createHorizontalStrut(10));
 			pro4.add(emailPro);
 			pro4.add(Box.createHorizontalStrut(112));
@@ -263,8 +244,7 @@ public class UpdateContact extends Container {
 			Box pro5 = Box.createHorizontalBox();
 			JLabel entreprise = new JLabel("Entreprise : ");
 			entreprise.setFont(smallBoldFont);
-			JTextField enterEntreprise = new JTextField(15);
-			enterEntreprise.setMaximumSize(enterEntreprise.getPreferredSize());
+			JLabel enterEntreprise = new JLabel();
 			pro5.add(Box.createHorizontalStrut(10));
 			pro5.add(entreprise);
 			pro5.add(Box.createHorizontalStrut(84));
@@ -281,9 +261,7 @@ public class UpdateContact extends Container {
 		Box box1 = Box.createHorizontalBox();
 		JLabel nom = new JLabel("Nom : ");
 		nom.setFont(smallBoldFont);
-		JTextField enterName;
-		enterName = new JTextField(15);
-		enterName.setMaximumSize(enterName.getPreferredSize());
+		JLabel enterName = new JLabel();
 		enterName.setText(this.personne.getNom());
 		box1.add(Box.createHorizontalStrut(10));
 		box1.add(nom);
@@ -293,8 +271,7 @@ public class UpdateContact extends Container {
 		Box box2 = Box.createHorizontalBox();
 		JLabel prenom = new JLabel("Prénom : ");
 		prenom.setFont(smallBoldFont);
-		JTextField enterFirstName = new JTextField(15);
-		enterFirstName.setMaximumSize(enterFirstName.getPreferredSize());
+		JLabel enterFirstName = new JLabel();
 		enterFirstName.setText(this.personne.getPrenom());
 		box2.add(Box.createHorizontalStrut(10));
 		box2.add(prenom);
@@ -324,15 +301,9 @@ public class UpdateContact extends Container {
 		general.add(box2);
 		general.add(box3);
 
-	// Panel de validation
-		JButton valider = new JButton("Enregistrer");
-
-		commit.add(valider);
-
 	// Ajout au panel principal
 		this.panel.setLayout(new BorderLayout());
 		this.panel.add(general, BorderLayout.NORTH);
 		this.panel.add(tabbedPane, BorderLayout.CENTER);
-		this.panel.add(commit, BorderLayout.SOUTH);
 	}
 }

@@ -21,7 +21,7 @@ public class UpdateContactController implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-	  	this.vue.modifContact(this.carnet.getPersonne());
+	  	this.vue.modifContact();
 	}
 
 }
