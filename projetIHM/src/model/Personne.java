@@ -7,7 +7,7 @@ import java.lang.*;
  * @version 1
  **/
 
-public class Personne implements Humain,Comparable<Personne>{
+public abstract class Personne implements Humain,Comparable<Personne>{
 
     private String nom;
     private String prenom;
@@ -61,7 +61,6 @@ public class Personne implements Humain,Comparable<Personne>{
 	    return ret;
 	}
 	
-	
 	/** méthode qui permet d'obtenir le nom d'une personne
 	 @return le nom de la personne
 	*/
@@ -71,7 +70,7 @@ public class Personne implements Humain,Comparable<Personne>{
 
 	
 	/** méthode qui permet de définir le nom d'une personne
-     @param nom - String qui définit le nouveau nom de la personne
+     @param nom String qui définit le nouveau nom de la personne
 	*/
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -79,7 +78,7 @@ public class Personne implements Humain,Comparable<Personne>{
 
 
 	/** méthode qui permet d'obtenir le prénom d'une personne
-     @return prenom - le prenom de la personne
+     @return prenom le prenom de la personne
 	*/
 	public String getPrenom() {
 		return prenom;
@@ -87,7 +86,7 @@ public class Personne implements Humain,Comparable<Personne>{
 	
 	
 	/** méthode qui permet de définir le prénom d'une personne
-     @param prenom - String qui définit le nouveau prenom de la personne
+     @param prenom String qui définit le nouveau prenom de la personne
 	*/
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
@@ -95,7 +94,7 @@ public class Personne implements Humain,Comparable<Personne>{
 	
 
 	/** méthode qui permet d'obtenir la civilité d'une personne
-     @return civilite - la civilité de la personne
+     @return civilite la civilité de la personne
 	*/
 	public String getCivilite() {
 		return civilite;
@@ -103,7 +102,7 @@ public class Personne implements Humain,Comparable<Personne>{
 	
 	
 	/** méthode qui permet de définir la civilité d'une personne
-     @param civilite - String qui définit la nouvelle civilité de la personne
+     @param civilite String qui définit la nouvelle civilité de la personne
 	*/
 	public void setCivilite(String civilite) {
 		this.civilite = civilite;

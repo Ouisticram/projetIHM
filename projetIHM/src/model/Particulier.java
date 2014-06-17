@@ -19,10 +19,9 @@ public class Particulier extends Personne {
 		this.telP = telP;
 		this.email = email;
 	}
-    
 
 	/** méthode qui permet d'obtenir l'adresse d'un particulier
-     @return adresse - l'adresse du particulier
+     @return adresse l'adresse du particulier
 	*/
 	public String getAdresse() {
 		return adresse;
@@ -30,7 +29,7 @@ public class Particulier extends Personne {
 
 
     /** méthode qui permet de définir l'adresse d'un particulier
-     @param adresse - String qui définit la nouvelle adresse du particulier
+     @param adresse String qui définit la nouvelle adresse du particulier
 	*/
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
@@ -46,7 +45,7 @@ public class Particulier extends Personne {
 
 
     /** méthode qui définit le téléphone (domicile)
-	 @param telD - une string correspondant au numéro
+	 @param telD une string correspondant au numéro
 	*/
 	public void setTelD(String telD) {
 		this.telD = telD;
@@ -62,7 +61,7 @@ public class Particulier extends Personne {
 
 
     /** méthode qui définit le téléphone (portable)
-	 @param telP - une string correspondant au numéro
+	 @param telP une string correspondant au numéro
 	*/
 	public void setTelP(String telP) {
 		this.telP = telP;
@@ -78,7 +77,7 @@ public class Particulier extends Personne {
 
 
     /** méthode qui définit l'email
-	 @param email - une string correspondant à l'email
+	 @param email une string correspondant à l'email
 	*/
 	public void setEmail(String email) {
 		this.email = email;

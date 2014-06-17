@@ -2,8 +2,10 @@ package model;
 
 import java.util.*;
 
-// - liste : LinkedList<Personne>
-
+/**
+ * @author Auger-Dubois Quentin et Briand Kévin
+ * @version 1
+ **/
 
 /*
 Attention, je dois vous dire quelque chose sur les listes chaînées : vu que tous les éléments contiennent une référence à l'élément suivant, de telles listes risquent de devenir particulièrement lourdes en grandissant ! Cependant, elles sont adaptées lorsqu'il faut beaucoup manipuler une collection en supprimant ou en ajoutant des objets en milieu de liste. Elles sont donc à utiliser avec précaution.
@@ -27,13 +29,36 @@ public class Carnet{
 	 */
 	public void ajout(Personne pers) {
 		boolean exists = false;
-		for (int i=0; i<contacts.size();i++) 
+
+		/*for (int i=0; i<contacts.size();i++) 
 		{
-			if (contacts.get(i).equals(pers))
+			
+			if (contacts.get(i) instanceof Particulier)
 			{
-				exists = true;
+				if (pers instanceof Particulier)
+				{
+					if ((pers.getNom() == contacts.get(i).getNom()) && (pers.getPrenom() == contacts.get(i).getPrenom()) && (pers.getCivilite() == contacts.get(i).getCivilite()) && 
+						(pers.getAdresse() == contacts.get(i).getAdresse()) && (pers.getTelD() == contacts.get(i).getTelD()) && (pers.getTelP() == contacts.get(i).getTelP()) && 
+						(pers.getEmail() == contacts.get(i).getEmail()))
+		    		{
+		    			exists = true;
+		    		}
+				}
 			}
-		}	
+
+			if (contacts.get(i) instanceof Professionnel)
+			{
+				if (pers instanceof Professionnel)
+				{
+					if ((pers.getNom() == contacts.get(i).getNom()) && (pers.getPrenom() == contacts.get(i).getPrenom()) && (pers.getCivilite() == contacts.get(i).getCivilite()) && 
+						(pers.getAdresse() == contacts.get(i).getAdresse()) && (pers.getTelB() == contacts.get(i).getTelB()) && (pers.getTelP() == contacts.get(i).getTelP()) && 
+						(pers.persgetEmail() == contacts.get(i).getEmail()) && (pers.getEntreprise() == contacts.get(i).getEntreprise()))
+		    		{
+		    			exists = true;
+		    		}
+				}
+			}
+		}*/	
         
         if (!exists)
         {
@@ -41,6 +66,7 @@ public class Carnet{
         	Collections.sort(this.contacts);
         }        
 	}
+
 
     /** supprime la personne du carnet de contacts
 	 * @param pers - personne à supprimer du carnet
