@@ -15,16 +15,14 @@ public class SelectedContactController implements ListSelectionListener{
 
 	private CarnetAdresse vue;
 	private JList liste;
-	private ActionListener controller;
 
-	public SelectedContactController (CarnetAdresse vue, JList list, ActionListener control){
+	public SelectedContactController (CarnetAdresse vue, JList list){
 		this.vue = vue;
 		this.liste = list;
-		this.controller = control;
 	}
 
 	public void valueChanged(ListSelectionEvent e) {
-		this.vue.details((Personne)this.liste.getSelectedValue());
-		((UpdateContactController)this.controller).updateSelected(this.liste);
+		//this.vue./*TODO*/((Personne)this.liste.getSelectedValue());
+		this.vue.details();
 	}
 }

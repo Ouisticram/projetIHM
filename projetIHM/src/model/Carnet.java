@@ -17,7 +17,7 @@ public class Carnet{
     
     public Carnet() {
         this.contacts = new LinkedList<Personne>();
-        this.dernier = 0;
+        this.dernier = -1;
         this.courant = 0;
         remplir();
     }
@@ -39,6 +39,7 @@ public class Carnet{
         {
         	this.contacts.add(pers);
         	Collections.sort(this.contacts);
+        	this.dernier++;
         }        
 	}
 
