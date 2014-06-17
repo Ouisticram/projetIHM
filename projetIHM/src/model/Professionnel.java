@@ -21,7 +21,6 @@ public class Professionnel extends Personne {
 		this.email = email;
 		this.entreprise = entreprise;
 	}
-    
 
 	/** méthode qui donne l'adresse de l'entreprise
      @return adresse - l'adresse de l'entreprise
