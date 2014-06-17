@@ -29,36 +29,47 @@ public class Carnet{
 	 */
 	public void ajout(Personne pers) {
 		boolean exists = false;
+		boolean isParticulier = pers instanceof Particulier;
+		boolean isProfessionnel = pers instanceof Professionnel;
 
-		/*for (int i=0; i<contacts.size();i++) 
+		/*if (isParticulier) 
+			Personne other = (Particulier) pers;
+		else
+			Personne other2 = (Professionnel) pers;
+
+		if (this.contacts.size() != 0)
 		{
+			for (int i=0; i<contacts.size();i++) 
+			{
 			
-			if (contacts.get(i) instanceof Particulier)
-			{
-				if (pers instanceof Particulier)
+				if (contacts.get(i) instanceof Particulier)
 				{
-					if ((pers.getNom() == contacts.get(i).getNom()) && (pers.getPrenom() == contacts.get(i).getPrenom()) && (pers.getCivilite() == contacts.get(i).getCivilite()) && 
-						(pers.getAdresse() == contacts.get(i).getAdresse()) && (pers.getTelD() == contacts.get(i).getTelD()) && (pers.getTelP() == contacts.get(i).getTelP()) && 
-						(pers.getEmail() == contacts.get(i).getEmail()))
-		    		{
-		    			exists = true;
-		    		}
+					if (isParticulier)
+					{
+						if ((other.getNom() == contacts.get(i).getNom()) && (other.getPrenom() == contacts.get(i).getPrenom()) && (other.getCivilite() == contacts.get(i).getCivilite()) && 
+							(other.getAdresse() == contacts.get(i).getAdresse()) && (other.getTelD() == contacts.get(i).getTelD()) && (other.getTelP() == contacts.get(i).getTelP()) && 
+							(other.getEmail() == contacts.get(i).getEmail()))
+			    		{
+			    			exists = true;
+			    		}
+					}
 				}
-			}
 
-			if (contacts.get(i) instanceof Professionnel)
-			{
-				if (pers instanceof Professionnel)
+				if (contacts.get(i) instanceof Professionnel)
 				{
-					if ((pers.getNom() == contacts.get(i).getNom()) && (pers.getPrenom() == contacts.get(i).getPrenom()) && (pers.getCivilite() == contacts.get(i).getCivilite()) && 
-						(pers.getAdresse() == contacts.get(i).getAdresse()) && (pers.getTelB() == contacts.get(i).getTelB()) && (pers.getTelP() == contacts.get(i).getTelP()) && 
-						(pers.persgetEmail() == contacts.get(i).getEmail()) && (pers.getEntreprise() == contacts.get(i).getEntreprise()))
-		    		{
-		    			exists = true;
-		    		}
+					if (isProfessionnel)
+					{
+						if ((other2.getNom() == contacts.get(i).getNom()) && (other.getPrenom() == contacts.get(i).getPrenom()) && (othe2r.getCivilite() == contacts.get(i).getCivilite()) && 
+							(other2.getAdresse() == contacts.get(i).getAdresse()) && (other2.getTelB() == contacts.get(i).getTelB()) && (other2.getTelP() == contacts.get(i).getTelP()) && 
+							(other2.persgetEmail() == contacts.get(i).getEmail()) && (other2.getEntreprise() == contacts.get(i).getEntreprise()))
+			    		{
+			    			exists = true;
+			    		}
+					}
 				}
 			}
-		}*/	
+		}*/
+
         
         if (!exists)
         {
@@ -66,6 +77,7 @@ public class Carnet{
         	Collections.sort(this.contacts);
         }        
 	}
+
 
 
     /** supprime la personne du carnet de contacts
@@ -155,6 +167,12 @@ public class Carnet{
 		else
 			throw new Exception();
 	}
+
+	public void setCourant(Personne pers){
+		int index = contacts.indexOf(pers);
+		if (index != -1)
+			this.courant = index;
+	}
 	
 	
 	/** Donne la liste acuelle des personnes du carnet
@@ -196,8 +214,6 @@ public class Carnet{
 		ajout(p10);
 		ajout(p11);
 		ajout(p12);
-
-
 
 		
 		// affiche les contacts de base dans le terminal
