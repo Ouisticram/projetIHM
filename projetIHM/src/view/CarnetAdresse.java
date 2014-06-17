@@ -133,7 +133,7 @@ public class CarnetAdresse extends JFrame {
 		this.liste = new JList<Personne>(this.tab_pers);
 		this.liste.setFont(smallPlainFont);
 		this.liste.setBackground(new Color(96,185,206));
-		if(this.tab_pers.length > 0) this.liste.setSelectedIndex(0);
+		if(this.tab_pers.length > 0) this.selectedIndex(0);
 		this.liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
 		this.liste.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.details();
@@ -170,7 +170,7 @@ public class CarnetAdresse extends JFrame {
 		ActionListener a2 = new UpdateContactController(this, this.carnet);
 		updateSomeone.addActionListener(a2);
 
-		ListSelectionListener l1 = new SelectedContactController(this, this.liste);
+		ListSelectionListener l1 = new SelectedContactController(this, this.carnet);
 		this.liste.addListSelectionListener(l1);
 		
 		JButton deleteSomeone = new JButton(new ImageIcon(cl.getResource("delete_32x32.png")));
@@ -230,6 +230,22 @@ public class CarnetAdresse extends JFrame {
 	private Color Color(int i, int j, int k) {
 		Color couleur = new Color(i,j,k);
 		return couleur;
+	}
+
+	/**
+	* Change la personne sélectionné dans la JList
+	* @param index l'index de la personne à sélectionner
+	*/
+	public void selectedIndex(int index){
+		this.liste.setSelectedIndex(index);
+	}
+
+	/**
+	* Retourne la personne selectionné
+	* @return La personne qui eest sélectionné
+	*/
+	public Personne selectedValue(){
+		return (Personne)this.liste.getSelectedValue();
 	}
 
 	/**

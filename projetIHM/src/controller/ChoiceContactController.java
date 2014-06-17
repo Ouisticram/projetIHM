@@ -15,25 +15,24 @@ public class ChoiceContactController implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Ta clique ! ...");
 	  	switch(e.getActionCommand()){
 	  		case "<" :
-	  			System.out.println("Sur < ;)");
 	  			if(this.carnet.precedentPossible()){
-	  				System.out.println("En + t'es dans le if, chapeau :)");
-	  				try {this.carnet.personnePrecedent();}
-	  				catch (Exception excep){}
+	  				try {
+	  					this.carnet.personnePrecedent();
+	  					//this.vue.liste.selectedIndex();
+	  				}catch (Exception excep){}
 	  				this.vue.details();
 	  				if(!this.carnet.precedentPossible()) this.vue.activatePreviousButton(false);
 	  			}
 	  			if(this.carnet.suivantPossible()) this.vue.activateNextButton(true);
 	  			break;
 	  		case ">" :
-	  			System.out.println("Sur > ;)");
 	  			if(this.carnet.suivantPossible()){
-	  				System.out.println("En + t'es dans le if, chapeau :)");
-	  				try {this.carnet.personneSuivante();}
-	  				catch (Exception excep){}	  				
+	  				try {
+	  					this.carnet.personneSuivante();
+	  					//this.vue.liste.selectedIndex();
+	  				}catch (Exception excep){}	  				
 	  				this.vue.details();
 	  				if(!this.carnet.suivantPossible()) this.vue.activateNextButton(false);
 	  			}

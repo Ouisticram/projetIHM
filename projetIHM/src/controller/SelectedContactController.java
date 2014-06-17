@@ -2,7 +2,6 @@ package controller;
 
 import javax.swing.*;
 import javax.swing.event.*;
-import java.awt.event.*;
 import view.*;
 import model.*;
 
@@ -13,16 +12,20 @@ import model.*;
 
 public class SelectedContactController implements ListSelectionListener{
 
+	private Carnet carnet;
 	private CarnetAdresse vue;
-	private JList liste;
 
-	public SelectedContactController (CarnetAdresse vue, JList list){
+	public SelectedContactController (CarnetAdresse vue, Carnet carn){
 		this.vue = vue;
-		this.liste = list;
+		this.carnet = carn;
 	}
 
 	public void valueChanged(ListSelectionEvent e) {
-		//this.vue./*TODO*/((Personne)this.liste.getSelectedValue());
+		this.carnet.setCourant((Personne)this.vue.selectedValue());
+		if(!this.carnet.suivantPossible()) this.vue.activateNextButton(false);
+		else this.vue.activateNextButton(true);
+		if(!this.carnet.precedentPossible()) this.vue.activatePreviousButton(false);
+		else this.vue.activatePreviousButton(true);
 		this.vue.details();
 	}
 }

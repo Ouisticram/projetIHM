@@ -68,6 +68,12 @@ public class Carnet{
         }        
 	}
 
+	public void setCourant(Personne pers){
+		int index = this.contacts.indexOf(pers);
+		if (index != -1)
+			this.courant = index;
+	}
+
 
     /** supprime la personne du carnet de contacts
 	 * @param pers - personne à supprimer du carnet
