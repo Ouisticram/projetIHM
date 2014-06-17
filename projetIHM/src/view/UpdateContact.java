@@ -21,6 +21,7 @@ public class UpdateContact extends Container {
 		this.personne = pers;
 		this.carnet = carn;
 		initPanel();
+		this.panel.setBackground(new Color(4,129,158));
 	}
 
 	public void initPanel(){
@@ -32,6 +33,7 @@ public class UpdateContact extends Container {
 	    JPanel commit = new JPanel();
 	    commit.setBackground(new Color(4,129,158));
 		JTabbedPane tabbedPane = new JTabbedPane();
+		tabbedPane.setBackground(new Color(4,129,158));
 
 		if (this.personne instanceof Particulier){
 

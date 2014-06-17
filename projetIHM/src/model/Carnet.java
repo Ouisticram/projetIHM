@@ -74,6 +74,10 @@ public class Carnet{
 			this.courant = index;
 	}
 
+	public int getCourant(){
+		return this.courant;
+	}
+
 
     /** supprime la personne du carnet de contacts
 	 * @param pers - personne à supprimer du carnet

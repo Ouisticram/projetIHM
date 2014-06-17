@@ -76,7 +76,7 @@ public class CarnetAdresse extends JFrame {
 
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-		buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+		buttonPane.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 35));
 		buttonPane.setBackground(new Color(96,185,206));
 
 		JButton showMore = new JButton("Voir plus...");
@@ -295,7 +295,7 @@ public class CarnetAdresse extends JFrame {
 
 	public void modifContact(Personne pers){
 		this.down.removeAll();
-		UpdateContact updateContact = new UpdateContact(this.carnet, pers, this.dimPaneDown);
+		UpdateContact updateContact = new UpdateContact(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
 		this.down.add(updateContact.getPanel());
 		this.down.revalidate();
 	}
