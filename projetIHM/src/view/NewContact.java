@@ -15,6 +15,18 @@ public class NewContact extends Container {
 	private boolean clicked;
 	private Carnet carnet;
 	private JTextField enterName;
+	private JTextField enterFirstName;
+	private JRadioButton men;
+	private JRadioButton women;
+	private JTextField enterAdresse;
+	private JTextField enterTelD;
+	private JTextField enterTelP;
+	private JTextField enterEmail;
+	private JTextField enterAdressePro;
+	private JTextField enterTelB;
+	private JTextField enterTelPPro;
+	private JTextField enterEmailPro;
+	private JTextField enterEntreprise;
 
 	// Constructeur de notre class
 	public NewContact(Carnet carn, Dimension dim){
@@ -49,40 +61,40 @@ public class NewContact extends Container {
 		nom.setFont(smallBoldFont);
 		enterName = new JTextField(15);
 		enterName.setText("Ex: name");
-		enterName.addMouseListener(new ZoneTextListener());
-		enterName.setMaximumSize(enterName.getPreferredSize());
+		this.enterName.addMouseListener(new ZoneTextListener());
+		this.enterName.setMaximumSize(this.enterName.getPreferredSize());
 		box1.add(Box.createHorizontalStrut(10));
 		box1.add(nom);
 		box1.add(Box.createHorizontalStrut(28)); // ajoute des pixels d'écarts sur un plan horizontal
-		box1.add(enterName);
+		box1.add(this.enterName);
 
 		Box box2 = Box.createHorizontalBox();
 		JLabel prenom = new JLabel("Prénom : ");
 		prenom.setFont(smallBoldFont);
-		JTextField enterFirstName = new JTextField(15);
-		enterFirstName.setMaximumSize(enterFirstName.getPreferredSize());
+		this.enterFirstName = new JTextField(15);
+		this.enterFirstName.setMaximumSize(this.enterFirstName.getPreferredSize());
 		box2.add(Box.createHorizontalStrut(10));
 		box2.add(prenom);
 		box2.add(Box.createHorizontalStrut(10));
-		box2.add(enterFirstName);
+		box2.add(this.enterFirstName);
 
 		Box box3 = Box.createHorizontalBox();
 		JLabel civilite = new JLabel("Civilité : ");
 		civilite.setFont(smallBoldFont);
-		JRadioButton men = new JRadioButton("Monsieur");
-		men.setBackground(new Color(4,129,158));
-		men.setSelected(true);
-		JRadioButton women = new JRadioButton("Madame");
-		women.setBackground(new Color(4,129,158));
+		this.men = new JRadioButton("Monsieur");
+		this.men.setBackground(new Color(4,129,158));
+		this.men.setSelected(true);
+		this.women = new JRadioButton("Madame");
+		this.women.setBackground(new Color(4,129,158));
 		ButtonGroup group = new ButtonGroup();
-		group.add(men);
-		group.add(women);
+		group.add(this.men);
+		group.add(this.women);
 		box3.add(Box.createHorizontalStrut(10));
 		box3.add(civilite);
 		box3.add(Box.createHorizontalStrut(17));
-		box3.add(men);
+		box3.add(this.men);
 		box3.add(Box.createHorizontalStrut(10));
-		box3.add(women);
+		box3.add(this.women);
 		
 		general.add(box1);
 		general.add(box2);
@@ -92,42 +104,42 @@ public class NewContact extends Container {
 		Box pers1 = Box.createHorizontalBox();
 		JLabel adresse = new JLabel("Adresse: ");
 		adresse.setFont(smallBoldFont);
-		JTextField enterAdresse = new JTextField(30);
-		enterAdresse.setMaximumSize(enterAdresse.getPreferredSize());
+		this.enterAdresse = new JTextField(30);
+		this.enterAdresse.setMaximumSize(this.enterAdresse.getPreferredSize());
 		pers1.add(Box.createHorizontalStrut(10));
 		pers1.add(adresse);
 		pers1.add(Box.createHorizontalStrut(75));
-		pers1.add(enterAdresse);
+		pers1.add(this.enterAdresse);
 
 		Box pers2 = Box.createHorizontalBox();
 		JLabel telD = new JLabel("Téléphone Domicile : ");
 		telD.setFont(smallBoldFont);
-		JTextField enterTelD= new JTextField(10);
-		enterTelD.setMaximumSize(enterTelD.getPreferredSize());
+		this.enterTelD = new JTextField(10);
+		this.enterTelD.setMaximumSize(this.enterTelD.getPreferredSize());
 		pers2.add(Box.createHorizontalStrut(10));
 		pers2.add(telD);
 		pers2.add(Box.createHorizontalStrut(10));
-		pers2.add(enterTelD);
+		pers2.add(this.enterTelD);
 
 		Box pers3 = Box.createHorizontalBox();
 		JLabel telP = new JLabel("Téléphone Portable : ");
 		telP.setFont(smallBoldFont);
-		JTextField enterTelP= new JTextField(10);
-		enterTelP.setMaximumSize(enterTelP.getPreferredSize());
+		this.enterTelP = new JTextField(10);
+		this.enterTelP.setMaximumSize(this.enterTelP.getPreferredSize());
 		pers3.add(Box.createHorizontalStrut(10));
 		pers3.add(telP);
 		pers3.add(Box.createHorizontalStrut(11));
-		pers3.add(enterTelP);
+		pers3.add(this.enterTelP);
 
 		Box pers4 = Box.createHorizontalBox();
 		JLabel email = new JLabel("Email : ");
 		email.setFont(smallBoldFont);
-		JTextField enterEmail = new JTextField(15);
-		enterEmail.setMaximumSize(enterEmail.getPreferredSize());
+		this.enterEmail = new JTextField(15);
+		this.enterEmail.setMaximumSize(this.enterEmail.getPreferredSize());
 		pers4.add(Box.createHorizontalStrut(10));
 		pers4.add(email);
 		pers4.add(Box.createHorizontalStrut(90));
-		pers4.add(enterEmail);
+		pers4.add(this.enterEmail);
 
 		perso.add(pers1);
 		perso.add(pers2);
@@ -137,52 +149,52 @@ public class NewContact extends Container {
 		Box pro1 = Box.createHorizontalBox();
 		JLabel adressePro = new JLabel("Adresse de l'entreprise : ");
 		adressePro.setFont(smallBoldFont);
-		JTextField enterAdressePro = new JTextField(30);
-		enterAdressePro.setMaximumSize(enterAdressePro.getPreferredSize());
+		this.enterAdressePro = new JTextField(30);
+		this.enterAdressePro.setMaximumSize(this.enterAdressePro.getPreferredSize());
 		pro1.add(Box.createHorizontalStrut(10));
 		pro1.add(adressePro);
 		pro1.add(Box.createHorizontalStrut(10));
-		pro1.add(enterAdressePro);
+		pro1.add(this.enterAdressePro);
 
 		Box pro2 = Box.createHorizontalBox();
 		JLabel telB = new JLabel("Téléphone Bureau : ");
 		telB.setFont(smallBoldFont);
-		JTextField enterTelB= new JTextField(10);
-		enterTelB.setMaximumSize(enterTelB.getPreferredSize());
+		this.enterTelB = new JTextField(10);
+		this.enterTelB.setMaximumSize(this.enterTelB.getPreferredSize());
 		pro2.add(Box.createHorizontalStrut(10));
 		pro2.add(telB);
 		pro2.add(Box.createHorizontalStrut(39));
-		pro2.add(enterTelB);
+		pro2.add(this.enterTelB);
 
 		Box pro3 = Box.createHorizontalBox();
 		JLabel telPPro = new JLabel("Téléphone Portable : ");
 		telPPro.setFont(smallBoldFont);
-		JTextField enterTelPPro= new JTextField(10);
-		enterTelPPro.setMaximumSize(enterTelPPro.getPreferredSize());
+		this.enterTelPPro = new JTextField(10);
+		this.enterTelPPro.setMaximumSize(this.enterTelPPro.getPreferredSize());
 		pro3.add(Box.createHorizontalStrut(10));
 		pro3.add(telPPro);
 		pro3.add(Box.createHorizontalStrut(34));
-		pro3.add(enterTelPPro);
+		pro3.add(this.enterTelPPro);
 
 		Box pro4 = Box.createHorizontalBox();
 		JLabel emailPro = new JLabel("Email : ");
 		emailPro.setFont(smallBoldFont);
-		JTextField enterEmailPro = new JTextField(15);
-		enterEmailPro.setMaximumSize(enterEmailPro.getPreferredSize());
+		this.enterEmailPro = new JTextField(15);
+		this.enterEmailPro.setMaximumSize(this.enterEmailPro.getPreferredSize());
 		pro4.add(Box.createHorizontalStrut(10));
 		pro4.add(emailPro);
 		pro4.add(Box.createHorizontalStrut(112));
-		pro4.add(enterEmailPro);
+		pro4.add(this.enterEmailPro);
 
 		Box pro5 = Box.createHorizontalBox();
 		JLabel entreprise = new JLabel("Entreprise : ");
 		entreprise.setFont(smallBoldFont);
-		JTextField enterEntreprise = new JTextField(15);
-		enterEntreprise.setMaximumSize(enterEntreprise.getPreferredSize());
+		this.enterEntreprise = new JTextField(15);
+		this.enterEntreprise.setMaximumSize(this.enterEntreprise.getPreferredSize());
 		pro5.add(Box.createHorizontalStrut(10));
 		pro5.add(entreprise);
 		pro5.add(Box.createHorizontalStrut(84));
-		pro5.add(enterEntreprise);
+		pro5.add(this.enterEntreprise);
 
 		pro.add(pro2);
 		pro.add(pro3);
@@ -202,6 +214,110 @@ public class NewContact extends Container {
 		this.panel.add(commit, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * Donne le nom d'une personne
+	 * @return le texte présent dans la JTextField enterName
+	 */
+	public String giveName() {
+		return enterName.getText();
+	}
+
+	/**
+	 * Donne le prénom d'une personne
+	 * @return le texte présent dans la JTextField enterFirstName
+	 */
+	public String giveFirstName() {
+		return enterFirstName.getText();
+	}
+
+	/**
+	 * Indique si la personne en un homme
+	 * @return True si c'est un homme et faux sinon
+	 */
+	public boolean isAMan() {
+		return men.isSelected();
+	}
+
+	/**
+	 * Indique si la personne en une femme
+	 * @return True si c'est une femme et faux sinon
+	 */
+	public boolean isAWoman() {
+		return women.isSelected();
+	}
+
+	/**
+	 * Donne l'adresse personnel d'une personne
+	 * @return le texte présent dans la JTextField enterAdresse
+	 */
+	public String giveAdress() {
+		return enterAdresse.getText();
+	}
+
+	/**
+	 * Donne le numéro de téléphone du domicile d'une personne
+	 * @return le texte présent dans la JTextField enterTelD
+	 */
+	public String givePhoneNumber() {
+		return enterTelD.getText();
+	}
+
+	/**
+	 * Donne le numéro de téléphone portable personnel d'une personne
+	 * @return le texte présent dans la JTextField enterTelP
+	 */
+	public String giveCellPhoneNumber() {
+		return enterTelP.getText();
+	}
+
+	/**
+	 * Donne l'email personnel d'une personne
+	 * @return le texte présent dans la JTextField enterEmail
+	 */
+	public String giveEmail() {
+		return enterEmail.getText();
+	}
+
+	/**
+	 * Donne l'adresse professionnel d'une personne
+	 * @return le texte présent dans la JTextField enterAdressePro
+	 */
+	public String giveProAdress() {
+		return enterAdressePro.getText();
+	}
+
+	/**
+	 * Donne le numéro de téléphone du bureau d'une personne
+	 * @return le texte présent dans la JTextField enterTelB
+	 */
+	public String giveProPhoneNumber() {
+		return enterTelB.getText();
+	}
+
+	/**
+	 * Donne le numéro de téléphone portable professionnel d'une personne
+	 * @return le texte présent dans la JTextField enterTelPPro
+	 */
+	public String giveProCellPhoneNumber() {
+		return enterTelPPro.getText();
+	}
+
+	/**
+	 * Donne l'email professionnel d'une personne
+	 * @return le texte présent dans la JTextField enterEmailPro
+	 */
+	public String giveProEmail() {
+		return enterEmailPro.getText();
+	}
+
+	/**
+	 * Donne le nom de l'entreprise dans laquelle travail une personne
+	 * @return le texte présent dans la JTextField enterEntreprise
+	 */
+	public String giveCompagny() {
+		return enterEntreprise.getText();
+	}
+
 	class ZoneTextListener implements MouseListener {
 		public void mouseEntered(MouseEvent e) {
 	    	if (enterName.getText().equals("Ex: name")){
@@ -216,11 +332,9 @@ public class NewContact extends Container {
 		public void mousePressed(MouseEvent eve) {
 			clicked = true;
 		}
-		@Override
 		public void mouseClicked(MouseEvent even) {
 			clicked = true;
 		}
-		@Override
 		public void mouseReleased(MouseEvent event) {}
 	}
 }

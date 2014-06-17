@@ -12,20 +12,16 @@ import model.*;
 
 public class UpdateContactController implements ActionListener{
 
+	private Carnet carnet;
 	private CarnetAdresse vue;
-	private Personne personne;
 
-	public UpdateContactController (CarnetAdresse vue, JList liste){
+	public UpdateContactController (CarnetAdresse vue, Carnet carn){
 		this.vue = vue;
-		this.personne = (Personne)liste.getSelectedValue();
-	}
-
-	public void updateSelected(JList liste){
-		this.personne = (Personne)liste.getSelectedValue();
+		this.carnet = carn;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-	  	this.vue.modifContact(this.personne);
+	  	this.vue.modifContact(this.carnet.getPersonne());
 	}
 
 }

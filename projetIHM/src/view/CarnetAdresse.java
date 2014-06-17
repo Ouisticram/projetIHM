@@ -26,6 +26,9 @@ public class CarnetAdresse extends JFrame {
 	private JPanel up;
 	private JPanel down;
 
+	private JButton nextPeople;
+	private JButton previousPeople;
+
 	private JLabel nom;
 	private JLabel prenom;
 	private JLabel civilite;
@@ -69,7 +72,7 @@ public class CarnetAdresse extends JFrame {
 	// Panel en haut à gauche
 		JPanel gauche = new JPanel();
 		gauche.setLayout(new BorderLayout());
-		//gauche.setPreferredSize (new Dimension(275,150));
+		gauche.setPreferredSize (new Dimension(275,0));
 
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
@@ -101,6 +104,13 @@ public class CarnetAdresse extends JFrame {
 		this.civilite = new JLabel();
 		this.civilite.setFont(smallPlainFont);
 
+		nextPeople = new JButton(">");
+		previousPeople = new JButton("<");
+
+		ActionListener a = new ChoiceContactController(this.carnet,this);
+		nextPeople.addActionListener(a);
+		previousPeople.addActionListener(a);
+
 		infos.add(name);
 		infos.add(this.nom);
 		infos.add(firstname);
@@ -110,6 +120,8 @@ public class CarnetAdresse extends JFrame {
 
 		gauche.add(infos, BorderLayout.CENTER);
 		gauche.add(buttonPane, BorderLayout.SOUTH);
+		gauche.add(nextPeople, BorderLayout.EAST);
+		gauche.add(previousPeople, BorderLayout.WEST);
 
 	// Panel en haut à droite
 		JPanel droite = new JPanel();
@@ -124,7 +136,7 @@ public class CarnetAdresse extends JFrame {
 		if(this.tab_pers.length > 0) this.liste.setSelectedIndex(0);
 		this.liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
 		this.liste.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.details((Personne)this.liste.getSelectedValue());
+		this.details();
 
 		panListe.add(this.liste);
 
@@ -155,10 +167,10 @@ public class CarnetAdresse extends JFrame {
 		updateSomeone.setBackground(new Color(96,185,206));
 		updateSomeone.setBorderPainted(false);
 
-		ActionListener a2 = new UpdateContactController(this, this.liste);
+		ActionListener a2 = new UpdateContactController(this, this.carnet);
 		updateSomeone.addActionListener(a2);
 
-		ListSelectionListener l1 = new SelectedContactController(this, this.liste, a2);
+		ListSelectionListener l1 = new SelectedContactController(this, this.liste);
 		this.liste.addListSelectionListener(l1);
 		
 		JButton deleteSomeone = new JButton(new ImageIcon(cl.getResource("delete_32x32.png")));
@@ -208,11 +220,37 @@ public class CarnetAdresse extends JFrame {
 		this.setVisible(true);
 	}
 
+	/**
+	* Fonction qui retourne une couleur en RGB
+	* @param i la quantité de rouge dans la couleur, avec 0 <= i <= 255
+	* @param j la quantité de vert dans la couleur, avec 0 <= j <= 255
+	* @param k la quantité de bleu dans la couleur, avec 0 <= j <= 255
+	* @return couleur La couleur voulue
+	*/
 	private Color Color(int i, int j, int k) {
 		Color couleur = new Color(i,j,k);
 		return couleur;
 	}
 
+	/**
+	 * active / désactive le Bouton permettant de passer au contact suivant
+	 * @param state vrai si le bouton doit être activé
+	 */
+	public void activateNextButton(boolean state) {
+		nextPeople.setEnabled(state);
+	}
+
+	/**
+	 * active / désactive le Bouton permettant de passer au contact précédent
+	 * @param state vrai si le bouton doit être activé
+	 */
+	public void activatePreviousButton(boolean state) {
+		previousPeople.setEnabled(state);
+	}
+
+	/**
+	* Fonction qui met a jour le contenu de la JList
+	*/
 	private void majListe(){
 		int i = 0;
 		this.tab_pers = new Personne[this.carnet.getContacts().size()];
@@ -222,10 +260,10 @@ public class CarnetAdresse extends JFrame {
 		}
 	}
 
-	public void details(Personne pers){
-		this.nom.setText(pers.getNom());
-		this.prenom.setText(pers.getPrenom());
-		this.civilite.setText(pers.getCivilite());
+	public void details(){
+		this.nom.setText(this.carnet.getPersonne().getNom());
+		this.prenom.setText(this.carnet.getPersonne().getPrenom());
+		this.civilite.setText(this.carnet.getPersonne().getCivilite());
 	}
 
 	public void moreDetails(Personne pers){
