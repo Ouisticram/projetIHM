@@ -175,14 +175,7 @@ public class Carnet{
 			courant--;
 		else
 			throw new Exception();
-	}
-
-	public void setCourant(Personne pers){
-		int index = contacts.indexOf(pers);
-		if (index != -1)
-			this.courant = index;
-	}
-	
+	}	
 	
 	/** Donne la liste acuelle des personnes du carnet
 	 * @return : une linkedlist de personnes

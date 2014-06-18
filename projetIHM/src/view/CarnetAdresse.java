@@ -16,7 +16,6 @@ import controller.*;
 public class CarnetAdresse extends JFrame {
 
 	private Dimension dimPaneDown;
-	private Dimension dim1 = new Dimension(100, 100);
 	private Font bigBoldFont = new Font("Arial", Font.BOLD, 30);
 	private Font smallBoldFont = new Font("Arial", Font.BOLD, 14);
 	private Font smallPlainFont = new Font("Arial", Font.PLAIN, 14);
@@ -45,10 +44,11 @@ public class CarnetAdresse extends JFrame {
 	 **/
 	public CarnetAdresse(String titre, Dimension dim){
 		super(titre);
-		this.setPreferredSize(dim);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setResizable(false);
-		this.pack();
+		this.setSize(dim);
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.setLocationRelativeTo(null);
+	    this.setResizable(false);
+
 		this.cl = this.getClass().getClassLoader();
 
 		this.carnet = new Carnet(); // création d'un nouveau carnet d'adresse
@@ -57,9 +57,9 @@ public class CarnetAdresse extends JFrame {
 		this.principal.setLayout(new GridBagLayout());
 		this.setContentPane(this.principal);
 
-		int height = (int)(this.getGlassPane().getHeight()/3);
-		int heightBas = (int)(this.getGlassPane().getHeight()-height);
-		int width = (int)(this.getGlassPane().getWidth());
+		int height = (int)(dim.getHeight()/3);
+		int heightBas = (int)dim.getHeight()-height;
+		int width = (int)dim.getWidth();
 		this.dimPaneDown = new Dimension(width,heightBas);
 
 	// Panel du haut
@@ -200,7 +200,6 @@ public class CarnetAdresse extends JFrame {
 	// Panel du bas
 		this.down = new JPanel();
 		this.down.setPreferredSize(this.dimPaneDown);
-		this.down.setLayout(new BorderLayout());
 		this.down.setBackground(new Color(4,129,158));
 		this.welcome();		
 
@@ -221,8 +220,6 @@ public class CarnetAdresse extends JFrame {
 		gbc.gridheight = 2;
 		gbc.gridwidth = 1;
 		this.principal.add(this.down, gbc);
-
-		this.setVisible(true);
 	}
 
 	/**
@@ -316,13 +313,17 @@ public class CarnetAdresse extends JFrame {
     public void welcome(){
     	this.down.removeAll();
 
+    	JPanel tmp = new JPanel();
+    	tmp.setPreferredSize(this.dimPaneDown);
+    	tmp.setBackground(new Color(4,129,158));
+
     	JLabel msg = new JLabel("Bienvenue dans votre carnet d'adresse");
 		msg.setFont(bigBoldFont);
 
 		JLabel author = new JLabel("Réalisé par Quentin AUGER-DUBOIS\net Kévin BRIAND");
 
-		this.down.setLayout(new GridBagLayout());
-		this.down.add(msg);
+		tmp.setLayout(new GridBagLayout());
+		tmp.add(msg);
 
 		// TODO
 		/*GridBagConstraints gbcDown = new GridBagConstraints();
@@ -337,6 +338,7 @@ public class CarnetAdresse extends JFrame {
 		gbcDown.anchor = GridBagConstraints.LAST_LINE_END;
 		this.down.add(author, gbcDown);*/
 
+		this.down.add(tmp);
 		this.down.revalidate();
     }
 
