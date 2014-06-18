@@ -83,7 +83,7 @@ public class Carnet{
 	 * @param pers - personne à supprimer du carnet
 	 */
     public void supprimer(Personne pers){
-        this.contacts.remove(pers); 
+        this.contacts.remove(pers);
     }
 
 
@@ -124,8 +124,6 @@ public class Carnet{
     	return finden;
     }
 
-
-    
 	/**
 	 * @return la personne actuellement consultée
 	 */
