@@ -102,33 +102,62 @@ public class Carnet{
 	 */
     public List<Personne> recherche(String s){
 
+    	// définition des variables
     	List<Personne> finden = new LinkedList<Personne>();
+    	List<String> mots = new LinkedList<String>();   
     	int index = 0;
+    	int motCourant = 0;
     	boolean ajoute = false;
-    	String[] mots = new String[2];
-
-    	if (s.indexOf(" ") != -1 && s.charAt(1) != ' ')
-    	{
-    		index = s.indexOf(" ");
-    		mots[0] = s.substring(0,index-1);
-    		mots[1] = s.substring(index);
-    	}
-    	else 
-    	{
-    		mots[0] = s;
-    	}
-
+    	boolean enJeu = true;
+    	String nom = "";
+    	String prenom = "";
+    	
+        // on conditionne l'entrée de l'utilisateur
+        s = s.toLowerCase();
+        while (s.endsWith(" ")) {s = s.substring(0,s.length()-1);}
+        while (s.startsWith(" ")) {s = s.substring(1,s.length());}
+        
+        // on split le mot conditionné en sous-chaînes si besoin (selon les espaces)
+        if (s.indexOf(" ") != -1)
+        {
+            while (s.indexOf(" ") != -1)
+            {
+                index = s.indexOf(" ");
+                mots.add(s.substring(0,index-1));
+        		s = s.substring(index);
+        		while (s.startsWith(" ")) {s = s.substring(1,s.length());} // cas avec au moins 2 espaces
+            }
+        }
+        mots.add(s);
+     
+        // on compare les mots entrés par l'utilisateur avec les noms et prénoms des contacts
     	for (int i=0;i<contacts.size();i++)
     	{
     		ajoute = false;
-    		for (int j=0;j<mots.length;j++)
+    		enJeu = true;
+    		motCourant = 0;
+    		nom = contacts.get(i).getNom();
+    		nom = nom.toLowerCase();
+    		prenom = contacts.get(i).getPrenom();
+    		prenom = prenom.toLowerCase();
+    		
+    		while (motCourant < mots.size() && enJeu == true)
     		{
-    			if ((contacts.get(i).getNom().contains(mots[j]) || (contacts.get(i).getPrenom().contains(mots[j]))) && !ajoute && mots[j] != null)
-	    		{
-	    			finden.add(contacts.get(i));
-	    			ajoute = true;
-	    		}
-    		}	
+    		    if ((nom.contains(mots.get(motCourant)) || (prenom.contains(mots.get(motCourant)))))
+    		    {
+    		        motCourant++;
+    		    }
+    		    else 
+    		    {
+    		        enJeu = false;
+    		    }
+    		}  
+
+    	    if (enJeu)
+	        {
+	            finden.add(contacts.get(i));
+	            ajoute = true;
+	        }
     	}
     	return finden;
     }
@@ -231,6 +260,16 @@ public class Carnet{
 		for (int i=0; i<this.contacts.size();i++)
 		{
 		    System.out.println(i+" "+contacts.get(i).toString());
+		}
+		
+		List<Personne> result = new LinkedList<Personne>();
+		result = recherche("QUENTIN");
+		System.out.println("\n");
+		
+		// affiche résulats recherche
+		for (int i=0; i<result.size();i++)
+		{
+		    System.out.println(i+" "+result.get(i).toString());
 		}
 		
 	}
