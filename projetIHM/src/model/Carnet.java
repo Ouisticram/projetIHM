@@ -87,8 +87,12 @@ public class Carnet{
 	 * @param pers - personne à supprimer du carnet
 	 */
     public void supprimer(Personne pers){
+<<<<<<< HEAD
         this.contacts.remove(pers); 
         this.courant--;
+=======
+        this.contacts.remove(pers);
+>>>>>>> a85424ca6aece485c5a0e441a0b12d85c43f5d07
     }
 
 
@@ -129,8 +133,6 @@ public class Carnet{
     	return finden;
     }
 
-
-    
 	/**
 	 * @return la personne actuellement consultée
 	 */
@@ -170,7 +172,11 @@ public class Carnet{
 			courant--;
 		else
 			throw new Exception();
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> a85424ca6aece485c5a0e441a0b12d85c43f5d07
 	
 	/** Donne la liste acuelle des personnes du carnet
 	 * @return : une linkedlist de personnes

@@ -11,6 +11,7 @@ import java.awt.*;
 public abstract class Container{
 
 	protected JPanel panel;
+	protected Font bigBoldFont = new Font("Arial", Font.BOLD, 30);
 	protected Font smallBoldFont = new Font("Arial", Font.BOLD, 14);
 	protected Font smallPlainFont = new Font("Arial", Font.PLAIN, 14);
 	

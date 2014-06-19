@@ -16,7 +16,6 @@ import controller.*;
 public class CarnetAdresse extends JFrame {
 
 	private Dimension dimPaneDown;
-	private Dimension dim1 = new Dimension(100, 100);
 	private Font bigBoldFont = new Font("Arial", Font.BOLD, 30);
 	private Font smallBoldFont = new Font("Arial", Font.BOLD, 14);
 	private Font smallPlainFont = new Font("Arial", Font.PLAIN, 14);
@@ -45,23 +44,22 @@ public class CarnetAdresse extends JFrame {
 	 **/
 	public CarnetAdresse(String titre, Dimension dim){
 		super(titre);
-		this.setPreferredSize(dim);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setResizable(false);
-		this.pack();
-		cl = this.getClass().getClassLoader();
+		this.setSize(dim);
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.setLocationRelativeTo(null);
+	    this.setResizable(false);
+
+		this.cl = this.getClass().getClassLoader();
 
 		this.carnet = new Carnet(); // création d'un nouveau carnet d'adresse
-
-		this.majListe(); // initialisation de la liste de personne
 
 		this.principal = new JPanel();		
 		this.principal.setLayout(new GridBagLayout());
 		this.setContentPane(this.principal);
 
-		int height = (int)(this.getGlassPane().getHeight()/3);
-		int heightBas = (int)(this.getGlassPane().getHeight()-height);
-		int width = (int)(this.getGlassPane().getWidth());
+		int height = (int)(dim.getHeight()/3);
+		int heightBas = (int)dim.getHeight()-height;
+		int width = (int)dim.getWidth();
 		this.dimPaneDown = new Dimension(width,heightBas);
 
 	// Panel du haut
@@ -81,8 +79,8 @@ public class CarnetAdresse extends JFrame {
 
 		JButton showMore = new JButton("Voir plus...");
 
-		ActionListener a3 = new SeeMoreController(this, this.carnet);
-		showMore.addActionListener(a3);
+		ActionListener al = new SeeMoreController(this, this.carnet);
+		showMore.addActionListener(al);
 
 		JButton search = new JButton("Rechercher");
 
@@ -107,9 +105,11 @@ public class CarnetAdresse extends JFrame {
 		this.prenom.setFont(smallPlainFont);
 		this.civilite = new JLabel();
 		this.civilite.setFont(smallPlainFont);
+		this.details();
 
 		nextPeople = new JButton(">");
 		previousPeople = new JButton("<");
+		previousPeople.setEnabled(false);
 
 		ActionListener a = new ChoiceContactController(this.carnet,this);
 		nextPeople.addActionListener(a);
@@ -134,6 +134,7 @@ public class CarnetAdresse extends JFrame {
 		JPanel panListe = new JPanel();
 		panListe.setLayout(new BoxLayout(panListe, BoxLayout.Y_AXIS));
 
+		this.majListe(); // initialisation de la liste de personne
 		this.liste = new JList<Personne>(this.tab_pers);
 		this.liste.setFont(smallPlainFont);
 		this.liste.setBackground(new Color(96,185,206));
@@ -141,7 +142,7 @@ public class CarnetAdresse extends JFrame {
 		this.liste.setCellRenderer(new ProPersoCellRenderer()); 
 		this.liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
 		this.liste.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.details();
+
 
 		ListSelectionListener l1 = new SelectedContactController(this, this.carnet);
 		this.liste.addListSelectionListener(l1);
@@ -164,23 +165,26 @@ public class CarnetAdresse extends JFrame {
 		JPanel midCenter = new JPanel(new GridLayout(3,1,0,8));
 		midCenter.setBackground(new Color(96,185,206));
 
-		JButton addSomeone = new JButton(new ImageIcon(cl.getResource("add_32x32.png")));
+		JButton addSomeone = new JButton(new ImageIcon(this.cl.getResource("add_32x32.png")));
 		addSomeone.setBackground(new Color(96,185,206));
 		addSomeone.setBorderPainted(false);
 
 		ActionListener a1 = new AddContactController(this);
 		addSomeone.addActionListener(a1);
 
-		JButton updateSomeone = new JButton(new ImageIcon(cl.getResource("tools_32x32.png")));
+		JButton updateSomeone = new JButton(new ImageIcon(this.cl.getResource("tools_32x32.png")));
 		updateSomeone.setBackground(new Color(96,185,206));
 		updateSomeone.setBorderPainted(false);
 
 		ActionListener a2 = new UpdateContactController(this, this.carnet);
 		updateSomeone.addActionListener(a2);
 		
-		JButton deleteSomeone = new JButton(new ImageIcon(cl.getResource("delete_32x32.png")));
+		JButton deleteSomeone = new JButton(new ImageIcon(this.cl.getResource("delete_32x32.png")));
 		deleteSomeone.setBackground(new Color(96,185,206));
 		deleteSomeone.setBorderPainted(false);
+
+		ActionListener a3 = new RemoveContactController(this, this.carnet);
+		deleteSomeone.addActionListener(a3);
 
 		midCenter.add(addSomeone);
 		midCenter.add(updateSomeone);
@@ -196,13 +200,8 @@ public class CarnetAdresse extends JFrame {
 	// Panel du bas
 		this.down = new JPanel();
 		this.down.setPreferredSize(this.dimPaneDown);
-		this.down.setLayout(new BorderLayout());
 		this.down.setBackground(new Color(4,129,158));
-
-		JLabel msg = new JLabel("Bienvenue dans votre carnet d'adresse");
-		msg.setFont(bigBoldFont);
-
-		this.down.add(msg, BorderLayout.CENTER);
+		this.welcome();		
 
 	//Positionnement du Panel principal
 		GridBagConstraints gbc = new GridBagConstraints();		
@@ -221,8 +220,6 @@ public class CarnetAdresse extends JFrame {
 		gbc.gridheight = 2;
 		gbc.gridwidth = 1;
 		this.principal.add(this.down, gbc);
-
-		this.setVisible(true);
 	}
 
 	/**
@@ -280,13 +277,17 @@ public class CarnetAdresse extends JFrame {
 	/**
 	* Fonction qui met a jour le contenu de la JList
 	*/
-	private void majListe(){
+	public void majListe(){
 		int i = 0;
 		this.tab_pers = new Personne[this.carnet.getContacts().size()];
 		for(Personne p : this.carnet.getContacts()){
 			this.tab_pers[i] = p;
 			i++;
 		}
+	}
+
+	public void majJList(){
+		this.liste.setListData(this.tab_pers);
 	}
 
 	private static class ProPersoCellRenderer extends DefaultListCellRenderer {
@@ -300,7 +301,46 @@ public class CarnetAdresse extends JFrame {
             }
             return c;
         }  
-    } 
+    }
+
+    public void setTextPanelDown(String text, boolean succed){
+    	this.down.removeAll();
+    	Message message = new Message(this.dimPaneDown, text, succed);
+    	this.down.add(message.getPanel());
+		this.down.revalidate();
+    }
+
+    public void welcome(){
+    	this.down.removeAll();
+
+    	JPanel tmp = new JPanel();
+    	tmp.setPreferredSize(this.dimPaneDown);
+    	tmp.setBackground(new Color(4,129,158));
+
+    	JLabel msg = new JLabel("Bienvenue dans votre carnet d'adresse");
+		msg.setFont(bigBoldFont);
+
+		JLabel author = new JLabel("Réalisé par Quentin AUGER-DUBOIS\net Kévin BRIAND");
+
+		tmp.setLayout(new GridBagLayout());
+		tmp.add(msg);
+
+		// TODO
+		/*GridBagConstraints gbcDown = new GridBagConstraints();
+		gbcDown.anchor = GridBagConstraints.CENTER;
+		gbcDown.gridx = 1;
+		gbcDown.gridy = 1;
+
+		gbcDown.gridheight = 1;
+		gbcDown.gridwidth = 1;
+		this.down.add(msg, gbcDown);
+
+		gbcDown.anchor = GridBagConstraints.LAST_LINE_END;
+		this.down.add(author, gbcDown);*/
+
+		this.down.add(tmp);
+		this.down.revalidate();
+    }
 
 	public void details(){
 		this.nom.setText(this.carnet.getPersonne().getNom());
