@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import model.*;
+import controller.*;
 
 /**
  * @author AUGER-DUBOIS Quentin et BRIAND Kévin
@@ -14,6 +15,7 @@ public class NewContact extends Container {
 
 	private boolean clicked;
 	private Carnet carnet;
+	private JTabbedPane tabbedPane;
 	private JTextField enterName;
 	private JTextField enterFirstName;
 	private JRadioButton men;
@@ -45,14 +47,14 @@ public class NewContact extends Container {
 	    general.setBackground(new Color(4,129,158));
 	    JPanel commit = new JPanel();
 	    commit.setBackground(new Color(4,129,158));
-		JTabbedPane tabbedPane = new JTabbedPane();
+		this.tabbedPane = new JTabbedPane();
 		JComponent perso = new JPanel();
 		perso.setBackground(new Color(4,129,158));
-		tabbedPane.addTab("personnel", perso);
+		this.tabbedPane.addTab("personnel", perso);
 		perso.setLayout(new GridLayout(4,1));		
 		JComponent pro = new JPanel();
 		pro.setBackground(new Color(4,129,158));
-		tabbedPane.addTab("professionnel", pro);
+		this.tabbedPane.addTab("professionnel", pro);
 		pro.setLayout(new GridLayout(5, 1));
 
 	// Panel general
@@ -205,20 +207,28 @@ public class NewContact extends Container {
 	// Panel de validation
 		JButton valider = new JButton("Ajouter");
 
+		ActionListener a = new AddedController(this, this.carnet);
+		valider.addActionListener(a);
+
 		commit.add(valider);
 
 	// Ajout au panel principal
 		this.panel.setLayout(new BorderLayout());
 		this.panel.add(general, BorderLayout.NORTH);
-		this.panel.add(tabbedPane, BorderLayout.CENTER);
+		this.panel.add(this.tabbedPane, BorderLayout.CENTER);
 		this.panel.add(commit, BorderLayout.SOUTH);
+	}
+	public boolean isPro(){
+		String nomTab = this.tabbedPane.getSelectedComponent().getName();
+		System.out.println("nom : "+nomTab);
+		return true;
 	}
 
 	/**
 	 * Donne le nom d'une personne
 	 * @return le texte présent dans la JTextField enterName
 	 */
-	public String giveName() {
+	public String getName() {
 		return enterName.getText();
 	}
 
@@ -226,7 +236,7 @@ public class NewContact extends Container {
 	 * Donne le prénom d'une personne
 	 * @return le texte présent dans la JTextField enterFirstName
 	 */
-	public String giveFirstName() {
+	public String getFirstName() {
 		return enterFirstName.getText();
 	}
 
@@ -250,7 +260,7 @@ public class NewContact extends Container {
 	 * Donne l'adresse personnel d'une personne
 	 * @return le texte présent dans la JTextField enterAdresse
 	 */
-	public String giveAdress() {
+	public String getAdress() {
 		return enterAdresse.getText();
 	}
 
@@ -258,7 +268,7 @@ public class NewContact extends Container {
 	 * Donne le numéro de téléphone du domicile d'une personne
 	 * @return le texte présent dans la JTextField enterTelD
 	 */
-	public String givePhoneNumber() {
+	public String getPhoneNumber() {
 		return enterTelD.getText();
 	}
 
@@ -266,7 +276,7 @@ public class NewContact extends Container {
 	 * Donne le numéro de téléphone portable personnel d'une personne
 	 * @return le texte présent dans la JTextField enterTelP
 	 */
-	public String giveCellPhoneNumber() {
+	public String getCellPhoneNumber() {
 		return enterTelP.getText();
 	}
 
@@ -274,7 +284,7 @@ public class NewContact extends Container {
 	 * Donne l'email personnel d'une personne
 	 * @return le texte présent dans la JTextField enterEmail
 	 */
-	public String giveEmail() {
+	public String getEmail() {
 		return enterEmail.getText();
 	}
 
@@ -282,7 +292,7 @@ public class NewContact extends Container {
 	 * Donne l'adresse professionnel d'une personne
 	 * @return le texte présent dans la JTextField enterAdressePro
 	 */
-	public String giveProAdress() {
+	public String getProAdress() {
 		return enterAdressePro.getText();
 	}
 
@@ -290,7 +300,7 @@ public class NewContact extends Container {
 	 * Donne le numéro de téléphone du bureau d'une personne
 	 * @return le texte présent dans la JTextField enterTelB
 	 */
-	public String giveProPhoneNumber() {
+	public String getProPhoneNumber() {
 		return enterTelB.getText();
 	}
 
@@ -298,7 +308,7 @@ public class NewContact extends Container {
 	 * Donne le numéro de téléphone portable professionnel d'une personne
 	 * @return le texte présent dans la JTextField enterTelPPro
 	 */
-	public String giveProCellPhoneNumber() {
+	public String getProCellPhoneNumber() {
 		return enterTelPPro.getText();
 	}
 
@@ -306,7 +316,7 @@ public class NewContact extends Container {
 	 * Donne l'email professionnel d'une personne
 	 * @return le texte présent dans la JTextField enterEmailPro
 	 */
-	public String giveProEmail() {
+	public String getProEmail() {
 		return enterEmailPro.getText();
 	}
 
@@ -314,7 +324,7 @@ public class NewContact extends Container {
 	 * Donne le nom de l'entreprise dans laquelle travail une personne
 	 * @return le texte présent dans la JTextField enterEntreprise
 	 */
-	public String giveCompagny() {
+	public String getCompagny() {
 		return enterEntreprise.getText();
 	}
 

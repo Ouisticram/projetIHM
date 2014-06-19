@@ -19,6 +19,7 @@ public class CarnetAdresse extends JFrame {
 	private Font bigBoldFont = new Font("Arial", Font.BOLD, 30);
 	private Font smallBoldFont = new Font("Arial", Font.BOLD, 14);
 	private Font smallPlainFont = new Font("Arial", Font.PLAIN, 14);
+
 	private Carnet carnet;
 
 	private JPanel principal;
@@ -58,8 +59,8 @@ public class CarnetAdresse extends JFrame {
 		this.setContentPane(this.principal);
 
 		int height = (int)(dim.getHeight()/3);
-		int heightBas = (int)dim.getHeight()-height;
-		int width = (int)dim.getWidth();
+		int heightBas = (int)dim.getHeight()-height-50;
+		int width = (int)dim.getWidth()-30;
 		this.dimPaneDown = new Dimension(width,heightBas);
 
 	// Panel du haut
@@ -139,10 +140,10 @@ public class CarnetAdresse extends JFrame {
 		this.liste.setFont(smallPlainFont);
 		this.liste.setBackground(new Color(96,185,206));
 		if(this.tab_pers.length > 0) this.selectedIndex(0);
-		this.liste.setCellRenderer(new ProPersoCellRenderer()); 
+		this.liste.setCellRenderer(new ProPersoCellRenderer());
+		this.liste.setSelectionBackground(new Color(240,209,146));
 		this.liste.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE)) ;
 		this.liste.setAlignmentX(Component.CENTER_ALIGNMENT);
-
 
 		ListSelectionListener l1 = new SelectedContactController(this, this.carnet);
 		this.liste.addListSelectionListener(l1);
@@ -290,7 +291,7 @@ public class CarnetAdresse extends JFrame {
 		this.liste.setListData(this.tab_pers);
 	}
 
-	private static class ProPersoCellRenderer extends DefaultListCellRenderer {
+	/*private static class ProPersoCellRenderer extends DefaultListCellRenderer {
         public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
             Component c = super.getListCellRendererComponent( list, value, index, isSelected, cellHasFocus );
             if (value instanceof Particulier ) {
@@ -300,7 +301,26 @@ public class CarnetAdresse extends JFrame {
                 c.setBackground(new Color(250,68,156));
             }
             return c;
-        }  
+        }
+    }*/
+
+
+    private static class ProPersoCellRenderer extends DefaultListCellRenderer {
+
+        public Component getListCellRendererComponent(JList list, Object value, int index,
+                									boolean isSelected, boolean cellHasFocus) {
+
+            JLabel label = (JLabel) super.getListCellRendererComponent(
+                    list, value, index, isSelected, cellHasFocus);
+            if (value instanceof Particulier ) {
+                label.setIcon(new ImageIcon(getClass().getResource("/home.png")));
+            }
+            else if (value instanceof Professionnel) {
+                label.setIcon(new ImageIcon(getClass().getResource("/company.png")));
+            }
+            label.setHorizontalTextPosition(JLabel.RIGHT);
+            return label;
+        }
     }
 
     public void setTextPanelDown(String text, boolean succed){

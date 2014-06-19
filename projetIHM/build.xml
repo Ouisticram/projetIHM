@@ -13,6 +13,7 @@
             <fileset dir="${src.dir}" >
                 <include name="**/*.jpg" />
                 <include name="**/*.png" />
+                <include name="**/*.ttf" />
             </fileset>
         </copy>
         <javac srcdir="${src.dir}" encoding="UTF-8" destdir="${bin.dir}" includeantruntime="false"/>
