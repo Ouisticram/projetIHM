@@ -221,6 +221,13 @@ public class Carnet{
 		ajout(p15);
 		ajout(p16);
 		ajout(p17);
+
+		
+		System.out.println("Must be true : "+p1.equals(p1));
+		System.out.println("Must be false: "+p1.equals(p2));
+		System.out.println("Must be true : "+p12.equals(p13));
+		System.out.println("Must be false : "+p1.equals(p4));
+		System.out.println("Must be true : "+p14.equals(p6));
 		
 		
 
