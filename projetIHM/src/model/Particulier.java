@@ -20,6 +20,9 @@ public class Particulier extends Personne {
 		this.email = email;
 	}
     
+    /** redéfinition de equals pour comparer 2 particuliers
+     @return true si égaux, false sinon
+	*/
     public boolean equals (Particulier part)
     {  
         boolean exists = false;

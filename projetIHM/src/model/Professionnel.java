@@ -22,7 +22,9 @@ public class Professionnel extends Personne {
 		this.entreprise = entreprise;
 	}
 	
-	
+    /** redéfinition de equals pour comparer 2 professionnels
+     @return true si égaux, false sinon
+	*/
     public boolean equals (Professionnel pro)
     {  
         boolean exists = false;

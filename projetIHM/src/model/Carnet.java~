@@ -78,6 +78,10 @@ public class Carnet{
 		return this.courant;
 	}
 
+	/** Modifie la personne, en la supprimant et en la recréant
+	 * @param del Personne qui sert de base à la modification et qui est supprimée
+	 * @param add Nouvelle Personne modifiée
+	 */
 	public void modifier(Personne del,Personne add) {      
         supprimer(del);
         ajout(add);
@@ -129,8 +133,6 @@ public class Carnet{
     	return finden;
     }
 
-
-    
 	/**
 	 * @return la personne actuellement consultée
 	 */
@@ -221,13 +223,6 @@ public class Carnet{
 		ajout(p15);
 		ajout(p16);
 		ajout(p17);
-
-		
-		System.out.println("Must be true : "+p1.equals(p1));
-		System.out.println("Must be false: "+p1.equals(p2));
-		System.out.println("Must be true : "+p12.equals(p13));
-		System.out.println("Must be false : "+p1.equals(p4));
-		System.out.println("Must be true : "+p14.equals(p6));
 		
 		
 
