@@ -83,14 +83,13 @@ public class Carnet{
 	}
 
 	/** Modifie la personne, en la supprimant et en la recréant
-	 * @param del Personne qui sert de base à la modification et qui est supprimée
-	 * @param add Nouvelle Personne modifiée
+	 * @param pers Nouvelle Personne modifiée
 	 * @throws CarnetException si le carnet ne contient pas de contact
 	 */
-	public void modifier(Personne del,Personne add) throws CarnetException{      
+	public void modifier(Personne pers) throws CarnetException{      
         if (!this.estVide()){
- 			supprimer(del);
-	        ajout(add);
+           	Personne tmp = this.contacts.get(this.courant);
+        	tmp = pers;
         }else throw new CarnetException("Aucun contact n'est sélectionné");	       
 	}
 

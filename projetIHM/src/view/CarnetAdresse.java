@@ -371,7 +371,7 @@ public class CarnetAdresse extends JFrame {
 
 	public void addContact(){
 		this.down.removeAll();
-		NewContact newContact = new NewContact(this.carnet, this.dimPaneDown);
+		NewContact newContact = new NewContact(this.carnet, this.dimPaneDown, this);
 		this.down.add(newContact.getPanel());
 		this.down.revalidate();
 	}
@@ -379,7 +379,7 @@ public class CarnetAdresse extends JFrame {
 	public void modifContact(){
 		try{
 			this.down.removeAll();
-			UpdateContact updateContact = new UpdateContact(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
+			UpdateContact updateContact = new UpdateContact(this.carnet, this.carnet.getPersonne(), this.dimPaneDown, this);
 			this.down.add(updateContact.getPanel());
 			this.down.revalidate();
 		}catch(CarnetException e) {System.out.println(e.getMessage());}

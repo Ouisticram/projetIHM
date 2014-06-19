@@ -29,11 +29,13 @@ public class NewContact extends Container {
 	private JTextField enterTelPPro;
 	private JTextField enterEmailPro;
 	private JTextField enterEntreprise;
+	private CarnetAdresse frame;
 
 	// Constructeur de notre class
-	public NewContact(Carnet carn, Dimension dim){
+	public NewContact(Carnet carn, Dimension dim, CarnetAdresse bigFrame){
 		super(dim);
 		this.carnet = carn;
+		this.frame = bigFrame;
 		initPanel();
 		this.panel.setBackground(new Color(4,129,158));
 	}
@@ -207,7 +209,7 @@ public class NewContact extends Container {
 	// Panel de validation
 		JButton valider = new JButton("Ajouter");
 
-		ActionListener a = new AddedController(this, this.carnet);
+		ActionListener a = new AddedController(this, this.carnet, this.frame);
 		valider.addActionListener(a);
 
 		commit.add(valider);
@@ -218,10 +220,25 @@ public class NewContact extends Container {
 		this.panel.add(this.tabbedPane, BorderLayout.CENTER);
 		this.panel.add(commit, BorderLayout.SOUTH);
 	}
+
+	/**
+	 * Indique si l'onglet professionnel est sélectionné
+	 * @return vrai si l'onglet professionnel est sélectionné et faux sinon
+	 */
 	public boolean isPro(){
-		String nomTab = this.tabbedPane.getSelectedComponent().getName();
-		System.out.println("nom : "+nomTab);
-		return true;
+		String nomTab = this.tabbedPane.getTitleAt(this.tabbedPane.getSelectedIndex());
+		if (nomTab == "professionnel") return true;
+		else return false;
+	}
+
+	/**
+	 * Indique si l'onglet personnel est sélectionné
+	 * @return vrai si l'onglet personnel est sélectionné et faux sinon
+	 */
+	public boolean isPart(){
+		String nomTab = this.tabbedPane.getTitleAt(this.tabbedPane.getSelectedIndex());
+		if (nomTab == "personnel") return true;
+		else return false;
 	}
 
 	/**
@@ -229,7 +246,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterName
 	 */
 	public String getName() {
-		return enterName.getText();
+		return this.enterName.getText();
 	}
 
 	/**
@@ -237,7 +254,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterFirstName
 	 */
 	public String getFirstName() {
-		return enterFirstName.getText();
+		return this.enterFirstName.getText();
 	}
 
 	/**
@@ -245,7 +262,7 @@ public class NewContact extends Container {
 	 * @return True si c'est un homme et faux sinon
 	 */
 	public boolean isAMan() {
-		return men.isSelected();
+		return this.men.isSelected();
 	}
 
 	/**
@@ -253,7 +270,7 @@ public class NewContact extends Container {
 	 * @return True si c'est une femme et faux sinon
 	 */
 	public boolean isAWoman() {
-		return women.isSelected();
+		return this.women.isSelected();
 	}
 
 	/**
@@ -261,7 +278,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterAdresse
 	 */
 	public String getAdress() {
-		return enterAdresse.getText();
+		return this.enterAdresse.getText();
 	}
 
 	/**
@@ -269,7 +286,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterTelD
 	 */
 	public String getPhoneNumber() {
-		return enterTelD.getText();
+		return this.enterTelD.getText();
 	}
 
 	/**
@@ -277,7 +294,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterTelP
 	 */
 	public String getCellPhoneNumber() {
-		return enterTelP.getText();
+		return this.enterTelP.getText();
 	}
 
 	/**
@@ -285,7 +302,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterEmail
 	 */
 	public String getEmail() {
-		return enterEmail.getText();
+		return this.enterEmail.getText();
 	}
 
 	/**
@@ -293,7 +310,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterAdressePro
 	 */
 	public String getProAdress() {
-		return enterAdressePro.getText();
+		return this.enterAdressePro.getText();
 	}
 
 	/**
@@ -301,7 +318,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterTelB
 	 */
 	public String getProPhoneNumber() {
-		return enterTelB.getText();
+		return this.enterTelB.getText();
 	}
 
 	/**
@@ -309,7 +326,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterTelPPro
 	 */
 	public String getProCellPhoneNumber() {
-		return enterTelPPro.getText();
+		return this.enterTelPPro.getText();
 	}
 
 	/**
@@ -317,7 +334,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterEmailPro
 	 */
 	public String getProEmail() {
-		return enterEmailPro.getText();
+		return this.enterEmailPro.getText();
 	}
 
 	/**
@@ -325,7 +342,7 @@ public class NewContact extends Container {
 	 * @return le texte présent dans la JTextField enterEntreprise
 	 */
 	public String getCompagny() {
-		return enterEntreprise.getText();
+		return this.enterEntreprise.getText();
 	}
 
 	class ZoneTextListener implements MouseListener {

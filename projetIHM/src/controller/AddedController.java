@@ -13,14 +13,28 @@ public class AddedController implements ActionListener{
 
 	private Carnet carnet;
 	private NewContact vue;
+	private CarnetAdresse frame;
 
-	public AddedController (NewContact vue, Carnet carn){
+	public AddedController (NewContact vue, Carnet carn, CarnetAdresse bigFrame){
 		this.vue = vue;
 		this.carnet = carn;
+		this.frame = bigFrame;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		this.vue.isPro();
-		//Professionnel pro = new Professionnel(this.vue.getName(), this.vue.getFirstName(), this.vue., this.vue., this.vue., this.vue., this.vue., this.vue.);
+		String man = "";
+		if(this.vue.isAMan()) man = "M.";
+		else if(this.vue.isAWoman()) man = "Mme";
+		if (this.vue.isPro()){
+			Professionnel pro = new Professionnel(this.vue.getName(), this.vue.getFirstName(), man, this.vue.getProAdress(), this.vue.getProPhoneNumber(), this.vue.getProCellPhoneNumber(), this.vue.getProEmail(), this.vue.getCompagny());
+			this.carnet.ajout(pro);
+		}else if(this.vue.isPart()){
+			Particulier part = new Particulier(this.vue.getName(), this.vue.getFirstName(), man, this.vue.getAdress(), this.vue.getPhoneNumber(), this.vue.getCellPhoneNumber(), this.vue.getEmail());
+			this.carnet.ajout(part);
+		}
+		this.frame.majListe();
+		this.frame.majJList();
+		this.frame.details();
+		this.frame.setTextPanelDown("Contact ajouté avec succès",true);
 	}	
 }
