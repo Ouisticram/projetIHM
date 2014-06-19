@@ -27,75 +27,72 @@ public class Carnet{
 	/** ajoute la personne au carnet de contacts
 	 * @param pers : personne à ajouter au carnet
 	 */
-	public void ajout(Personne pers) {
+	public boolean ajout(Personne pers) {
 		boolean exists = false;
-		boolean isParticulier = pers instanceof Particulier;
-		boolean isProfessionnel = pers instanceof Professionnel;
-
-		/*if (isParticulier) 
-			Personne other = (Particulier) pers;
-		else
-			Personne other2 = (Professionnel) pers;
-
-		if (this.contacts.size() != 0)
+		
+		if (this.contacts.size() > 0)
 		{
-			for (int i=0; i<contacts.size();i++) 
+			int i = 0;
+			while (i<contacts.size() && !exists)
 			{
-			
-				if (contacts.get(i) instanceof Particulier)
+			    if (contacts.get(i) instanceof Particulier && pers instanceof Particulier)
 				{
-					if (isParticulier)
-					{
-						if ((other.getNom() == contacts.get(i).getNom()) && (other.getPrenom() == contacts.get(i).getPrenom()) && (other.getCivilite() == contacts.get(i).getCivilite()) && 
-							(other.getAdresse() == contacts.get(i).getAdresse()) && (other.getTelD() == contacts.get(i).getTelD()) && (other.getTelP() == contacts.get(i).getTelP()) && 
-							(other.getEmail() == contacts.get(i).getEmail()))
-			    		{
-			    			exists = true;
-			    		}
-					}
+                    Particulier part = (Particulier) pers;
+                    Particulier part1 = (Particulier) contacts.get(i);
+                    exists = part1.equals(part);
 				}
 
-				if (contacts.get(i) instanceof Professionnel)
+				if (contacts.get(i) instanceof Professionnel && pers instanceof Professionnel)
 				{
-					if (isProfessionnel)
-					{
-						if ((other2.getNom() == contacts.get(i).getNom()) && (other.getPrenom() == contacts.get(i).getPrenom()) && (othe2r.getCivilite() == contacts.get(i).getCivilite()) && 
-							(other2.getAdresse() == contacts.get(i).getAdresse()) && (other2.getTelB() == contacts.get(i).getTelB()) && (other2.getTelP() == contacts.get(i).getTelP()) && 
-							(other2.persgetEmail() == contacts.get(i).getEmail()) && (other2.getEntreprise() == contacts.get(i).getEntreprise()))
-			    		{
-			    			exists = true;
-			    		}
-					}
+                    Professionnel pro = (Professionnel) pers;
+                    Professionnel pro1 = (Professionnel) contacts.get(i);
+                    exists = pro1.equals(pro);
 				}
+				i++;
 			}
-		}*/
-
-        
+		}
+   
         if (!exists)
         {
         	this.contacts.add(pers);
         	Collections.sort(this.contacts);
         	this.dernier++;
-        }        
+        }
+        return !exists;       
 	}
-
+	
+    /** Change l'index "courant" de la linkedlist
+	 * @param pers la personne actuellement consultée
+	 */
 	public void setCourant(Personne pers){
 		int index = this.contacts.indexOf(pers);
 		if (index != -1)
 			this.courant = index;
 	}
 
+
+    /** Retourne l'index "courant" de la linkedlist
+	 * @return l'index de la personne consultée dans la LinkedList
+	 */
 	public int getCourant(){
 		return this.courant;
 	}
 
-
+	/** Modifie la personne, en la supprimant et en la recréant
+	 * @param del Personne qui sert de base à la modification et qui est supprimée
+	 * @param add Nouvelle Personne modifiée
+	 */
+	public void modifier(Personne del,Personne add) {      
+        supprimer(del);
+        ajout(add);
+	}
 
     /** supprime la personne du carnet de contacts
 	 * @param pers - personne à supprimer du carnet
 	 */
     public void supprimer(Personne pers){
-        this.contacts.remove(pers);
+        this.contacts.remove(pers); 
+        this.courant--;
     }
 
 
@@ -105,33 +102,62 @@ public class Carnet{
 	 */
     public List<Personne> recherche(String s){
 
+    	// définition des variables
     	List<Personne> finden = new LinkedList<Personne>();
+    	List<String> mots = new LinkedList<String>();   
     	int index = 0;
+    	int motCourant = 0;
     	boolean ajoute = false;
-    	String[] mots = new String[2];
-
-    	if (s.indexOf(" ") != -1 && s.charAt(1) != ' ')
-    	{
-    		index = s.indexOf(" ");
-    		mots[0] = s.substring(0,index-1);
-    		mots[1] = s.substring(index);
-    	}
-    	else 
-    	{
-    		mots[0] = s;
-    	}
-
+    	boolean enJeu = true;
+    	String nom = "";
+    	String prenom = "";
+    	
+        // on conditionne l'entrée de l'utilisateur
+        s = s.toLowerCase();
+        while (s.endsWith(" ")) {s = s.substring(0,s.length()-1);}
+        while (s.startsWith(" ")) {s = s.substring(1,s.length());}
+        
+        // on split le mot conditionné en sous-chaînes si besoin (selon les espaces)
+        if (s.indexOf(" ") != -1)
+        {
+            while (s.indexOf(" ") != -1)
+            {
+                index = s.indexOf(" ");
+                mots.add(s.substring(0,index-1));
+        		s = s.substring(index);
+        		while (s.startsWith(" ")) {s = s.substring(1,s.length());} // cas avec au moins 2 espaces
+            }
+        }
+        mots.add(s);
+     
+        // on compare les mots entrés par l'utilisateur avec les noms et prénoms des contacts
     	for (int i=0;i<contacts.size();i++)
     	{
     		ajoute = false;
-    		for (int j=0;j<mots.length;j++)
+    		enJeu = true;
+    		motCourant = 0;
+    		nom = contacts.get(i).getNom();
+    		nom = nom.toLowerCase();
+    		prenom = contacts.get(i).getPrenom();
+    		prenom = prenom.toLowerCase();
+    		
+    		while (motCourant < mots.size() && enJeu == true)
     		{
-    			if ((contacts.get(i).getNom().contains(mots[j]) || (contacts.get(i).getPrenom().contains(mots[j]))) && !ajoute && mots[j] != null)
-	    		{
-	    			finden.add(contacts.get(i));
-	    			ajoute = true;
-	    		}
-    		}	
+    		    if ((nom.contains(mots.get(motCourant)) || (prenom.contains(mots.get(motCourant)))))
+    		    {
+    		        motCourant++;
+    		    }
+    		    else 
+    		    {
+    		        enJeu = false;
+    		    }
+    		}  
+
+    	    if (enJeu)
+	        {
+	            finden.add(contacts.get(i));
+	            ajoute = true;
+	        }
     	}
     	return finden;
     }
@@ -175,7 +201,7 @@ public class Carnet{
 			courant--;
 		else
 			throw new Exception();
-	}	
+	}
 	
 	/** Donne la liste acuelle des personnes du carnet
 	 * @return : une linkedlist de personnes
@@ -199,10 +225,15 @@ public class Carnet{
 		Particulier p10 = new Particulier("Alves","Claire","Mme","Paris","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
 		Particulier p11 = new Particulier("Besson","Marc","M.","Marseille","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
 		Particulier p12 = new Particulier("Crusson","Carmen","Mme","Lyon","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Particulier p13 = new Particulier("Crusson","Carmen","Mme","Lyon","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr");
+		Professionnel p14 = new Professionnel("Someone","Else","M.","Somewhere","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","SNCf");
 
 	    Professionnel p4 = new Professionnel("AD","Quentin","M.","Nantes","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Facebook");
 	    Professionnel p5 = new Professionnel("Briand","Kévin","M.","Remouille RPZ","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Google");
 	    Professionnel p6 = new Professionnel("Someone","Else","M.","Somewhere","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","SNCf");
+	     Professionnel p15 = new Professionnel("AD","Quentin","M.","Nantes","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Facebook");
+	    Professionnel p16 = new Professionnel("Briand","Kévin","M.","Remouille RPZ","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Google");
+	    Professionnel p17 = new Professionnel("Someone","Else","M.","Somewhere","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","SNCf");
 	    
 		ajout(p1);
 		ajout(p2);
@@ -216,12 +247,29 @@ public class Carnet{
 		ajout(p10);
 		ajout(p11);
 		ajout(p12);
+		ajout(p13);
+		ajout(p14);
+		ajout(p15);
+		ajout(p16);
+		ajout(p17);
+		
+		
 
 		
 		// affiche les contacts de base dans le terminal
 		for (int i=0; i<this.contacts.size();i++)
 		{
 		    System.out.println(i+" "+contacts.get(i).toString());
+		}
+		
+		List<Personne> result = new LinkedList<Personne>();
+		result = recherche("QUENTIN");
+		System.out.println("\n");
+		
+		// affiche résulats recherche
+		for (int i=0; i<result.size();i++)
+		{
+		    System.out.println(i+" "+result.get(i).toString());
 		}
 		
 	}

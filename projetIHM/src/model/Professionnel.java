@@ -21,6 +21,19 @@ public class Professionnel extends Personne {
 		this.email = email;
 		this.entreprise = entreprise;
 	}
+	
+    /** redéfinition de equals pour comparer 2 professionnels
+     @return true si égaux, false sinon
+	*/
+    public boolean equals (Professionnel pro)
+    {  
+        boolean exists = false;
+        if ((this.getNom() == pro.getNom()) && (this.getPrenom() == pro.getPrenom()) && (this.getCivilite() == pro.getCivilite()) && (this.getAdresse() == pro.getAdresse()) && (this.getTelB() == pro.getTelB()) && (this.getTelP() == pro.getTelP()) && (this.getEmail() == pro.getEmail()) && (this.getEntreprise() == pro.getEntreprise()))
+        {
+		    exists = true;
+	    }
+	    return exists;
+    }
 
 	/** méthode qui donne l'adresse de l'entreprise
      @return adresse - l'adresse de l'entreprise

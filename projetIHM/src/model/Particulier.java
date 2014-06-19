@@ -19,7 +19,21 @@ public class Particulier extends Personne {
 		this.telP = telP;
 		this.email = email;
 	}
-
+    
+    /** redéfinition de equals pour comparer 2 particuliers
+     @return true si égaux, false sinon
+	*/
+    public boolean equals (Particulier part)
+    {  
+        boolean exists = false;
+        if ((this.getNom() == part.getNom()) && (this.getPrenom() == part.getPrenom()) && (this.getCivilite() == part.getCivilite()) && (this.getAdresse() == part.getAdresse()) && (this.getTelD() == part.getTelD()) && (this.getTelP() == part.getTelP()) && (this.getEmail() == part.getEmail()))
+        {
+		    exists = true;
+	    }
+	    return exists;
+    }
+    
+    
 	/** méthode qui permet d'obtenir l'adresse d'un particulier
      @return adresse l'adresse du particulier
 	*/
