@@ -276,7 +276,7 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	/**
-	* Fonction qui met a jour le contenu de la JList
+	* Fonction qui met a jour le contenu du tableau de Personne
 	*/
 	public void majListe(){
 		int i = 0;
@@ -287,23 +287,12 @@ public class CarnetAdresse extends JFrame {
 		}
 	}
 
+	/**
+	* Fonction qui met a jour le contenu de la JList
+	*/
 	public void majJList(){
 		this.liste.setListData(this.tab_pers);
 	}
-
-	/*private static class ProPersoCellRenderer extends DefaultListCellRenderer {
-        public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
-            Component c = super.getListCellRendererComponent( list, value, index, isSelected, cellHasFocus );
-            if (value instanceof Particulier ) {
-                c.setBackground(new Color(250,185,56));
-            }
-            else if (value instanceof Professionnel) {
-                c.setBackground(new Color(250,68,156));
-            }
-            return c;
-        }
-    }*/
-
 
     private static class ProPersoCellRenderer extends DefaultListCellRenderer {
 
@@ -363,16 +352,21 @@ public class CarnetAdresse extends JFrame {
     }
 
 	public void details(){
-		this.nom.setText(this.carnet.getPersonne().getNom());
-		this.prenom.setText(this.carnet.getPersonne().getPrenom());
-		this.civilite.setText(this.carnet.getPersonne().getCivilite());
+		try{
+			this.nom.setText(this.carnet.getPersonne().getNom());
+			this.prenom.setText(this.carnet.getPersonne().getPrenom());
+			this.civilite.setText(this.carnet.getPersonne().getCivilite());
+		}catch(CarnetException e) {System.out.println(e.getMessage());}
 	}
 
 	public void moreDetails(){
-		this.down.removeAll();
-		SeeMore seeMore = new SeeMore(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
-		this.down.add(seeMore.getPanel());
-		this.down.revalidate();
+		try{
+			this.down.removeAll();
+			SeeMore seeMore = new SeeMore(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
+			this.down.add(seeMore.getPanel());
+			this.down.revalidate();
+		}catch(CarnetException e) {System.out.println(e.getMessage());}
+		
 	}
 
 	public void addContact(){
@@ -383,9 +377,11 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	public void modifContact(){
-		this.down.removeAll();
-		UpdateContact updateContact = new UpdateContact(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
-		this.down.add(updateContact.getPanel());
-		this.down.revalidate();
+		try{
+			this.down.removeAll();
+			UpdateContact updateContact = new UpdateContact(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
+			this.down.add(updateContact.getPanel());
+			this.down.revalidate();
+		}catch(CarnetException e) {System.out.println(e.getMessage());}
 	}
 }
