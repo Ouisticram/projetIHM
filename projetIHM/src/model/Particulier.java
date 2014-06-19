@@ -33,6 +33,18 @@ public class Particulier extends Personne {
 	    return exists;
     }
     
+    /**
+	*
+	*/
+	public void modifier(Particulier pers){
+		this.setNom(pers.getNom());
+		this.setPrenom(pers.getPrenom());
+		this.setCivilite(pers.getCivilite());
+		this.setAdresse(pers.getAdresse());
+		this.setTelD(pers.getTelD());
+		this.setTelP(pers.getTelP());
+		this.setEmail(pers.getEmail());
+	}
     
 	/** méthode qui permet d'obtenir l'adresse d'un particulier
      @return adresse l'adresse du particulier

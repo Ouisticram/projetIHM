@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import model.*;
+import controller.*;
 
 /**
  * @author AUGER-DUBOIS Quentin et BRIAND Kévin
@@ -51,7 +52,7 @@ public class UpdateContact extends Container {
 		this.tabbedPane = new JTabbedPane();
 		this.tabbedPane.setBackground(new Color(4,129,158));
 
-		if (this.personne instanceof Particulier){
+		if (this.isPart()){
 
 			Particulier part = (Particulier)this.personne;
 
@@ -109,7 +110,7 @@ public class UpdateContact extends Container {
 			perso.add(pers2);
 			perso.add(pers3);
 			perso.add(pers4);
-		}else if(this.personne instanceof Professionnel){
+		}else if(this.isPro()){
 
 			Professionnel prof = (Professionnel)this.personne;
 
@@ -342,6 +343,9 @@ public class UpdateContact extends Container {
 	// Panel de validation
 		JButton valider = new JButton("Enregistrer");
 
+		ActionListener a = new UpdatedController(this, this.carnet, this.frame);
+		valider.addActionListener(a);
+
 		commit.add(valider);
 
 	// Ajout au panel principal
@@ -349,6 +353,24 @@ public class UpdateContact extends Container {
 		this.panel.add(general, BorderLayout.NORTH);
 		this.panel.add(this.tabbedPane, BorderLayout.CENTER);
 		this.panel.add(commit, BorderLayout.SOUTH);
+	}
+
+	/**
+	 * Indique si l'onglet professionnel est sélectionné
+	 * @return vrai si l'onglet professionnel est sélectionné et faux sinon
+	 */
+	public boolean isPro(){
+		if (this.personne instanceof Professionnel) return true;
+		else return false;
+	}
+
+	/**
+	 * Indique si l'onglet personnel est sélectionné
+	 * @return vrai si l'onglet personnel est sélectionné et faux sinon
+	 */
+	public boolean isPart(){
+		if (this.personne instanceof Particulier) return true;
+		else return false;
 	}
 
 	/**

@@ -88,8 +88,13 @@ public class Carnet{
 	 */
 	public void modifier(Personne pers) throws CarnetException{      
         if (!this.estVide()){
-           	Personne tmp = this.contacts.get(this.courant);
-        	tmp = pers;
+        	if(pers instanceof Particulier){
+        		Particulier part = (Particulier)pers;
+        		((Particulier)this.contacts.get(this.courant)).modifier(part);
+        	}else if(pers instanceof Professionnel){
+        		Professionnel pro = (Professionnel)pers;
+        		((Professionnel)this.contacts.get(this.courant)).modifier(pro);
+        	}           	
         }else throw new CarnetException("Aucun contact n'est sélectionné");	       
 	}
 
