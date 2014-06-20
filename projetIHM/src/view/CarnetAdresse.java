@@ -23,7 +23,7 @@ public class CarnetAdresse extends JFrame {
 
 	private Carnet carnet;
 
-	private JPanel principal;
+	private java.awt.Container principal;
 	private JPanel up;
 	private JPanel down;
 
@@ -48,10 +48,6 @@ public class CarnetAdresse extends JFrame {
 	 **/
 	public CarnetAdresse(String titre, Dimension dim){
 		super(titre);
-		this.setSize(dim);
-	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setLocationRelativeTo(null);
-	    this.setResizable(false);
 
 		this.updatePanelLoad = false;
 		this.seeMorePanelLoad = false;
@@ -59,13 +55,13 @@ public class CarnetAdresse extends JFrame {
 
 		this.carnet = new Carnet(); // création d'un nouveau carnet d'adresse
 
-		this.principal = new JPanel();		
+		this.principal = this.getContentPane();
+		this.principal.setPreferredSize(dim);
 		this.principal.setLayout(new GridBagLayout());
-		this.setContentPane(this.principal);
 
 		int height = (int)(dim.getHeight()/3);
-		int heightBas = (int)dim.getHeight()-height-50;
-		int width = (int)dim.getWidth()-30;
+		int heightBas = (int)dim.getHeight()-height;
+		int width = (int)dim.getWidth();
 		this.dimPaneDown = new Dimension(width,heightBas);
 
 	// Panel du haut
@@ -229,18 +225,12 @@ public class CarnetAdresse extends JFrame {
 		gbc.gridheight = 2;
 		gbc.gridwidth = 1;
 		this.principal.add(this.down, gbc);
-	}
 
-	/**
-	* Fonction qui retourne une couleur en RGB
-	* @param i la quantité de rouge dans la couleur, avec 0 <= i <= 255
-	* @param j la quantité de vert dans la couleur, avec 0 <= j <= 255
-	* @param k la quantité de bleu dans la couleur, avec 0 <= j <= 255
-	* @return couleur La couleur voulue
-	*/
-	private Color Color(int i, int j, int k) {
-		Color couleur = new Color(i,j,k);
-		return couleur;
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.setLocationRelativeTo(null);
+	    this.pack();
+	    this.setResizable(false);
+	    this.setVisible(true);
 	}
 
 	/**
@@ -340,32 +330,24 @@ public class CarnetAdresse extends JFrame {
     public void welcome(){
     	this.down.removeAll();
 
-    	JPanel tmp = new JPanel();
-    	tmp.setPreferredSize(this.dimPaneDown);
-    	tmp.setBackground(new Color(4,129,158));
+    	JPanel welcome = new JPanel();
+    	welcome.setLayout(new BorderLayout());
+    	welcome.setPreferredSize(this.dimPaneDown);
+    	welcome.setBackground(new Color(4,129,158));
 
+    	JPanel tmp = new JPanel();
+    	tmp.setLayout(new FlowLayout(FlowLayout.CENTER));
+    	tmp.setBackground(new Color(4,129,158));
     	JLabel msg = new JLabel("Bienvenue dans votre carnet d'adresse");
 		msg.setFont(bigBoldFont);
-
-		JLabel author = new JLabel("Réalisé par Quentin AUGER-DUBOIS\net Kévin BRIAND");
-
-		tmp.setLayout(new GridBagLayout());
 		tmp.add(msg);
 
-		// TODO
-		/*GridBagConstraints gbcDown = new GridBagConstraints();
-		gbcDown.anchor = GridBagConstraints.CENTER;
-		gbcDown.gridx = 1;
-		gbcDown.gridy = 1;
+		JLabel img = new JLabel(new ImageIcon(getClass().getResource("/contact.jpg")));
 
-		gbcDown.gridheight = 1;
-		gbcDown.gridwidth = 1;
-		this.down.add(msg, gbcDown);
+		welcome.add(tmp,BorderLayout.NORTH);
+		welcome.add(img,BorderLayout.CENTER);
 
-		gbcDown.anchor = GridBagConstraints.LAST_LINE_END;
-		this.down.add(author, gbcDown);*/
-
-		this.down.add(tmp);
+		this.down.add(welcome);
 		this.down.revalidate();
     }
 

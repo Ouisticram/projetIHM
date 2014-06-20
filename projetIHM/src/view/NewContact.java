@@ -13,7 +13,6 @@ import controller.*;
 
 public class NewContact extends Container {
 
-	private boolean clicked;
 	private Carnet carnet;
 	private JTabbedPane tabbedPane;
 	private JTextField enterName;
@@ -29,20 +28,24 @@ public class NewContact extends Container {
 	private JTextField enterTelPPro;
 	private JTextField enterEmailPro;
 	private JTextField enterEntreprise;
+	private JLabel imgWarning1;
+	private JLabel msgWarning1;
+	private JLabel imgWarning2;
+	private JLabel msgWarning2;
 	private CarnetAdresse frame;
+	private ClassLoader cl;
 
 	// Constructeur de notre class
 	public NewContact(Carnet carn, Dimension dim, CarnetAdresse bigFrame){
 		super(dim);
 		this.carnet = carn;
 		this.frame = bigFrame;
+		this.cl = this.getClass().getClassLoader();
 		initPanel();
 		this.panel.setBackground(new Color(4,129,158));
 	}
 
-	public void initPanel(){		
-	    clicked = false;
-
+	public void initPanel(){
 	// Création des composants
 	    JPanel general = new JPanel();
 	    general.setLayout(new GridLayout(4,2));
@@ -64,13 +67,18 @@ public class NewContact extends Container {
 		JLabel nom = new JLabel("Nom : ");
 		nom.setFont(smallBoldFont);
 		enterName = new JTextField(15);
-		enterName.setText("Ex: name");
-		this.enterName.addMouseListener(new ZoneTextListener());
 		this.enterName.setMaximumSize(this.enterName.getPreferredSize());
 		box1.add(Box.createHorizontalStrut(10));
 		box1.add(nom);
 		box1.add(Box.createHorizontalStrut(28)); // ajoute des pixels d'écarts sur un plan horizontal
 		box1.add(this.enterName);
+		box1.add(Box.createHorizontalStrut(10));
+		this.imgWarning1 = new JLabel(new ImageIcon(this.cl.getResource("warning-red.png")));
+		this.imgWarning1.setVisible(false);
+		this.msgWarning1 = new JLabel(" Ce champ est obligatoire");
+		this.msgWarning1.setVisible(false);
+		box1.add(this.imgWarning1);
+		box1.add(this.msgWarning1);
 
 		Box box2 = Box.createHorizontalBox();
 		JLabel prenom = new JLabel("Prénom : ");
@@ -81,6 +89,13 @@ public class NewContact extends Container {
 		box2.add(prenom);
 		box2.add(Box.createHorizontalStrut(10));
 		box2.add(this.enterFirstName);
+		box2.add(Box.createHorizontalStrut(10));
+		this.imgWarning2 = new JLabel(new ImageIcon(this.cl.getResource("warning-red.png")));
+		this.imgWarning2.setVisible(false);
+		this.msgWarning2 = new JLabel(" Ce champ est obligatoire");
+		this.msgWarning2.setVisible(false);
+		box2.add(this.imgWarning2);
+		box2.add(this.msgWarning2);
 
 		Box box3 = Box.createHorizontalBox();
 		JLabel civilite = new JLabel("Civilité : ");
@@ -101,6 +116,7 @@ public class NewContact extends Container {
 		box3.add(this.women);
 		
 		general.add(box1);
+		//general.add(panelWarning1);
 		general.add(box2);
 		general.add(box3);
 
@@ -345,23 +361,43 @@ public class NewContact extends Container {
 		return this.enterEntreprise.getText();
 	}
 
-	class ZoneTextListener implements MouseListener {
-		public void mouseEntered(MouseEvent e) {
-	    	if (enterName.getText().equals("Ex: name")){
-	    		enterName.setText("");
-	    	}
-		}
-		public void mouseExited(MouseEvent ev) {
-			if (enterName.getText().equals("") && !clicked){
-		    	enterName.setText("Ex: name");
-		    }
-		}
-		public void mousePressed(MouseEvent eve) {
-			clicked = true;
-		}
-		public void mouseClicked(MouseEvent even) {
-			clicked = true;
-		}
-		public void mouseReleased(MouseEvent event) {}
+	/**
+	 * indique si le champ nom est vide ou pas
+	 * @return vrai si le champ nom est vide
+	 */
+	public boolean nameFieldIsEmpty(){
+		if (this.getName().equals("")) return true;
+		else return false;
+	}
+
+	/**
+	 * indique si le champ prénom est vide ou pas
+	 * @return vrai si le champ prénom est vide
+	 */
+	public boolean firstNameFieldIsEmpty(){
+		if (this.getFirstName().equals("")) return true;
+		else return false;
+	}
+
+	/**
+	* Fonction qui affiche le message d'avertissement du champ nom
+	* @param yes qui est vrai si on doit afficher le message et faux sinon
+	*/
+	public void setWarningMessageName(boolean yes){
+		this.imgWarning1.setVisible(yes);
+		this.msgWarning1.setVisible(yes);
+		if (yes) this.enterName.setBackground(new Color(255,111,111));
+		else this.enterName.setBackground(Color.white);
+	}
+
+	/**
+	* Fonction qui affiche le message d'avertissement du champ prénom
+	* @param yes qui est vrai si on doit afficher le message et faux sinon
+	*/
+	public void setWarningMessageFirstName(boolean yes){
+		this.imgWarning2.setVisible(yes);
+		this.msgWarning2.setVisible(yes);
+		if (yes) this.enterFirstName.setBackground(new Color(255,111,111));
+		else this.enterFirstName.setBackground(Color.white);
 	}
 }

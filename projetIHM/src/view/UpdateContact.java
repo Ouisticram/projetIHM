@@ -29,7 +29,12 @@ public class UpdateContact extends Container {
 	private JTextField enterTelPPro;
 	private JTextField enterEmailPro;
 	private JTextField enterEntreprise;
+	private JLabel imgWarning1;
+	private JLabel msgWarning1;
+	private JLabel imgWarning2;
+	private JLabel msgWarning2;
 	private CarnetAdresse frame;
+	private ClassLoader cl;
 
 	// Constructeur de notre class
 	public UpdateContact(Carnet carn, Personne pers, Dimension dim, CarnetAdresse bigFrame){
@@ -37,6 +42,7 @@ public class UpdateContact extends Container {
 		this.personne = pers;
 		this.carnet = carn;
 		this.frame = bigFrame;
+		this.cl = this.getClass().getClassLoader();
 		initPanel();
 		this.panel.setBackground(new Color(4,129,158));
 	}
@@ -305,6 +311,13 @@ public class UpdateContact extends Container {
 		box1.add(nom);
 		box1.add(Box.createHorizontalStrut(28)); // ajoute des pixels d'écarts sur un plan horizontal
 		box1.add(this.enterName);
+		box1.add(Box.createHorizontalStrut(10));
+		this.imgWarning1 = new JLabel(new ImageIcon(this.cl.getResource("warning-red.png")));
+		this.imgWarning1.setVisible(false);
+		this.msgWarning1 = new JLabel(" Ce champ est obligatoire");
+		this.msgWarning1.setVisible(false);
+		box1.add(this.imgWarning1);
+		box1.add(this.msgWarning1);
 
 		Box box2 = Box.createHorizontalBox();
 		JLabel prenom = new JLabel("Prénom : ");
@@ -316,6 +329,12 @@ public class UpdateContact extends Container {
 		box2.add(prenom);
 		box2.add(Box.createHorizontalStrut(10));
 		box2.add(this.enterFirstName);
+		this.imgWarning2 = new JLabel(new ImageIcon(this.cl.getResource("warning-red.png")));
+		this.imgWarning2.setVisible(false);
+		this.msgWarning2 = new JLabel(" Ce champ est obligatoire");
+		this.msgWarning2.setVisible(false);
+		box2.add(this.imgWarning2);
+		box2.add(this.msgWarning2);
 
 		Box box3 = Box.createHorizontalBox();
 		JLabel civilite = new JLabel("Civilité : ");
@@ -475,5 +494,45 @@ public class UpdateContact extends Container {
 	 */
 	public String getCompagny() {
 		return this.enterEntreprise.getText();
+	}
+
+	/**
+	 * indique si le champ nom est vide ou pas
+	 * @return vrai si le champ nom est vide
+	 */
+	public boolean nameFieldIsEmpty(){
+		if (this.getName().equals("")) return true;
+		else return false;
+	}
+
+	/**
+	 * indique si le champ prénom est vide ou pas
+	 * @return vrai si le champ prénom est vide
+	 */
+	public boolean firstNameFieldIsEmpty(){
+		if (this.getFirstName().equals("")) return true;
+		else return false;
+	}
+
+	/**
+	* Fonction qui affiche le message d'avertissement du champ nom
+	* @param yes qui est vrai si on doit afficher le message et faux sinon
+	*/
+	public void setWarningMessageName(boolean yes){
+		this.imgWarning1.setVisible(yes);
+		this.msgWarning1.setVisible(yes);
+		if (yes) this.enterName.setBackground(new Color(255,111,111));
+		else this.enterName.setBackground(Color.white);
+	}
+
+	/**
+	* Fonction qui affiche le message d'avertissement du champ prénom
+	* @param yes qui est vrai si on doit afficher le message et faux sinon
+	*/
+	public void setWarningMessageFirstName(boolean yes){
+		this.imgWarning2.setVisible(yes);
+		this.msgWarning2.setVisible(yes);
+		if (yes) this.enterFirstName.setBackground(new Color(255,111,111));
+		else this.enterFirstName.setBackground(Color.white);
 	}
 }
