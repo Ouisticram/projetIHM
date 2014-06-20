@@ -35,6 +35,20 @@ public class Professionnel extends Personne {
 	    return exists;
     }
 
+    /**
+	*
+	*/
+	public void modifier(Professionnel pers){
+		this.setNom(pers.getNom());
+		this.setPrenom(pers.getPrenom());
+		this.setCivilite(pers.getCivilite());
+		this.setAdresse(pers.getAdresse());
+		this.setEmail(pers.getEmail());
+		this.setEntreprise(pers.getEntreprise());
+		this.setTelB(pers.getTelB());
+		this.setTelP(pers.getTelP());
+	}
+
 	/** méthode qui donne l'adresse de l'entreprise
      @return adresse - l'adresse de l'entreprise
 	*/
@@ -113,8 +127,7 @@ public class Professionnel extends Personne {
 	public void setEntreprise(String entreprise) {
 		this.entreprise = entreprise;
 	}
-	
-	
+
 	/** redéfinition de la méthode toString()
      @return les caractéristiques d'une personne + celle d'un particulier
 	*/

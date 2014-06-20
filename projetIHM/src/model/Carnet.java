@@ -27,10 +27,10 @@ public class Carnet{
 	/** ajoute la personne au carnet de contacts
 	 * @param pers : personne à ajouter au carnet
 	 */
-	public boolean ajout(Personne pers) {
+	public boolean ajout(Personne pers){
 		boolean exists = false;
 		
-		if (this.contacts.size() > 0)
+		if (!this.estVide())
 		{
 			int i = 0;
 			while (i<contacts.size() && !exists)
@@ -78,21 +78,36 @@ public class Carnet{
 		return this.courant;
 	}
 
+	public boolean estVide(){
+		return this.contacts.size() <= 0;
+	}
+
 	/** Modifie la personne, en la supprimant et en la recréant
-	 * @param del Personne qui sert de base à la modification et qui est supprimée
-	 * @param add Nouvelle Personne modifiée
+	 * @param pers Nouvelle Personne modifiée
+	 * @throws CarnetException si le carnet ne contient pas de contact
 	 */
-	public void modifier(Personne del,Personne add) {      
-        supprimer(del);
-        ajout(add);
+	public void modifier(Personne pers) throws CarnetException{      
+        if (!this.estVide()){
+        	if(pers instanceof Particulier){
+        		Particulier part = (Particulier)pers;
+        		((Particulier)this.contacts.get(this.courant)).modifier(part);
+        	}else if(pers instanceof Professionnel){
+        		Professionnel pro = (Professionnel)pers;
+        		((Professionnel)this.contacts.get(this.courant)).modifier(pro);
+        	}           	
+        }else throw new CarnetException("Aucun contact n'est sélectionné");	       
 	}
 
     /** supprime la personne du carnet de contacts
 	 * @param pers - personne à supprimer du carnet
+	 * @throws CarnetException si le carnet ne contient pas de contact
 	 */
-    public void supprimer(Personne pers){
-        this.contacts.remove(pers); 
-        this.courant--;
+    public void supprimer(Personne pers) throws CarnetException{
+    	if (!this.estVide()){
+	        this.contacts.remove(pers);
+	        this.courant = 0;
+	        this.dernier--;
+	    }else throw new CarnetException("Le carnet ne contient pas de contact");
     }
 
 
@@ -164,43 +179,45 @@ public class Carnet{
 
 	/**
 	 * @return la personne actuellement consultée
+	 * @throws CarnetException si le carnet ne contient pas de contact
 	 */
-	public Personne getPersonne() {
-		return contacts.get(courant);
+	public Personne getPersonne() throws CarnetException{
+		if (!this.estVide()) return contacts.get(courant);
+		else throw new CarnetException("Le carnet ne contient pas de contact");			
 	}
 
 	/**
 	 * @return vrai s'il y a encore une personne après la personne courante dans le carnet
 	 */
-	public boolean suivantPossible() {
-		return (courant < dernier);
+	public boolean suivantPossible(){
+		return courant < dernier;
 	}
 
 	/** change la personne courante par son sucesseur 
-	 * @throws Exception si la personne courante n'a pas de sucesseur
+	 * @throws CarnetException si la personne courante n'a pas de sucesseur
 	 */
-	public void personneSuivante() throws Exception {
+	public void personneSuivante() throws CarnetException{
 		if (suivantPossible())
 			courant++;
 		else
-			throw new Exception();
+			throw new CarnetException("Il n'y a pas de personne suivante");
 	}
 
 	/** 
 	 * @return vrai s'il y a une personne avant la personne courante dans le carnet
 	 */
-	public boolean precedentPossible() {
+	public boolean precedentPossible(){
 		return courant > 0;
 	}
 
 	/** change la personne courante par son prédécésseur
-	 * @throws Exception : si la personne courante n'a pas de prédécesseur
+	 * @throws CarnetException : si la personne courante n'a pas de prédécesseur
 	 */
-	public void personnePrecedent() throws Exception {
+	public void personnePrecedent() throws CarnetException{
 		if (precedentPossible())
 			courant--;
 		else
-			throw new Exception();
+			throw new CarnetException("Il n'y a pas de personne précédente");
 	}
 	
 	/** Donne la liste acuelle des personnes du carnet

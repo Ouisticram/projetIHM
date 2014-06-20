@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.JComponent.*;
 import java.awt.event.*;
+import java.util.*;
 import model.*;
 import controller.*;
 
@@ -84,6 +85,9 @@ public class CarnetAdresse extends JFrame {
 		showMore.addActionListener(al);
 
 		JButton search = new JButton("Rechercher");
+
+		ActionListener alr = new SearchController(this);
+		search.addActionListener(alr);
 
 		buttonPane.add(Box.createHorizontalGlue());
 		buttonPane.add(showMore);
@@ -276,7 +280,7 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	/**
-	* Fonction qui met a jour le contenu de la JList
+	* Fonction qui met a jour le contenu du tableau de Personne
 	*/
 	public void majListe(){
 		int i = 0;
@@ -287,23 +291,22 @@ public class CarnetAdresse extends JFrame {
 		}
 	}
 
+	/**
+	* Fonction qui met a jour le contenu de la JList
+	*/
 	public void majJList(){
 		this.liste.setListData(this.tab_pers);
 	}
 
-	/*private static class ProPersoCellRenderer extends DefaultListCellRenderer {
-        public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
-            Component c = super.getListCellRendererComponent( list, value, index, isSelected, cellHasFocus );
-            if (value instanceof Particulier ) {
-                c.setBackground(new Color(250,185,56));
-            }
-            else if (value instanceof Professionnel) {
-                c.setBackground(new Color(250,68,156));
-            }
-            return c;
-        }
-    }*/
-
+	public void changeList(java.util.List<Personne> contacts){
+		int i = 0;
+		Personne[] tab_contacts  = new Personne[contacts.size()];
+		for(Personne p : contacts){
+			tab_contacts[i] = p;
+			i++;
+		}
+		this.liste.setListData(tab_contacts);
+	}
 
     private static class ProPersoCellRenderer extends DefaultListCellRenderer {
 
@@ -363,29 +366,42 @@ public class CarnetAdresse extends JFrame {
     }
 
 	public void details(){
-		this.nom.setText(this.carnet.getPersonne().getNom());
-		this.prenom.setText(this.carnet.getPersonne().getPrenom());
-		this.civilite.setText(this.carnet.getPersonne().getCivilite());
+		try{
+			this.nom.setText(this.carnet.getPersonne().getNom());
+			this.prenom.setText(this.carnet.getPersonne().getPrenom());
+			this.civilite.setText(this.carnet.getPersonne().getCivilite());
+		}catch(CarnetException e) {System.out.println(e.getMessage());}
 	}
 
 	public void moreDetails(){
-		this.down.removeAll();
-		SeeMore seeMore = new SeeMore(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
-		this.down.add(seeMore.getPanel());
-		this.down.revalidate();
+		try{
+			this.down.removeAll();
+			SeeMore seeMore = new SeeMore(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
+			this.down.add(seeMore.getPanel());
+			this.down.revalidate();
+		}catch(CarnetException e) {System.out.println(e.getMessage());}
 	}
 
 	public void addContact(){
 		this.down.removeAll();
-		NewContact newContact = new NewContact(this.carnet, this.dimPaneDown);
+		NewContact newContact = new NewContact(this.carnet, this.dimPaneDown, this);
 		this.down.add(newContact.getPanel());
 		this.down.revalidate();
 	}
 
 	public void modifContact(){
+		try{
+			this.down.removeAll();
+			UpdateContact updateContact = new UpdateContact(this.carnet, this.carnet.getPersonne(), this.dimPaneDown, this);
+			this.down.add(updateContact.getPanel());
+			this.down.revalidate();
+		}catch(CarnetException e) {System.out.println(e.getMessage());}
+	}
+
+	public void rechercher(){
 		this.down.removeAll();
-		UpdateContact updateContact = new UpdateContact(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
-		this.down.add(updateContact.getPanel());
+		Search search = new Search(this, this.carnet, this.dimPaneDown);
+		this.down.add(search.getPanel());
 		this.down.revalidate();
 	}
 }

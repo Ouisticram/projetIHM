@@ -23,10 +23,17 @@ public class RemoveContactController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 	  	int reply = JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir supprimer ce contact", "Supprimer ?",  JOptionPane.YES_NO_OPTION);
 		if (reply == JOptionPane.YES_OPTION){
-			this.carnet.supprimer(this.carnet.getPersonne());
-			this.vue.majListe();
-			this.vue.majJList();
-			this.vue.setTextPanelDown("Contact Supprimé avec succès",true);
+			try{
+				this.carnet.supprimer(this.carnet.getPersonne());
+				this.vue.majListe();
+				this.vue.majJList();
+				this.vue.details();
+				this.vue.selectedIndex(this.carnet.getCourant());
+				this.vue.setTextPanelDown("Contact Supprimé avec succès",true);
+			}catch(CarnetException ce) {
+				System.out.println(ce.getMessage());
+				this.vue.setTextPanelDown("Impossible de supprimer un contact",false);
+			}			
 		}else if(reply == JOptionPane.NO_OPTION) this.vue.welcome();
 	}
 

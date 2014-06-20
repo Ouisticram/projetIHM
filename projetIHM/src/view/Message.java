@@ -13,12 +13,10 @@ public class Message extends Container {
 	private String message;
 	private boolean succed;
 	private ClassLoader cl;
-	private Dimension dimension;
 
 	// Constructeur de notre class
 	public Message(Dimension dim, String msg, boolean good){
 		super(dim);
-		this.dimension = dim;
 		this.message = msg;
 		this.succed = good;
 		this.cl = this.getClass().getClassLoader();
