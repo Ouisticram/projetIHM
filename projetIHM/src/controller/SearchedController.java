@@ -13,6 +13,7 @@ import model.*;
 public class SearchedController implements KeyListener{
 
 	Carnet carnet;
+	int code;
 	CarnetAdresse frame;
 	JTextField field;
 
@@ -22,11 +23,16 @@ public class SearchedController implements KeyListener{
 		this.field = f;
 	}
 
+	public void keyPressed(KeyEvent e){
+		this.code = e.getKeyCode();
+	}
 	public void keyTyped(KeyEvent e){
-		//this.area.setText(e.getKeyChar());
-		this.frame.changeList(this.carnet.recherche(this.field.getText()));
+		String content = "";
+		if(this.code == 8) content = this.field.getText();
+		else content = this.field.getText()+e.getKeyChar();
+		this.frame.changeList(this.carnet.recherche(content));
 	}
 
-	public void keyPressed(KeyEvent e){}
+	
 	public void keyReleased(KeyEvent e){}
 }
