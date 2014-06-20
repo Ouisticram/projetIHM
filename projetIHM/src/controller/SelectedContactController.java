@@ -23,6 +23,8 @@ public class SelectedContactController implements ListSelectionListener{
 
 	public void valueChanged(ListSelectionEvent e) {
 		this.carnet.setCourant((Personne)this.vue.selectedValue());
+		if(this.vue.updatePanelOn()) this.vue.modifContact();
+		if(this.vue.seeMorePanelOn()) this.vue.moreDetails();
 		if(!this.carnet.suivantPossible()) this.vue.activateNextButton(false);
 		else this.vue.activateNextButton(true);
 		if(!this.carnet.precedentPossible()) this.vue.activatePreviousButton(false);

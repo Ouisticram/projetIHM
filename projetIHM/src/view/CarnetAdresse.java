@@ -37,6 +37,8 @@ public class CarnetAdresse extends JFrame {
 	private Personne[] tab_pers;
 	private JList<Personne> liste;
 
+	private boolean updatePanelLoad;
+	private boolean seeMorePanelLoad;
 	private ClassLoader cl;
 
 	/**
@@ -51,6 +53,8 @@ public class CarnetAdresse extends JFrame {
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 
+		this.updatePanelLoad = false;
+		this.seeMorePanelLoad = false;
 		this.cl = this.getClass().getClassLoader();
 
 		this.carnet = new Carnet(); // création d'un nouveau carnet d'adresse
@@ -374,6 +378,8 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	public void moreDetails(){
+		if(this.updatePanelLoad) this.updatePanelLoad = false;
+		if(!this.seeMorePanelLoad) this.seeMorePanelLoad = true;
 		try{
 			this.down.removeAll();
 			SeeMore seeMore = new SeeMore(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
@@ -382,7 +388,13 @@ public class CarnetAdresse extends JFrame {
 		}catch(CarnetException e) {System.out.println(e.getMessage());}
 	}
 
+	public boolean seeMorePanelOn(){
+		return this.seeMorePanelLoad;
+	}
+
 	public void addContact(){
+		if(this.updatePanelLoad) this.updatePanelLoad = false;
+		if(this.seeMorePanelLoad) this.seeMorePanelLoad = false;
 		this.down.removeAll();
 		NewContact newContact = new NewContact(this.carnet, this.dimPaneDown, this);
 		this.down.add(newContact.getPanel());
@@ -390,6 +402,8 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	public void modifContact(){
+		if(!this.updatePanelLoad) this.updatePanelLoad = true;
+		if(this.seeMorePanelLoad) this.seeMorePanelLoad = false;
 		try{
 			this.down.removeAll();
 			UpdateContact updateContact = new UpdateContact(this.carnet, this.carnet.getPersonne(), this.dimPaneDown, this);
@@ -398,7 +412,13 @@ public class CarnetAdresse extends JFrame {
 		}catch(CarnetException e) {System.out.println(e.getMessage());}
 	}
 
+	public boolean updatePanelOn(){
+		return this.updatePanelLoad;
+	}
+
 	public void rechercher(){
+		if(this.updatePanelLoad) this.updatePanelLoad = false;
+		if(this.seeMorePanelLoad) this.seeMorePanelLoad = false;
 		this.down.removeAll();
 		Search search = new Search(this, this.carnet, this.dimPaneDown);
 		this.down.add(search.getPanel());

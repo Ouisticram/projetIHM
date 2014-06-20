@@ -13,9 +13,9 @@ import model.*;
 
 public class Search extends Container {
 
-	Carnet carnet;
-	CarnetAdresse frame;
-	JTextField champSearch;
+	private Carnet carnet;
+	private CarnetAdresse frame;
+	private JTextField champSearch;
 
 	// Constructeur de notre class
 	public Search( CarnetAdresse bigFrame, Carnet carn, Dimension dim){
@@ -27,9 +27,11 @@ public class Search extends Container {
 	}
 
 	public void initPanel(){
-		JLabel rechercher = new JLabel("Rechercher ");
+		JLabel rechercher = new JLabel("Rechercher: ");
+		rechercher.setFont(midBoldFont);
 		this.champSearch = new JTextField();
-		this.champSearch.setColumns(20);
+		this.champSearch.setFont(midPlainFont);
+		this.champSearch.setColumns(10);
 
 		KeyListener k = new SearchedController(this.carnet, this.frame, this.champSearch);
 		this.champSearch.addKeyListener(k);

@@ -47,6 +47,7 @@ public class SeeMore extends Container {
 			JLabel adresse = new JLabel("Adresse: ");
 			adresse.setFont(smallBoldFont);
 			JLabel enterAdresse = new JLabel();
+			enterAdresse.setFont(smallPlainFont);
 			enterAdresse.setText(part.getAdresse());
 			pers1.add(Box.createHorizontalStrut(10));
 			pers1.add(adresse);
@@ -57,6 +58,7 @@ public class SeeMore extends Container {
 			JLabel telD = new JLabel("Téléphone Domicile : ");
 			telD.setFont(smallBoldFont);
 			JLabel enterTelD= new JLabel();
+			enterTelD.setFont(smallPlainFont);
 			enterTelD.setText(part.getTelD());
 			pers2.add(Box.createHorizontalStrut(10));
 			pers2.add(telD);
@@ -67,6 +69,7 @@ public class SeeMore extends Container {
 			JLabel telP = new JLabel("Téléphone Portable : ");
 			telP.setFont(smallBoldFont);
 			JLabel enterTelP= new JLabel();
+			enterTelP.setFont(smallPlainFont);
 			enterTelP.setText(part.getTelP());
 			pers3.add(Box.createHorizontalStrut(10));
 			pers3.add(telP);
@@ -77,6 +80,7 @@ public class SeeMore extends Container {
 			JLabel email = new JLabel("Email : ");
 			email.setFont(smallBoldFont);
 			JLabel enterEmail = new JLabel();
+			enterEmail.setFont(smallPlainFont);
 			enterEmail.setText(part.getEmail());
 			pers4.add(Box.createHorizontalStrut(10));
 			pers4.add(email);
@@ -101,6 +105,7 @@ public class SeeMore extends Container {
 			JLabel adressePro = new JLabel("Adresse de l'entreprise : ");
 			adressePro.setFont(smallBoldFont);
 			JLabel enterAdressePro = new JLabel();
+			enterAdressePro.setFont(smallPlainFont);
 			enterAdressePro.setText(prof.getAdresse());
 			pro1.add(Box.createHorizontalStrut(10));
 			pro1.add(adressePro);
@@ -111,6 +116,7 @@ public class SeeMore extends Container {
 			JLabel telB = new JLabel("Téléphone Bureau : ");
 			telB.setFont(smallBoldFont);
 			JLabel enterTelB= new JLabel();
+			enterTelB.setFont(smallPlainFont);
 			enterTelB.setText(prof.getTelB());
 			pro2.add(Box.createHorizontalStrut(10));
 			pro2.add(telB);
@@ -121,6 +127,7 @@ public class SeeMore extends Container {
 			JLabel telPPro = new JLabel("Téléphone Portable : ");
 			telPPro.setFont(smallBoldFont);
 			JLabel enterTelPPro= new JLabel();
+			enterTelPPro.setFont(smallPlainFont);
 			enterTelPPro.setText(prof.getTelP());
 			pro3.add(Box.createHorizontalStrut(10));
 			pro3.add(telPPro);
@@ -131,6 +138,7 @@ public class SeeMore extends Container {
 			JLabel emailPro = new JLabel("Email : ");
 			emailPro.setFont(smallBoldFont);
 			JLabel enterEmailPro = new JLabel();
+			enterEmailPro.setFont(smallPlainFont);
 			enterEmailPro.setText(prof.getEmail());
 			pro4.add(Box.createHorizontalStrut(10));
 			pro4.add(emailPro);
@@ -141,6 +149,7 @@ public class SeeMore extends Container {
 			JLabel entreprise = new JLabel("Entreprise : ");
 			entreprise.setFont(smallBoldFont);
 			JLabel enterEntreprise = new JLabel();
+			enterEntreprise.setFont(smallPlainFont);
 			enterEntreprise.setText(prof.getEntreprise());
 			pro5.add(Box.createHorizontalStrut(10));
 			pro5.add(entreprise);
@@ -168,6 +177,7 @@ public class SeeMore extends Container {
 			JLabel adresse = new JLabel("Adresse: ");
 			adresse.setFont(smallBoldFont);
 			JLabel enterAdresse = new JLabel();
+			enterAdresse.setFont(smallPlainFont);
 			pers1.add(Box.createHorizontalStrut(10));
 			pers1.add(adresse);
 			pers1.add(Box.createHorizontalStrut(75));
@@ -177,6 +187,7 @@ public class SeeMore extends Container {
 			JLabel telD = new JLabel("Téléphone Domicile : ");
 			telD.setFont(smallBoldFont);
 			JLabel enterTelD= new JLabel();
+			enterTelD.setFont(smallPlainFont);
 			pers2.add(Box.createHorizontalStrut(10));
 			pers2.add(telD);
 			pers2.add(Box.createHorizontalStrut(10));
@@ -186,6 +197,7 @@ public class SeeMore extends Container {
 			JLabel telP = new JLabel("Téléphone Portable : ");
 			telP.setFont(smallBoldFont);
 			JLabel enterTelP= new JLabel();
+			enterTelP.setFont(smallPlainFont);
 			pers3.add(Box.createHorizontalStrut(10));
 			pers3.add(telP);
 			pers3.add(Box.createHorizontalStrut(11));
@@ -195,6 +207,7 @@ public class SeeMore extends Container {
 			JLabel email = new JLabel("Email : ");
 			email.setFont(smallBoldFont);
 			JLabel enterEmail = new JLabel();
+			enterEmail.setFont(smallPlainFont);
 			pers4.add(Box.createHorizontalStrut(10));
 			pers4.add(email);
 			pers4.add(Box.createHorizontalStrut(90));
@@ -209,6 +222,7 @@ public class SeeMore extends Container {
 			JLabel adressePro = new JLabel("Adresse de l'entreprise : ");
 			adressePro.setFont(smallBoldFont);
 			JLabel enterAdressePro = new JLabel();
+			enterAdressePro.setFont(smallPlainFont);
 			pro1.add(Box.createHorizontalStrut(10));
 			pro1.add(adressePro);
 			pro1.add(Box.createHorizontalStrut(10));
@@ -218,6 +232,7 @@ public class SeeMore extends Container {
 			JLabel telB = new JLabel("Téléphone Bureau : ");
 			telB.setFont(smallBoldFont);
 			JLabel enterTelB= new JLabel();
+			enterTelB.setFont(smallPlainFont);
 			pro2.add(Box.createHorizontalStrut(10));
 			pro2.add(telB);
 			pro2.add(Box.createHorizontalStrut(39));
@@ -227,6 +242,7 @@ public class SeeMore extends Container {
 			JLabel telPPro = new JLabel("Téléphone Portable : ");
 			telPPro.setFont(smallBoldFont);
 			JLabel enterTelPPro= new JLabel();
+			enterTelPPro.setFont(smallPlainFont);
 			pro3.add(Box.createHorizontalStrut(10));
 			pro3.add(telPPro);
 			pro3.add(Box.createHorizontalStrut(34));
@@ -236,6 +252,7 @@ public class SeeMore extends Container {
 			JLabel emailPro = new JLabel("Email : ");
 			emailPro.setFont(smallBoldFont);
 			JLabel enterEmailPro = new JLabel();
+			enterEmailPro.setFont(smallPlainFont);
 			pro4.add(Box.createHorizontalStrut(10));
 			pro4.add(emailPro);
 			pro4.add(Box.createHorizontalStrut(112));
@@ -245,6 +262,7 @@ public class SeeMore extends Container {
 			JLabel entreprise = new JLabel("Entreprise : ");
 			entreprise.setFont(smallBoldFont);
 			JLabel enterEntreprise = new JLabel();
+			enterEntreprise.setFont(smallPlainFont);
 			pro5.add(Box.createHorizontalStrut(10));
 			pro5.add(entreprise);
 			pro5.add(Box.createHorizontalStrut(84));
@@ -262,6 +280,7 @@ public class SeeMore extends Container {
 		JLabel nom = new JLabel("Nom : ");
 		nom.setFont(smallBoldFont);
 		JLabel enterName = new JLabel();
+		enterName.setFont(smallPlainFont);
 		enterName.setText(this.personne.getNom());
 		box1.add(Box.createHorizontalStrut(10));
 		box1.add(nom);
@@ -272,6 +291,7 @@ public class SeeMore extends Container {
 		JLabel prenom = new JLabel("Prénom : ");
 		prenom.setFont(smallBoldFont);
 		JLabel enterFirstName = new JLabel();
+		enterFirstName.setFont(smallPlainFont);
 		enterFirstName.setText(this.personne.getPrenom());
 		box2.add(Box.createHorizontalStrut(10));
 		box2.add(prenom);
@@ -282,7 +302,7 @@ public class SeeMore extends Container {
 		JLabel civilite = new JLabel("Civilité : ");
 		civilite.setFont(smallBoldFont);
 		JLabel civility = new JLabel();
-		civility.setFont(smallBoldFont);
+		civility.setFont(smallPlainFont);
 		if(this.personne.getCivilite().equals("M.")) civility.setText("Monsieur");
 		if(this.personne.getCivilite().equals("Mme")) civility.setText("Madame");
 		box3.add(Box.createHorizontalStrut(10));

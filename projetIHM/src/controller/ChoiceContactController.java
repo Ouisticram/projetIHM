@@ -20,6 +20,8 @@ public class ChoiceContactController implements ActionListener{
 	  			if(this.carnet.precedentPossible()){
 	  				try {
 	  					this.carnet.personnePrecedent();
+	  					if(this.vue.updatePanelOn()) this.vue.modifContact();
+	  					if(this.vue.seeMorePanelOn()) this.vue.moreDetails();
 	  					this.vue.selectedIndex(this.carnet.getCourant());
 	  				}catch (Exception excep){}
 	  				this.vue.details();
@@ -31,6 +33,8 @@ public class ChoiceContactController implements ActionListener{
 	  			if(this.carnet.suivantPossible()){
 	  				try {
 	  					this.carnet.personneSuivante();
+	  					if(this.vue.updatePanelOn()) this.vue.modifContact();
+	  					if(this.vue.seeMorePanelOn()) this.vue.moreDetails();
 	  					this.vue.selectedIndex(this.carnet.getCourant());
 	  				}catch (Exception excep){}	  				
 	  				this.vue.details();
