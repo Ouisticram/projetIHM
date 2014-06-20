@@ -263,7 +263,7 @@ public class Carnet{
 		}
 		
 		List<Personne> result = new LinkedList<Personne>();
-		result = recherche("quentin");
+		result = recherche("   RC  ");
 		System.out.println("\n");
 		
 		// affiche résulats recherche

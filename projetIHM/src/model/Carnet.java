@@ -253,9 +253,6 @@ public class Carnet{
 		ajout(p16);
 		ajout(p17);
 		
-		
-
-		
 		// affiche les contacts de base dans le terminal
 		for (int i=0; i<this.contacts.size();i++)
 		{
@@ -263,7 +260,7 @@ public class Carnet{
 		}
 		
 		List<Personne> result = new LinkedList<Personne>();
-		result = recherche("QUENTIN");
+		result = recherche("   RC  ");
 		System.out.println("\n");
 		
 		// affiche résulats recherche
