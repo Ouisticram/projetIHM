@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.JComponent.*;
 import java.awt.event.*;
+import java.util.*;
 import model.*;
 import controller.*;
 
@@ -84,6 +85,9 @@ public class CarnetAdresse extends JFrame {
 		showMore.addActionListener(al);
 
 		JButton search = new JButton("Rechercher");
+
+		ActionListener alr = new SearchController(this);
+		search.addActionListener(alr);
 
 		buttonPane.add(Box.createHorizontalGlue());
 		buttonPane.add(showMore);
@@ -294,6 +298,16 @@ public class CarnetAdresse extends JFrame {
 		this.liste.setListData(this.tab_pers);
 	}
 
+	public void changeList(java.util.List<Personne> contacts){
+		int i = 0;
+		Personne[] tab_contacts  = new Personne[contacts.size()];
+		for(Personne p : contacts){
+			tab_contacts[i] = p;
+			i++;
+		}
+		this.liste.setListData(tab_contacts);
+	}
+
     private static class ProPersoCellRenderer extends DefaultListCellRenderer {
 
         public Component getListCellRendererComponent(JList list, Object value, int index,
@@ -366,7 +380,6 @@ public class CarnetAdresse extends JFrame {
 			this.down.add(seeMore.getPanel());
 			this.down.revalidate();
 		}catch(CarnetException e) {System.out.println(e.getMessage());}
-		
 	}
 
 	public void addContact(){
@@ -383,5 +396,12 @@ public class CarnetAdresse extends JFrame {
 			this.down.add(updateContact.getPanel());
 			this.down.revalidate();
 		}catch(CarnetException e) {System.out.println(e.getMessage());}
+	}
+
+	public void rechercher(){
+		this.down.removeAll();
+		Search search = new Search(this, this.carnet, this.dimPaneDown);
+		this.down.add(search.getPanel());
+		this.down.revalidate();
 	}
 }

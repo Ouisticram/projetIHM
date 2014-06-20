@@ -281,21 +281,14 @@ public class SeeMore extends Container {
 		Box box3 = Box.createHorizontalBox();
 		JLabel civilite = new JLabel("Civilité : ");
 		civilite.setFont(smallBoldFont);
-		JRadioButton men = new JRadioButton("Monsieur");
-		men.setBackground(new Color(4,129,158));
-		if(this.personne.getCivilite().equals("M.")) men.setSelected(true);
-		JRadioButton women = new JRadioButton("Madame");
-		women.setBackground(new Color(4,129,158));
-		if(this.personne.getCivilite().equals("Mme")) women.setSelected(true);
-		ButtonGroup group = new ButtonGroup();
-		group.add(men);
-		group.add(women);
+		JLabel civility = new JLabel();
+		civility.setFont(smallBoldFont);
+		if(this.personne.getCivilite().equals("M.")) civility.setText("Monsieur");
+		if(this.personne.getCivilite().equals("Mme")) civility.setText("Madame");
 		box3.add(Box.createHorizontalStrut(10));
 		box3.add(civilite);
 		box3.add(Box.createHorizontalStrut(17));
-		box3.add(men);
-		box3.add(Box.createHorizontalStrut(10));
-		box3.add(women);
+		box3.add(civility);
 		
 		general.add(box1);
 		general.add(box2);
