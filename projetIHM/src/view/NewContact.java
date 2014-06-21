@@ -64,7 +64,7 @@ public class NewContact extends Container {
 
 	// Panel general
 		Box box1 = Box.createHorizontalBox();
-		JLabel nom = new JLabel("Nom : ");
+		JLabel nom = new JLabel("Nom* : ");
 		nom.setFont(smallBoldFont);
 		enterName = new JTextField(15);
 		this.enterName.setMaximumSize(this.enterName.getPreferredSize());
@@ -81,7 +81,7 @@ public class NewContact extends Container {
 		box1.add(this.msgWarning1);
 
 		Box box2 = Box.createHorizontalBox();
-		JLabel prenom = new JLabel("Prénom : ");
+		JLabel prenom = new JLabel("Prénom* : ");
 		prenom.setFont(smallBoldFont);
 		this.enterFirstName = new JTextField(15);
 		this.enterFirstName.setMaximumSize(this.enterFirstName.getPreferredSize());
@@ -114,11 +114,16 @@ public class NewContact extends Container {
 		box3.add(this.men);
 		box3.add(Box.createHorizontalStrut(10));
 		box3.add(this.women);
+
+		Box box4 = Box.createHorizontalBox();
+		JLabel condition = new JLabel("(*) champs obligatoire");
+		box4.add(Box.createHorizontalStrut(10));
+		box4.add(condition);
 		
 		general.add(box1);
-		//general.add(panelWarning1);
 		general.add(box2);
 		general.add(box3);
+		general.add(box4);
 
 	// Panel des onglets
 		Box pers1 = Box.createHorizontalBox();
