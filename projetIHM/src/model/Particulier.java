@@ -22,6 +22,7 @@ public class Particulier extends Personne {
     
     /** redéfinition de equals pour comparer 2 particuliers
      @return true si égaux, false sinon
+     @param part le particulier à comparer
 	*/
     public boolean equals (Particulier part)
     {  

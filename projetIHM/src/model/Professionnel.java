@@ -23,7 +23,8 @@ public class Professionnel extends Personne {
 	}
 	
     /** redéfinition de equals pour comparer 2 professionnels
-     @return true si égaux, false sinon
+     * @param pro le professionnel à tester
+     * @return true si égaux, false sinon
 	*/
     public boolean equals (Professionnel pro)
     {  

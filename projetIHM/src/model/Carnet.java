@@ -22,7 +22,7 @@ public class Carnet{
     
 	/** ajoute la personne au carnet de contacts
 	 * @param pers personne à ajouter au carnet
-	 * @throws CarnetException si la personne existe déjà
+	 * @return true si ajouté, false si non ajouté
 	 */
 	public boolean ajout(Personne pers){
 		boolean exists = false;
