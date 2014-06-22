@@ -3,9 +3,7 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.JComponent.*;
 import java.awt.event.*;
-import java.util.*;
 import model.*;
 import controller.*;
 
@@ -45,7 +43,7 @@ public class CarnetAdresse extends JFrame {
 	 * construit une nouvelle fenêtre
 	 * @param titre Le titre de la fenêtre
 	 * @param dim La dimension de la fenêtre
-	 **/
+	 */
 	public CarnetAdresse(String titre, Dimension dim){
 		super(titre);
 
@@ -81,7 +79,7 @@ public class CarnetAdresse extends JFrame {
 
 		JButton showMore = new JButton("Voir plus...");
 
-		ActionListener al = new SeeMoreController(this, this.carnet);
+		ActionListener al = new SeeMoreController(this);
 		showMore.addActionListener(al);
 
 		JButton search = new JButton("Rechercher");
@@ -116,7 +114,7 @@ public class CarnetAdresse extends JFrame {
 		previousPeople = new JButton("<");
 		previousPeople.setEnabled(false);
 
-		ActionListener a = new ChoiceContactController(this.carnet,this);
+		ActionListener a = new ChoiceContactController(this, this.carnet);
 		nextPeople.addActionListener(a);
 		previousPeople.addActionListener(a);
 
@@ -181,7 +179,7 @@ public class CarnetAdresse extends JFrame {
 		updateSomeone.setBackground(new Color(96,185,206));
 		updateSomeone.setBorderPainted(false);
 
-		ActionListener a2 = new UpdateContactController(this, this.carnet);
+		ActionListener a2 = new UpdateContactController(this);
 		updateSomeone.addActionListener(a2);
 		
 		JButton deleteSomeone = new JButton(new ImageIcon(this.cl.getResource("delete_32x32.png")));
@@ -274,8 +272,8 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	/**
-	* Fonction qui met a jour le contenu du tableau de Personne
-	*/
+	 * méthode qui met a jour le contenu du tableau de Personne
+	 */
 	public void majListe(){
 		int i = 0;
 		this.tab_pers = new Personne[this.carnet.getContacts().size()];
@@ -286,12 +284,16 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	/**
-	* Fonction qui met a jour le contenu de la JList
-	*/
+	 * méthode qui met a jour le contenu de la JList
+	 */
 	public void majJList(){
 		this.liste.setListData(this.tab_pers);
 	}
 
+	/**
+	 * méthode qui créé une nouvelle liste de Personne dans la JList
+	 * @param contacts La nouvelle liste de Personne à utiliser
+	 */
 	public void changeList(java.util.List<Personne> contacts){
 		int i = 0;
 		Personne[] tab_contacts  = new Personne[contacts.size()];
@@ -320,6 +322,11 @@ public class CarnetAdresse extends JFrame {
         }
     }
 
+    /**
+	 * méthode qui affiche les succès ou échec des évènements
+	 * @param text Le message à afficher
+	 * @param succed vrai si l'évènement à réussi et faux sinon
+	 */
     public void setTextPanelDown(String text, boolean succed){
     	this.down.removeAll();
     	Message message = new Message(this.dimPaneDown, text, succed);
@@ -327,6 +334,9 @@ public class CarnetAdresse extends JFrame {
 		this.down.revalidate();
     }
 
+	/**
+	 * méthode qui sert à afficher le message de bienvenue dans le conteneur du bas
+	 */
     public void welcome(){
     	this.down.removeAll();
 
@@ -351,6 +361,9 @@ public class CarnetAdresse extends JFrame {
 		this.down.revalidate();
     }
 
+    /**
+	 * méthode qui affiche dans le conteneur en haut à gauche les informations de la Personne courante
+	 */
 	public void details(){
 		try{
 			this.nom.setText(this.carnet.getPersonne().getNom());
@@ -359,21 +372,31 @@ public class CarnetAdresse extends JFrame {
 		}catch(CarnetException e) {System.out.println(e.getMessage());}
 	}
 
+	/**
+	 * méthode qui charge la classe SeeMore dans le conteneur du bas
+	 */
 	public void moreDetails(){
 		if(this.updatePanelLoad) this.updatePanelLoad = false;
 		if(!this.seeMorePanelLoad) this.seeMorePanelLoad = true;
 		try{
 			this.down.removeAll();
-			SeeMore seeMore = new SeeMore(this.carnet, this.carnet.getPersonne(), this.dimPaneDown);
+			SeeMore seeMore = new SeeMore(this.carnet.getPersonne(), this.dimPaneDown);
 			this.down.add(seeMore.getPanel());
 			this.down.revalidate();
 		}catch(CarnetException e) {System.out.println(e.getMessage());}
 	}
 
+	/**
+	 * méthode qui indique si le bouton "Voir plus" est le dernier à avoir été utilisé
+	 * @return vrai si le bouton "Voir plus" est le dernier à avoir été cliqué et faux sinon
+	 */
 	public boolean seeMorePanelOn(){
 		return this.seeMorePanelLoad;
 	}
 
+	/**
+	 * méthode qui charge la classe NewContact dans le conteneur du bas
+	 */
 	public void addContact(){
 		if(this.updatePanelLoad) this.updatePanelLoad = false;
 		if(this.seeMorePanelLoad) this.seeMorePanelLoad = false;
@@ -383,6 +406,9 @@ public class CarnetAdresse extends JFrame {
 		this.down.revalidate();
 	}
 
+	/**
+	 * méthode qui charge la classe UpdateContact dans le conteneur du bas
+	 */
 	public void modifContact(){
 		if(!this.updatePanelLoad) this.updatePanelLoad = true;
 		if(this.seeMorePanelLoad) this.seeMorePanelLoad = false;
@@ -394,15 +420,22 @@ public class CarnetAdresse extends JFrame {
 		}catch(CarnetException e) {System.out.println(e.getMessage());}
 	}
 
+	/**
+	 * méthode qui indique si le bouton "modifier" est le dernier à avoir été utilisé
+	 * @return vrai si le bouton "modifier" est le dernier à avoir été cliqué et faux sinon
+	 */
 	public boolean updatePanelOn(){
 		return this.updatePanelLoad;
 	}
 
+	/**
+	 * méthode qui charge la classe Search dans le conteneur du bas
+	 */
 	public void rechercher(){
 		if(this.updatePanelLoad) this.updatePanelLoad = false;
 		if(this.seeMorePanelLoad) this.seeMorePanelLoad = false;
 		this.down.removeAll();
-		Search search = new Search(this, this.carnet, this.dimPaneDown);
+		Search search = new Search(this.carnet, this.dimPaneDown, this);
 		this.down.add(search.getPanel());
 		this.down.revalidate();
 	}

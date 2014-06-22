@@ -14,7 +14,12 @@ public class Message extends Container {
 	private boolean succed;
 	private ClassLoader cl;
 
-	// Constructeur de notre class
+	/**
+	 * construit une nouveau conteneur	 
+	 * @param dim La dimension du panel
+	 * @param msg Le message à afficher dans le conteneur
+	 * @param good vrai si on doit afficher un image et faux pour une autre
+	 */
 	public Message(Dimension dim, String msg, boolean good){
 		super(dim);
 		this.message = msg;
@@ -24,6 +29,9 @@ public class Message extends Container {
 		this.panel.setBackground(new Color(4,129,158));
 	}
 
+	/**
+	 * méthode qui intialise le Panel
+	 */
 	public void initPanel(){
 		JLabel labelMessage = new JLabel(" "+this.message);
 		labelMessage.setFont(bigBoldFont);

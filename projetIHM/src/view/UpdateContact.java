@@ -36,7 +36,13 @@ public class UpdateContact extends Container {
 	private CarnetAdresse frame;
 	private ClassLoader cl;
 
-	// Constructeur de notre class
+	/**
+	 * construit un nouveau conteneur
+	 * @param carn Le modele
+	 * @param pers La personne à modifier
+	 * @param dim Les dimensions du conteneur
+	 * @param bigFrame La vue de la fenêtre principale
+	 */
 	public UpdateContact(Carnet carn, Personne pers, Dimension dim, CarnetAdresse bigFrame){
 		super(dim);
 		this.personne = pers;
@@ -47,6 +53,9 @@ public class UpdateContact extends Container {
 		this.panel.setBackground(new Color(4,129,158));
 	}
 
+	/**
+	 * méthode qui intialise le Panel
+	 */
 	public void initPanel(){
 
 	// Création des composants
@@ -521,7 +530,7 @@ public class UpdateContact extends Container {
 	}
 
 	/**
-	* Fonction qui affiche le message d'avertissement du champ nom
+	* méthode qui affiche le message d'avertissement du champ nom
 	* @param yes qui est vrai si on doit afficher le message et faux sinon
 	*/
 	public void setWarningMessageName(boolean yes){
@@ -532,7 +541,7 @@ public class UpdateContact extends Container {
 	}
 
 	/**
-	* Fonction qui affiche le message d'avertissement du champ prénom
+	* méthode qui affiche le message d'avertissement du champ prénom
 	* @param yes qui est vrai si on doit afficher le message et faux sinon
 	*/
 	public void setWarningMessageFirstName(boolean yes){

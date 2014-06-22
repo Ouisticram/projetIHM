@@ -35,7 +35,12 @@ public class NewContact extends Container {
 	private CarnetAdresse frame;
 	private ClassLoader cl;
 
-	// Constructeur de notre class
+	/**
+	 * construit un nouveau conteneur
+	 * @param carn Le modele
+	 * @param dim Les dimensions du conteneur
+	 * @param bigFrame La vue de la fenêtre principale
+	 */
 	public NewContact(Carnet carn, Dimension dim, CarnetAdresse bigFrame){
 		super(dim);
 		this.carnet = carn;
@@ -45,6 +50,9 @@ public class NewContact extends Container {
 		this.panel.setBackground(new Color(4,129,158));
 	}
 
+	/**
+	 * méthode qui intialise le Panel
+	 */
 	public void initPanel(){
 	// Création des composants
 	    JPanel general = new JPanel();
@@ -385,7 +393,7 @@ public class NewContact extends Container {
 	}
 
 	/**
-	* Fonction qui affiche le message d'avertissement du champ nom
+	* méthode qui affiche le message d'avertissement du champ nom
 	* @param yes qui est vrai si on doit afficher le message et faux sinon
 	*/
 	public void setWarningMessageName(boolean yes){
@@ -396,7 +404,7 @@ public class NewContact extends Container {
 	}
 
 	/**
-	* Fonction qui affiche le message d'avertissement du champ prénom
+	* méthode qui affiche le message d'avertissement du champ prénom
 	* @param yes qui est vrai si on doit afficher le message et faux sinon
 	*/
 	public void setWarningMessageFirstName(boolean yes){

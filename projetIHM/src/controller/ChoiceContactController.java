@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.event.*;
+
 import view.*;
 import model.*;
 
@@ -9,11 +10,20 @@ public class ChoiceContactController implements ActionListener{
 	private Carnet carnet;
 	private CarnetAdresse vue;
 
-	public ChoiceContactController (Carnet carn, CarnetAdresse vue){
+	/**
+	 * construit un nouveau ActionListener
+	 * @param vue La vue
+	 * @param carn Le modele
+	 **/
+	public ChoiceContactController (CarnetAdresse vue, Carnet carn){
 		this.vue = vue;
 		this.carnet = carn;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 	  	switch(e.getActionCommand()){
 	  		case "<" :

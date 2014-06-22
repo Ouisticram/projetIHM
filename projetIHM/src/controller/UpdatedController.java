@@ -15,12 +15,22 @@ public class UpdatedController implements ActionListener{
 	private UpdateContact vue;
 	private CarnetAdresse frame;
 
+	/**
+	 * construit un nouveau ActionListener
+	 * @param vue La vue
+	 * @param carn Le modele
+	 * @param bigFrame La vue de la fenêtre principale
+	 **/
 	public UpdatedController (UpdateContact vue, Carnet carn, CarnetAdresse bigFrame){
 		this.vue = vue;
 		this.carnet = carn;
 		this.frame = bigFrame;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String man = "";
 		this.vue.setWarningMessageName(false);
@@ -47,5 +57,5 @@ public class UpdatedController implements ActionListener{
 			this.frame.details();
 			this.frame.setTextPanelDown("Contact modifié avec succès",true);
 		}
-	}	
+	}
 }
