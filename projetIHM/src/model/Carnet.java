@@ -95,7 +95,8 @@ public class Carnet{
         		Professionnel pro = (Professionnel)pers;
         		((Professionnel)this.contacts.get(this.courant)).modifier(pro);
         	}           	
-        }else throw new CarnetException("Aucun contact n'est sélectionné");	       
+        }else throw new CarnetException("Aucun contact n'est sélectionné");
+        Collections.sort(contacts);
 	}
 
     /** supprime la personne du carnet de contacts
