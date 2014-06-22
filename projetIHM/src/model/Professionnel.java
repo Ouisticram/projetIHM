@@ -50,7 +50,7 @@ public class Professionnel extends Personne {
 	}
 
 	/** méthode qui donne l'adresse de l'entreprise
-     @return adresse - l'adresse de l'entreprise
+     @return adresse l'adresse de l'entreprise
 	*/
 	public String getAdresse() {
 		return adresse;
@@ -58,7 +58,7 @@ public class Professionnel extends Personne {
 
 
     /** méthode qui permet de définir l'adresse de l'entreprise
-     @param adresse - String qui définit la nouvelle adresse de l'entreprise
+     @param adresse String qui définit la nouvelle adresse de l'entreprise
 	*/
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
@@ -74,7 +74,7 @@ public class Professionnel extends Personne {
 
 
     /** méthode qui définit le téléphone (bureau)
-	 @param telB - une string correspondant au numéro
+	 @param telB une string correspondant au numéro
 	*/
 	public void setTelB(String telB) {
 		this.telB = telB;
@@ -90,7 +90,7 @@ public class Professionnel extends Personne {
 
 
     /** méthode qui définit le téléphone (portable)
-	 @param telP - une string correspondant au numéro
+	 @param telP une string correspondant au numéro
 	*/
 	public void setTelP(String telP) {
 		this.telP = telP;
@@ -106,7 +106,7 @@ public class Professionnel extends Personne {
 
 
     /** méthode qui définit l'email
-	 @param email - une string correspondant à l'email professionnel
+	 @param email une string correspondant à l'email professionnel
 	*/
 	public void setEmail(String email) {
 		this.email = email;
@@ -122,7 +122,7 @@ public class Professionnel extends Personne {
 
 
     /** méthode qui définit l'entreprise
-	 @param entreprise - une string correspondant à l'entreprise
+	 @param entreprise une string correspondant à l'entreprise
 	*/
 	public void setEntreprise(String entreprise) {
 		this.entreprise = entreprise;

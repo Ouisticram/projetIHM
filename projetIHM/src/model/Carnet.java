@@ -21,7 +21,7 @@ public class Carnet{
     }
     
 	/** ajoute la personne au carnet de contacts
-	 * @param pers : personne à ajouter au carnet
+	 * @param pers personne à ajouter au carnet
 	 * @throws CarnetException si la personne existe déjà
 	 */
 	public boolean ajout(Personne pers){
@@ -55,7 +55,6 @@ public class Carnet{
         	Collections.sort(this.contacts);
         	this.dernier++;
         }
-        else throw new CarnetException("Contact déjà existant");
         return !exists;       
 	}
 	
@@ -101,7 +100,7 @@ public class Carnet{
 	}
 
     /** supprime la personne du carnet de contacts
-	 * @param pers - personne à supprimer du carnet
+	 * @param pers personne à supprimer du carnet
 	 * @throws CarnetException si le carnet ne contient pas de contact
 	 */
     public void supprimer(Personne pers) throws CarnetException{
@@ -114,8 +113,8 @@ public class Carnet{
 
 
      /** recherche une personne dans le carnet à partir de son nom et son prénom
-	 * @param s - String entrée par l'utilisateur
-	 * @return - return une linkedList qui contient les personnes correspondant à la recherche
+	 * @param s String entrée par l'utilisateur
+	 * @return return une linkedList qui contient les personnes correspondant à la recherche
 	 */
     public List<Personne> recherche(String s){
 
@@ -223,7 +222,7 @@ public class Carnet{
 	}
 	
 	/** Donne la liste acuelle des personnes du carnet
-	 * @return : une linkedlist de personnes
+	 * @return une linkedlist de personnes
 	 */
 	public List<Personne> getContacts(){return this.contacts;}
 	

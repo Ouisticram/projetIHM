@@ -3,7 +3,7 @@
     <property name="src.dir" value="src"/>
     <property name="bin.dir" value="bin"/>
     <property name="jar.dir" value="jar"/>
-    <!--<property name="doc.dir" value="doc"/>-->
+    <property name="doc.dir" value="doc"/>
     <property name="main-class" value="Application"/>
 
 
@@ -31,10 +31,10 @@
         <echo message="Creation du fichier Jar terminee"/>
     </target>
 
-    <!--<target name="javadoc">
+    <target name="javadoc">
         <mkdir dir="${doc.dir}"/>
         <javadoc sourcepath="${src.dir}" destdir="${doc.dir}" encoding="UTF-8" author="true" version="true" charset="utf8"/>
-    </target>-->
+    </target>
 
     <target name="run">
         <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
