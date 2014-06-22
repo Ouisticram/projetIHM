@@ -33,17 +33,17 @@ public class Particulier extends Personne {
 	    return exists;
     }
     
-    /**
-	*
+    /** modifie une personne en copiant les caractéristiques du particulier passé en en paramètre
+	* @param part le particulier qui contient les nouvelles informations du particulier à modifier
 	*/
-	public void modifier(Particulier pers){
-		this.setNom(pers.getNom());
-		this.setPrenom(pers.getPrenom());
-		this.setCivilite(pers.getCivilite());
-		this.setAdresse(pers.getAdresse());
-		this.setTelD(pers.getTelD());
-		this.setTelP(pers.getTelP());
-		this.setEmail(pers.getEmail());
+	public void modifier(Particulier part){
+		this.setNom(part.getNom());
+		this.setPrenom(part.getPrenom());
+		this.setCivilite(part.getCivilite());
+		this.setAdresse(part.getAdresse());
+		this.setTelD(part.getTelD());
+		this.setTelP(part.getTelP());
+		this.setEmail(part.getEmail());
 	}
     
 	/** méthode qui permet d'obtenir l'adresse d'un particulier
@@ -111,7 +111,7 @@ public class Particulier extends Personne {
 	
 	
 	/** redéfinition de la méthode toString()
-     @return les caractéristiques d'une personne + celle d'un particulier
+     @return les caractéristiques d'une personne
 	*/
 	public String toString() {
 		return super.toString();

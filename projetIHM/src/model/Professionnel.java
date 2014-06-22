@@ -35,18 +35,18 @@ public class Professionnel extends Personne {
 	    return exists;
     }
 
-    /**
-	*
+    /** modifie une personne en copiant les caractéristiques du professionnel passé en en paramètre
+	* @param pro le professionnel qui contient les nouvelles informations du professionnel à modifier
 	*/
-	public void modifier(Professionnel pers){
-		this.setNom(pers.getNom());
-		this.setPrenom(pers.getPrenom());
-		this.setCivilite(pers.getCivilite());
-		this.setAdresse(pers.getAdresse());
-		this.setEmail(pers.getEmail());
-		this.setEntreprise(pers.getEntreprise());
-		this.setTelB(pers.getTelB());
-		this.setTelP(pers.getTelP());
+	public void modifier(Professionnel pro){
+		this.setNom(pro.getNom());
+		this.setPrenom(pro.getPrenom());
+		this.setCivilite(pro.getCivilite());
+		this.setAdresse(pro.getAdresse());
+		this.setEmail(pro.getEmail());
+		this.setEntreprise(pro.getEntreprise());
+		this.setTelB(pro.getTelB());
+		this.setTelP(pro.getTelP());
 	}
 
 	/** méthode qui donne l'adresse de l'entreprise
@@ -129,7 +129,7 @@ public class Professionnel extends Personne {
 	}
 
 	/** redéfinition de la méthode toString()
-     @return les caractéristiques d'une personne + celle d'un particulier
+     @return les caractéristiques d'une personne
 	*/
 	public String toString() {
 		return super.toString();

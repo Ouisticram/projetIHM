@@ -7,10 +7,6 @@ import java.util.*;
  * @version 1
  **/
 
-/*
-Attention, je dois vous dire quelque chose sur les listes chaînées : vu que tous les éléments contiennent une référence à l'élément suivant, de telles listes risquent de devenir particulièrement lourdes en grandissant ! Cependant, elles sont adaptées lorsqu'il faut beaucoup manipuler une collection en supprimant ou en ajoutant des objets en milieu de liste. Elles sont donc à utiliser avec précaution.
-*/
-
 public class Carnet{
     
     private List<Personne> contacts;
@@ -26,6 +22,7 @@ public class Carnet{
     
 	/** ajoute la personne au carnet de contacts
 	 * @param pers : personne à ajouter au carnet
+	 * @throws CarnetException si la personne existe déjà
 	 */
 	public boolean ajout(Personne pers){
 		boolean exists = false;
@@ -58,6 +55,7 @@ public class Carnet{
         	Collections.sort(this.contacts);
         	this.dernier++;
         }
+        else throw new CarnetException("Contact déjà existant");
         return !exists;       
 	}
 	
@@ -78,6 +76,9 @@ public class Carnet{
 		return this.courant;
 	}
 
+    /** Retourne si la liste est vide ou non
+	 * @return true si la liste est vide, 0 sinon
+	 */
 	public boolean estVide(){
 		return this.contacts.size() <= 0;
 	}
@@ -270,22 +271,6 @@ public class Carnet{
 		ajout(p15);
 		ajout(p16);
 		ajout(p17);
-		
-		// affiche les contacts de base dans le terminal
-		for (int i=0; i<this.contacts.size();i++)
-		{
-		    System.out.println(i+" "+contacts.get(i).toString());
-		}
-		
-		List<Personne> result = new LinkedList<Personne>();
-		result = recherche("   RC  ");
-		System.out.println("\n");
-		
-		// affiche résulats recherche
-		for (int i=0; i<result.size();i++)
-		{
-		    System.out.println(i+" "+result.get(i).toString());
-		}
 		
 	}
 
