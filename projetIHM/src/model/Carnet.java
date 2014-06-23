@@ -37,6 +37,7 @@ public class Carnet{
                     Particulier part = (Particulier) pers;
                     Particulier part1 = (Particulier) contacts.get(i);
                     exists = part1.equals(part);
+                    System.out.println("égaux !"+i);
 				}
 
 				if (contacts.get(i) instanceof Professionnel && pers instanceof Professionnel)
@@ -249,7 +250,7 @@ public class Carnet{
 	    Professionnel p4 = new Professionnel("AD","Quentin","M.","Nantes","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Facebook");
 	    Professionnel p5 = new Professionnel("Briand","Kévin","M.","Remouille RPZ","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Google");
 	    Professionnel p6 = new Professionnel("Someone","Else","M.","Somewhere","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","SNCf");
-	     Professionnel p15 = new Professionnel("AD","Quentin","M.","Nantes","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Facebook");
+	    Professionnel p15 = new Professionnel("AD","Quentin","M.","Nantes","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Facebook");
 	    Professionnel p16 = new Professionnel("Briand","Kévin","M.","Remouille RPZ","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","Google");
 	    Professionnel p17 = new Professionnel("Someone","Else","M.","Somewhere","01-02-03-04-05","01-02-03-04-05","dizisanemail@email.fr","SNCf");
 	    
