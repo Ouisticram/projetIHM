@@ -78,7 +78,7 @@ public class NewContact extends Container {
 		this.enterName.setMaximumSize(this.enterName.getPreferredSize());
 		box1.add(Box.createHorizontalStrut(10));
 		box1.add(nom);
-		box1.add(Box.createHorizontalStrut(28)); // ajoute des pixels d'écarts sur un plan horizontal
+		box1.add(Box.createHorizontalStrut(33)); // ajoute des pixels d'écarts sur un plan horizontal
 		box1.add(this.enterName);
 		box1.add(Box.createHorizontalStrut(10));
 		this.imgWarning1 = new JLabel(new ImageIcon(this.cl.getResource("warning-red.png")));
@@ -141,7 +141,7 @@ public class NewContact extends Container {
 		this.enterAdresse.setMaximumSize(this.enterAdresse.getPreferredSize());
 		pers1.add(Box.createHorizontalStrut(10));
 		pers1.add(adresse);
-		pers1.add(Box.createHorizontalStrut(75));
+		pers1.add(Box.createHorizontalStrut(95));
 		pers1.add(this.enterAdresse);
 
 		Box pers2 = Box.createHorizontalBox();
@@ -171,7 +171,7 @@ public class NewContact extends Container {
 		this.enterEmail.setMaximumSize(this.enterEmail.getPreferredSize());
 		pers4.add(Box.createHorizontalStrut(10));
 		pers4.add(email);
-		pers4.add(Box.createHorizontalStrut(90));
+		pers4.add(Box.createHorizontalStrut(111));
 		pers4.add(this.enterEmail);
 
 		perso.add(pers1);
@@ -196,7 +196,7 @@ public class NewContact extends Container {
 		this.enterTelB.setMaximumSize(this.enterTelB.getPreferredSize());
 		pro2.add(Box.createHorizontalStrut(10));
 		pro2.add(telB);
-		pro2.add(Box.createHorizontalStrut(39));
+		pro2.add(Box.createHorizontalStrut(46));
 		pro2.add(this.enterTelB);
 
 		Box pro3 = Box.createHorizontalBox();
@@ -206,7 +206,7 @@ public class NewContact extends Container {
 		this.enterTelPPro.setMaximumSize(this.enterTelPPro.getPreferredSize());
 		pro3.add(Box.createHorizontalStrut(10));
 		pro3.add(telPPro);
-		pro3.add(Box.createHorizontalStrut(34));
+		pro3.add(Box.createHorizontalStrut(38));
 		pro3.add(this.enterTelPPro);
 
 		Box pro4 = Box.createHorizontalBox();
@@ -216,7 +216,7 @@ public class NewContact extends Container {
 		this.enterEmailPro.setMaximumSize(this.enterEmailPro.getPreferredSize());
 		pro4.add(Box.createHorizontalStrut(10));
 		pro4.add(emailPro);
-		pro4.add(Box.createHorizontalStrut(112));
+		pro4.add(Box.createHorizontalStrut(139));
 		pro4.add(this.enterEmailPro);
 
 		Box pro5 = Box.createHorizontalBox();
@@ -226,7 +226,7 @@ public class NewContact extends Container {
 		this.enterEntreprise.setMaximumSize(this.enterEntreprise.getPreferredSize());
 		pro5.add(Box.createHorizontalStrut(10));
 		pro5.add(entreprise);
-		pro5.add(Box.createHorizontalStrut(84));
+		pro5.add(Box.createHorizontalStrut(102));
 		pro5.add(this.enterEntreprise);
 
 		pro.add(pro2);
