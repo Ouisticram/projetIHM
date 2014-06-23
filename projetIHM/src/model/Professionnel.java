@@ -29,7 +29,8 @@ public class Professionnel extends Personne {
     public boolean equals (Professionnel pro)
     {  
         boolean exists = false;
-        if ((this.getNom() == pro.getNom()) && (this.getPrenom() == pro.getPrenom()) && (this.getCivilite() == pro.getCivilite()) && (this.getAdresse() == pro.getAdresse()) && (this.getTelB() == pro.getTelB()) && (this.getTelP() == pro.getTelP()) && (this.getEmail() == pro.getEmail()) && (this.getEntreprise() == pro.getEntreprise()))
+        if ((this.getNom().equals(pro.getNom())) && (this.getPrenom().equals(pro.getPrenom())) && (this.getCivilite().equals(pro.getCivilite())) && (this.getAdresse().equals(pro.getAdresse()))
+        	&& (this.getTelB().equals(pro.getTelB())) && (this.getTelP().equals(pro.getTelP())) && (this.getEmail().equals(pro.getEmail())) && (this.getEntreprise().equals(pro.getEntreprise())))
         {
 		    exists = true;
 	    }

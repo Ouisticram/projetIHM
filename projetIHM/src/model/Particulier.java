@@ -27,7 +27,8 @@ public class Particulier extends Personne {
     public boolean equals (Particulier part)
     {  
         boolean exists = false;
-        if ((this.getNom() == part.getNom()) && (this.getPrenom() == part.getPrenom()) && (this.getCivilite() == part.getCivilite()) && (this.getAdresse() == part.getAdresse()) && (this.getTelD() == part.getTelD()) && (this.getTelP() == part.getTelP()) && (this.getEmail() == part.getEmail()))
+        if ((this.getNom().equals(part.getNom())) && (this.getPrenom().equals(part.getPrenom())) && (this.getCivilite().equals(part.getCivilite())) && (this.getAdresse().equals(part.getAdresse())) 
+        	&& (this.getTelD().equals(part.getTelD())) && (this.getTelP().equals(part.getTelP())) && (this.getEmail().equals(part.getEmail())))
         {
 		    exists = true;
 	    }
