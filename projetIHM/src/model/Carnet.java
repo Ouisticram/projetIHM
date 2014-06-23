@@ -37,7 +37,6 @@ public class Carnet{
                     Particulier part = (Particulier) pers;
                     Particulier part1 = (Particulier) contacts.get(i);
                     exists = part1.equals(part);
-                    System.out.println("égaux !"+i);
 				}
 
 				if (contacts.get(i) instanceof Professionnel && pers instanceof Professionnel)

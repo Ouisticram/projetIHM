@@ -29,14 +29,14 @@ public abstract class Personne implements Humain,Comparable<Personne>{
         String p1 = "";
         String p2 = "";
         
-        if (this.getNom() != p.getNom())
+        if (!(this.getNom().equals(p.getNom())))
         {
             p1 = this.getNom();
             p2 = p.getNom();  
         }
         else 
         {
-            if (this.getPrenom() != p.getPrenom())
+            if (!(this.getPrenom().equals(p.getPrenom())))
             {
                 p1 = this.getPrenom();
                 p2 = p.getPrenom();
@@ -47,15 +47,16 @@ public abstract class Personne implements Humain,Comparable<Personne>{
             }
         }
        
-        if (p1.length() > p2.length()) {taille = p1.length();}
-        else {taille = p2.length();};
+        if (p1.length() > p2.length()) {taille = p2.length();}
+        else {taille = p1.length();};
 
 	    while (!fini && i<taille)
 	    {
 	        ret = ((Character)p1.charAt(i)).compareTo((Character)p2.charAt(i));
 	        if (ret ==0) {i++;}
-	        else{fini = true;} 
+	        else{fini = true;}
 	    }
+	    System.out.println(i+"");
 	    return ret;
 	}
 	
