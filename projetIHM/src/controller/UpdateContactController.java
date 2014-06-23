@@ -1,9 +1,7 @@
 package controller;
 
 import java.awt.event.*;
-import javax.swing.*;
 import view.*;
-import model.*;
 
 /**
  * @author AUGER-DUBOIS Quentin et BRIAND Kévin
@@ -12,14 +10,20 @@ import model.*;
 
 public class UpdateContactController implements ActionListener{
 
-	private Carnet carnet;
 	private CarnetAdresse vue;
 
-	public UpdateContactController (CarnetAdresse vue, Carnet carn){
+	/**
+	 * construit un nouveau ActionListener
+	 * @param vue La vue
+	 **/
+	public UpdateContactController (CarnetAdresse vue){
 		this.vue = vue;
-		this.carnet = carn;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 	  	this.vue.modifContact();
 	}

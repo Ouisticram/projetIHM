@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.event.*;
+
 import view.*;
 import model.*;
 
@@ -15,12 +16,22 @@ public class AddedController implements ActionListener{
 	private NewContact vue;
 	private CarnetAdresse frame;
 
+	/**
+	 * construit un nouveau ActionListener
+	 * @param vue La vue
+	 * @param carn Le modele
+	 * @param bigFrame La vue de la fenêtre principale
+	 **/
 	public AddedController (NewContact vue, Carnet carn, CarnetAdresse bigFrame){
 		this.vue = vue;
 		this.carnet = carn;
 		this.frame = bigFrame;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String man = "";
 		this.vue.setWarningMessageName(false);

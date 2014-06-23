@@ -46,5 +46,9 @@
         <echo message="nettoyage termine"/>
     </target>
     
+<<<<<<< HEAD
+    <target name="main" depends="compile, javadoc, jar, run" />
+=======
     <target name="main" depends="compile, jar, javadoc, run"/><!--javadoc-->
+>>>>>>> 045b968e9b983dc54f3fc42f823cd26b5f1d3f1f
 </project>

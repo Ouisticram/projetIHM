@@ -17,12 +17,20 @@ public abstract class Container{
 	protected Font smallBoldFont = new Font("Arial", Font.BOLD, 14);
 	protected Font smallPlainFont = new Font("Arial", Font.PLAIN, 14);
 	
+	/**
+	 * construit un nouveau conteneur
+	 * @param dim Les dimensions du conteneur
+	 */
 	public Container(Dimension dim){
 		this.panel = new JPanel();
 		this.panel.setPreferredSize(dim);
 		this.panel.setBackground(Color.white);
 	}
 	
+	/**
+	 * méthode qui retourne le JPanel créé
+	 * @return Le JPanel créé
+	 */
 	protected JPanel getPanel(){
 		return this.panel;
 	}

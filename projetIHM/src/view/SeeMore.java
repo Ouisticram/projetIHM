@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import model.*;
 
 /**
@@ -13,17 +12,22 @@ import model.*;
 public class SeeMore extends Container {
 	
 	private Personne personne;
-	private Carnet carnet;
 
-	// Constructeur de notre class
-	public SeeMore(Carnet carn, Personne pers, Dimension dim){
+	/**
+	 * construit un nouveau conteneur
+	 * @param pers La personne dont on veut connaitre les renseignements
+	 * @param dim Les dimensions du conteneur
+	 */
+	public SeeMore(Personne pers, Dimension dim){
 		super(dim);
 		this.personne = pers;
-		this.carnet = carn;
 		initPanel();
 		this.panel.setBackground(new Color(4,129,158));
 	}
 
+	/**
+	 * méthode qui intialise le Panel
+	 */
 	public void initPanel(){
 
 	// Création des composants

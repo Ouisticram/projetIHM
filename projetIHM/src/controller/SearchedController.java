@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.event.*;
-import javax.swing.*;
 import view.*;
 import model.*;
 
@@ -12,27 +11,45 @@ import model.*;
 
 public class SearchedController implements KeyListener{
 
-	Carnet carnet;
-	int code;
-	CarnetAdresse frame;
-	JTextField field;
+	private Search vue;
+	private Carnet carnet;
+	private int code;
+	private CarnetAdresse frame;
 
-	public SearchedController (Carnet carn, CarnetAdresse bigFrame, JTextField f){
+	/**
+	 * construit un nouveau KeyListener
+	 * @param vue La vue
+	 * @param carn Le modele
+	 * @param bigFrame la vue de la fenêtre principale
+	 **/
+	public SearchedController (Search vue, Carnet carn, CarnetAdresse bigFrame){
+		this.vue = vue;
 		this.carnet = carn;
 		this.frame = bigFrame;
-		this.field = f;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void keyPressed(KeyEvent e){
 		this.code = e.getKeyCode();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void keyTyped(KeyEvent e){
 		String content = "";
-		if(this.code == 8) content = this.field.getText();
-		else content = this.field.getText()+e.getKeyChar();
+		if(this.code == 8) content = this.vue.getSearchContent();
+		else content = this.vue.getSearchContent()+e.getKeyChar();
 		this.frame.changeList(this.carnet.recherche(content));
 	}
 
-	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void keyReleased(KeyEvent e){}
 }

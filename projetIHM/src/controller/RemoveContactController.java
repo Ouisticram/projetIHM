@@ -1,7 +1,9 @@
 package controller;
 
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import view.*;
 import model.*;
 
@@ -15,11 +17,20 @@ public class RemoveContactController implements ActionListener{
 	private Carnet carnet;
 	private CarnetAdresse vue;
 
+	/**
+	 * construit un nouveau ActionListener
+	 * @param vue La vue
+	 * @param carn Le modele
+	 **/
 	public RemoveContactController (CarnetAdresse vue, Carnet carn){
 		this.vue = vue;
 		this.carnet = carn;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 	  	int reply = JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir supprimer ce contact", "Supprimer ?",  JOptionPane.YES_NO_OPTION);
 		if (reply == JOptionPane.YES_OPTION){

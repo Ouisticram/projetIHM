@@ -1,7 +1,5 @@
 package model;
 
-import java.lang.*;
-
 /**
  * @author Auger-Dubois Quentin et Briand Kévin
  * @version 1
