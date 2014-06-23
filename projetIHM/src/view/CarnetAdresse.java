@@ -256,14 +256,6 @@ public class CarnetAdresse extends JFrame {
 	}
 
 	/**
-	 * Change la couleur du fond de l'objet, de la liste, sélectionné
-	 * @param couleur La couleur dont on veut mettre le fond de l'objet, de la liste, sélectionné
-	 */
-	public void changeListColor(Color couleur) {
-		this.liste.setSelectionBackground(couleur);
-	}
-
-	/**
 	 * active / désactive le Bouton permettant de passer au contact précédent
 	 * @param state vrai si le bouton doit être activé
 	 */
