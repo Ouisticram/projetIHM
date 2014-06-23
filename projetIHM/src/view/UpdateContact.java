@@ -85,7 +85,7 @@ public class UpdateContact extends Container {
 			this.enterAdresse.setText(part.getAdresse());
 			pers1.add(Box.createHorizontalStrut(10));
 			pers1.add(adresse);
-			pers1.add(Box.createHorizontalStrut(75));
+			pers1.add(Box.createHorizontalStrut(95));
 			pers1.add(this.enterAdresse);
 
 			Box pers2 = Box.createHorizontalBox();
@@ -118,7 +118,7 @@ public class UpdateContact extends Container {
 			this.enterEmail.setText(part.getEmail());
 			pers4.add(Box.createHorizontalStrut(10));
 			pers4.add(email);
-			pers4.add(Box.createHorizontalStrut(90));
+			pers4.add(Box.createHorizontalStrut(111));
 			pers4.add(this.enterEmail);
 
 			perso.add(pers1);
@@ -154,7 +154,7 @@ public class UpdateContact extends Container {
 			this.enterTelB.setText(prof.getTelB());
 			pro2.add(Box.createHorizontalStrut(10));
 			pro2.add(telB);
-			pro2.add(Box.createHorizontalStrut(39));
+			pro2.add(Box.createHorizontalStrut(46));
 			pro2.add(this.enterTelB);
 
 			Box pro3 = Box.createHorizontalBox();
@@ -165,7 +165,7 @@ public class UpdateContact extends Container {
 			this.enterTelPPro.setText(prof.getTelP());
 			pro3.add(Box.createHorizontalStrut(10));
 			pro3.add(telPPro);
-			pro3.add(Box.createHorizontalStrut(34));
+			pro3.add(Box.createHorizontalStrut(38));
 			pro3.add(this.enterTelPPro);
 
 			Box pro4 = Box.createHorizontalBox();
@@ -176,7 +176,7 @@ public class UpdateContact extends Container {
 			this.enterEmailPro.setText(prof.getEmail());
 			pro4.add(Box.createHorizontalStrut(10));
 			pro4.add(emailPro);
-			pro4.add(Box.createHorizontalStrut(112));
+			pro4.add(Box.createHorizontalStrut(139));
 			pro4.add(this.enterEmailPro);
 
 			Box pro5 = Box.createHorizontalBox();
@@ -187,7 +187,7 @@ public class UpdateContact extends Container {
 			this.enterEntreprise.setText(prof.getEntreprise());
 			pro5.add(Box.createHorizontalStrut(10));
 			pro5.add(entreprise);
-			pro5.add(Box.createHorizontalStrut(84));
+			pro5.add(Box.createHorizontalStrut(102));
 			pro5.add(this.enterEntreprise);
 
 			pro.add(pro2);
@@ -206,7 +206,7 @@ public class UpdateContact extends Container {
 		this.enterName.setText(this.personne.getNom());
 		box1.add(Box.createHorizontalStrut(10));
 		box1.add(nom);
-		box1.add(Box.createHorizontalStrut(28)); // ajoute des pixels d'écarts sur un plan horizontal
+		box1.add(Box.createHorizontalStrut(33)); // ajoute des pixels d'écarts sur un plan horizontal
 		box1.add(this.enterName);
 		box1.add(Box.createHorizontalStrut(10));
 		this.imgWarning1 = new JLabel(new ImageIcon(this.cl.getResource("warning-red.png")));
