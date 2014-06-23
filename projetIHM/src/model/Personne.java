@@ -28,23 +28,16 @@ public abstract class Personne implements Humain,Comparable<Personne>{
         int i = 0;
         String p1 = "";
         String p2 = "";
-        
-<<<<<<< HEAD
-        if (!(this.getNom().equals(p.getNom())))
-=======
+
         if (!this.getNom().equals(p.getNom()))
->>>>>>> 2668f7a4bf0561abc428fcb623795d64f73753ab
         {
             p1 = this.getNom();
             p2 = p.getNom();  
         }
         else 
         {
-<<<<<<< HEAD
-            if (!(this.getPrenom().equals(p.getPrenom())))
-=======
+
             if (!this.getPrenom().equals(p.getPrenom()))
->>>>>>> 2668f7a4bf0561abc428fcb623795d64f73753ab
             {
                 p1 = this.getPrenom();
                 p2 = p.getPrenom();
@@ -56,25 +49,14 @@ public abstract class Personne implements Humain,Comparable<Personne>{
         }
        
         if (p1.length() > p2.length()) {taille = p2.length();}
-<<<<<<< HEAD
-        else {taille = p1.length();};
-=======
         else {taille = p1.length();}
->>>>>>> 2668f7a4bf0561abc428fcb623795d64f73753ab
 
 	    while (!fini && i<taille)
 	    {
-	    	System.out.println("i = "+i);
 	        ret = ((Character)p1.charAt(i)).compareTo((Character)p2.charAt(i));
-<<<<<<< HEAD
-	        if (ret ==0) {i++;}
-	        else{fini = true;}
-=======
 	        if (ret == 0) i++;
 	        else fini = true;
->>>>>>> 2668f7a4bf0561abc428fcb623795d64f73753ab
 	    }
-	    System.out.println(i+"");
 	    return ret;
 	}
 	

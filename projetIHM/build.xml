@@ -45,9 +45,5 @@
         <delete dir="${jar.dir}"/>
         <echo message="nettoyage termine"/>
     </target>
-<<<<<<< HEAD
-    
-=======
->>>>>>> 2668f7a4bf0561abc428fcb623795d64f73753ab
     <target name="main" depends="compile, javadoc, jar, run" />
 </project>
