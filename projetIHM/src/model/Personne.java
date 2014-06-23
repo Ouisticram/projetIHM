@@ -28,7 +28,7 @@ public abstract class Personne implements Humain,Comparable<Personne>{
         int i = 0;
         String p1 = "";
         String p2 = "";
-        
+
         if (!this.getNom().equals(p.getNom()))
         {
             p1 = this.getNom();
@@ -36,6 +36,7 @@ public abstract class Personne implements Humain,Comparable<Personne>{
         }
         else 
         {
+
             if (!this.getPrenom().equals(p.getPrenom()))
             {
                 p1 = this.getPrenom();
