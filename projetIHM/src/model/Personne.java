@@ -52,7 +52,6 @@ public abstract class Personne implements Humain,Comparable<Personne>{
 
 	    while (!fini && i<taille)
 	    {
-	    	System.out.println("i = "+i);
 	        ret = ((Character)p1.charAt(i)).compareTo((Character)p2.charAt(i));
 	        if (ret == 0) i++;
 	        else fini = true;
